@@ -1,4 +1,5 @@
 extends Node
+class_name HealthTracker
 
 @export var health: float = 10;
 @export var max_health: float = 10;
