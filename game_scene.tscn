@@ -12,9 +12,8 @@ parsed_geometry_type = 1
 
 [node name="GameScene" type="Node2D"]
 
-[node name="Minion" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_rq6j7")]
+[node name="Minion" parent="." instance=ExtResource("1_rq6j7")]
 position = Vector2(127, 122)
-target = NodePath("../Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(529, 496)

@@ -1,17 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://krh4wqhn34oi"]
+[gd_scene load_steps=9 format=3 uid="uid://krh4wqhn34oi"]
 
 [ext_resource type="Script" path="res://entities/minions/minion.gd" id="1_fk853"]
 [ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="1_r8ng3"]
 [ext_resource type="Script" path="res://health/health_tracker.gd" id="2_sfkwh"]
+[ext_resource type="Script" path="res://entities/state_machine/state_machine.gd" id="4_5a6uh"]
+[ext_resource type="Script" path="res://entities/state_machine/target_tracker.gd" id="5_ktk4i"]
+[ext_resource type="Script" path="res://entities/state_machine/find_target_state.gd" id="6_3i4x2"]
+[ext_resource type="Script" path="res://entities/minions/track_target_state.gd" id="7_mjemj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm50p"]
 radius = 66.2722
 
-[node name="Minion" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent")]
+[node name="Minion" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_fk853")
-nav_agent = NodePath("NavigationAgent2D")
-move_speed = 100.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
@@ -38,5 +40,26 @@ texture = ExtResource("1_r8ng3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bm50p")
+
+[node name="TargetTracker" type="Node" parent="."]
+script = ExtResource("5_ktk4i")
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("4_5a6uh")
+states = {
+"FindTarget": NodePath("FindTargetState"),
+"TrackTarget": NodePath("TrackTargetState")
+}
+current_state = "FindTarget"
+
+[node name="FindTargetState" type="Node" parent="StateMachine" node_paths=PackedStringArray("target_tracker")]
+script = ExtResource("6_3i4x2")
+target_tracker = NodePath("../../TargetTracker")
+
+[node name="TrackTargetState" type="Node" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "character_body", "nav_agent")]
+script = ExtResource("7_mjemj")
+target_tracker = NodePath("../../TargetTracker")
+character_body = NodePath("../..")
+nav_agent = NodePath("../../NavigationAgent2D")
 
 [connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]
