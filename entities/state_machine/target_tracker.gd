@@ -1,4 +1,5 @@
 extends Node
+class_name TargetTracker
 
 @export var target: Node2D = null;
 

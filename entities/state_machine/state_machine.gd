@@ -30,3 +30,7 @@ func _process(delta: float) -> void:
 static func is_active_state(_self: Node) -> bool:
 	var state_machine: StateMachine = _self.get_node("../");
 	return state_machine.get_node(state_machine.states.get(state_machine.current_state)) == _self;
+
+static func switch_state(_self: Node, new_state: String):
+	var state_machine: StateMachine = _self.get_node("../");
+	state_machine.current_state = new_state;

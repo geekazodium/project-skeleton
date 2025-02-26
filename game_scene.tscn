@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://vq5kr86416s4"]
+[gd_scene load_steps=6 format=3 uid="uid://vq5kr86416s4"]
 
 [ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://entities/minions/minion.tscn" id="1_rq6j7"]
 [ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="2_og34h"]
 [ext_resource type="Script" path="res://targeting_cursor.gd" id="3_awktb"]
+[ext_resource type="PackedScene" uid="uid://dubqfll6wt3er" path="res://entities/enemy.tscn" id="4_21dl5"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_fcdfl"]
 vertices = PackedVector2Array(1142, 630.062, 9.99219, 637.93, 10, 10, 1142, 10)
@@ -13,7 +14,7 @@ parsed_geometry_type = 1
 [node name="GameScene" type="Node2D"]
 
 [node name="Minion" parent="." instance=ExtResource("1_rq6j7")]
-position = Vector2(127, 122)
+position = Vector2(192, 120)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(529, 496)
@@ -22,4 +23,8 @@ texture = ExtResource("2_og34h")
 script = ExtResource("3_awktb")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_fcdfl")
+
+[node name="Enemy" parent="." instance=ExtResource("4_21dl5")]
+position = Vector2(832, 608)
