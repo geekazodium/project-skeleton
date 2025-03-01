@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://vq5kr86416s4"]
+[gd_scene load_steps=7 format=3 uid="uid://vq5kr86416s4"]
 
 [ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://entities/minions/minion.tscn" id="1_rq6j7"]
 [ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="2_og34h"]
 [ext_resource type="Script" path="res://targeting_cursor.gd" id="3_awktb"]
-[ext_resource type="PackedScene" uid="uid://dubqfll6wt3er" path="res://entities/enemy.tscn" id="4_21dl5"]
+[ext_resource type="PackedScene" uid="uid://dubqfll6wt3er" path="res://entities/enemies/enemy.tscn" id="4_21dl5"]
+[ext_resource type="Script" path="res://entities/enemies/enemy_spawner.gd" id="4_fxjpr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_fcdfl"]
 vertices = PackedVector2Array(1142, 630.062, 9.99219, 637.93, 10, 10, 1142, 10)
@@ -26,5 +27,8 @@ script = ExtResource("3_awktb")
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_fcdfl")
 
-[node name="Enemy" parent="." instance=ExtResource("4_21dl5")]
-position = Vector2(832, 608)
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("4_fxjpr")
+spawn_interval_min = 1.4
+spawn_interval_max = 1.8
+spawn_scene = ExtResource("4_21dl5")
