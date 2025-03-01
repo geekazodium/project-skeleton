@@ -4,7 +4,9 @@ this is my prototype for "what about a game where you summon a bunch of small cr
 
 # Naming Conventions
 
-Use snake_case, where you seperate words in name with an underscore and do not use caps.
+Use snake_case for all file names
+
+Use CamelCase for `class_name [name]` and Node Names / engine singletons.
 
 # Structure
 
