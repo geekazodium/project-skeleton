@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://vq5kr86416s4"]
+
+[ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://scenes/entities/minion.tscn" id="1_4bfgp"]
+[ext_resource type="Script" path="res://scripts/entities/enemy_spawner.gd" id="2_qdphv"]
+[ext_resource type="PackedScene" uid="uid://dubqfll6wt3er" path="res://scenes/entities/enemy.tscn" id="3_3rgyx"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_fcdfl"]
+vertices = PackedVector2Array(1142, 630.062, 9.99219, 637.93, 10, 10, 1142, 10)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 648, 1152, 640, 1152, 0, 0, 0)])
+parsed_geometry_type = 1
+
+[node name="GameScene" type="Node2D"]
+
+[node name="Minion" parent="." instance=ExtResource("1_4bfgp")]
+position = Vector2(192, 120)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_fcdfl")
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource("2_qdphv")
+spawn_interval_min = 1.4
+spawn_interval_max = 1.8
+spawn_scene = ExtResource("3_3rgyx")
+
+[node name="MinionSpawner" type="Node2D" parent="."]

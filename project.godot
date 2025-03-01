@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Toy 4"
-run/main_scene="res://game_scene.tscn"
+run/main_scene="res://scenes/game_scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+EventBus="*res://scripts/event_bus.gd"
 
 [display]
 
