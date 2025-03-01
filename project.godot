@@ -26,7 +26,12 @@ window/stretch/scale_mode="integer"
 2d_physics/layer_3="Summons"
 2d_physics/layer_4="Enemies"
 
+[autoload]
+
+GameManager="*res://Scripts/GameManager.gd"
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
