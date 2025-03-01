@@ -1,9 +1,10 @@
-extends Node
+extends Node2D
 
 @export var target_tracker: Node = null;
-@export var character_body: CharacterBody2D = null;
-@export var move_speed: float = 10;
+@export var character_body: EntityBody = null;
 @export var nav_agent: NavigationAgent2D = null;
+
+@export var attack_area: AttackArea = null;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,7 +17,8 @@ func _process(delta: float) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	var target = target_tracker.get_target();
-	character_body.velocity = move_speed * self.get_nav_dir(target.global_position);
+	character_body.move_in_direction(self.get_nav_dir(target.global_position));
+	attack_area.process_hits();
 	
 func get_nav_dir(target_pos: Vector2) -> Vector2:
 	self.nav_agent.target_position = target_pos;

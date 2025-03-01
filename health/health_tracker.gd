@@ -18,3 +18,5 @@ func _physics_process(delta: float) -> void:
 func change_health(amount: float):
 	self.health += amount;
 	self.health_changed.emit(self.health);
+
+static var default_path: String = "HealthTracker";
