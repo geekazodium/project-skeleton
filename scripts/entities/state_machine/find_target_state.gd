@@ -14,7 +14,9 @@ func _process(delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	pass
+	var nearest: Node2D = AttackArea.get_hit_nearest_body(self.detection_area);
+	if nearest != null:
+		self._on_body_enter_detection(nearest);
 	
 func _on_body_enter_detection(body: Node2D):
 	if !StateMachine.is_active_state(self):
