@@ -18,4 +18,4 @@ func _physics_process(delta: float) -> void:
 		Input.get_axis(move_left_action,move_right_action),
 		Input.get_axis(move_up_action,move_down_action));
 	
-	self.entity_body.move_in_direction(direction);
+	self.entity_body.move_in_direction(direction.normalized());
