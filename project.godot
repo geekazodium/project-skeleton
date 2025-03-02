@@ -11,15 +11,26 @@ config_version=5
 [application]
 
 config/name="Toy 4"
+run/main_scene="res://scenes/game_scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://Scripts/GameManager.gd"
+EventBus="*res://scripts/event_bus.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
+
+[layer_names]
+
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Summons"
+2d_physics/layer_4="Enemies"
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

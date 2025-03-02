@@ -1,0 +1,94 @@
+[gd_scene load_steps=12 format=3 uid="uid://krh4wqhn34oi"]
+
+[ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_fk853"]
+[ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="1_r8ng3"]
+[ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_sfkwh"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/state_machine.gd" id="4_5a6uh"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/target_tracker.gd" id="5_ktk4i"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/find_target_state.gd" id="6_3i4x2"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/track_target_state.gd" id="7_mjemj"]
+[ext_resource type="Script" path="res://scripts/attacks/attack_area.gd" id="8_20gw0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bm50p"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v5ac1"]
+radius = 877.356
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ehyuf"]
+radius = 89.202
+
+[node name="Minion" type="CharacterBody2D"]
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("1_fk853")
+move_speed = 100.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="HealthTracker" type="Node" parent="."]
+script = ExtResource("2_sfkwh")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -64.0
+offset_right = 56.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 10.0
+
+[node name="Minion" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_r8ng3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bm50p")
+
+[node name="TargetTracker" type="Node" parent="."]
+script = ExtResource("5_ktk4i")
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("4_5a6uh")
+states = {
+"FindTarget": NodePath("FindTargetState"),
+"TrackTarget": NodePath("TrackTargetState")
+}
+current_state = "FindTarget"
+
+[node name="FindTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "detection_area")]
+script = ExtResource("6_3i4x2")
+target_tracker = NodePath("../../TargetTracker")
+detection_area = NodePath("Area2D")
+detected_state = "TrackTarget"
+
+[node name="Area2D" type="Area2D" parent="StateMachine/FindTargetState"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/FindTargetState/Area2D"]
+shape = SubResource("CircleShape2D_v5ac1")
+
+[node name="TrackTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "character_body", "nav_agent", "attack_area")]
+script = ExtResource("7_mjemj")
+target_tracker = NodePath("../../TargetTracker")
+character_body = NodePath("../..")
+nav_agent = NodePath("../../NavigationAgent2D")
+attack_area = NodePath("AttackArea")
+
+[node name="AttackArea" type="Area2D" parent="StateMachine/TrackTargetState"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("8_20gw0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/TrackTargetState/AttackArea"]
+shape = SubResource("CircleShape2D_ehyuf")
+
+[connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]
+[connection signal="body_entered" from="StateMachine/FindTargetState/Area2D" to="StateMachine/FindTargetState" method="_on_body_enter_detection"]
