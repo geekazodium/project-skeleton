@@ -11,7 +11,6 @@ func _ready() -> void:
 		state.set_process(false);
 		state.set_physics_process(false);
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if self.current_state.length() == 0:

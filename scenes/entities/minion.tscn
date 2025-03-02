@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://krh4wqhn34oi"]
+[gd_scene load_steps=13 format=3 uid="uid://krh4wqhn34oi"]
 
 [ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_fk853"]
 [ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="1_r8ng3"]
 [ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_sfkwh"]
+[ext_resource type="Script" path="res://scripts/entities/delete_on_death.gd" id="3_x2c8f"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/state_machine.gd" id="4_5a6uh"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/target_tracker.gd" id="5_ktk4i"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/find_target_state.gd" id="6_3i4x2"]
@@ -25,10 +26,12 @@ script = ExtResource("1_fk853")
 move_speed = 100.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="HealthTracker" type="Node" parent="."]
 script = ExtResource("2_sfkwh")
+
+[node name="DeleteOnDeath" type="Node" parent="."]
+script = ExtResource("3_x2c8f")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 anchors_preset = 8
@@ -80,6 +83,7 @@ script = ExtResource("7_mjemj")
 target_tracker = NodePath("../../TargetTracker")
 character_body = NodePath("../..")
 nav_agent = NodePath("../../NavigationAgent2D")
+target_lost_state = "FindTarget"
 attack_area = NodePath("AttackArea")
 
 [node name="AttackArea" type="Area2D" parent="StateMachine/TrackTargetState"]
@@ -91,4 +95,5 @@ script = ExtResource("8_20gw0")
 shape = SubResource("CircleShape2D_ehyuf")
 
 [connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]
+[connection signal="health_changed" from="HealthTracker" to="DeleteOnDeath" method="_on_health_change"]
 [connection signal="body_entered" from="StateMachine/FindTargetState/Area2D" to="StateMachine/FindTargetState" method="_on_body_enter_detection"]

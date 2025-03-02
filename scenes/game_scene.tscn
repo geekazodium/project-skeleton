@@ -12,9 +12,6 @@ parsed_geometry_type = 1
 
 [node name="GameScene" type="Node2D"]
 
-[node name="Minion" parent="." instance=ExtResource("1_4bfgp")]
-position = Vector2(192, 120)
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_fcdfl")
@@ -26,3 +23,8 @@ spawn_interval_max = 1.8
 spawn_scene = ExtResource("3_3rgyx")
 
 [node name="MinionSpawner" type="Node2D" parent="."]
+position = Vector2(1157, 647)
+script = ExtResource("2_qdphv")
+spawn_interval_min = 1.4
+spawn_interval_max = 1.8
+spawn_scene = ExtResource("1_4bfgp")
