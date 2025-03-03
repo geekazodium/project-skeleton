@@ -5,7 +5,7 @@ class_name AttackArea
 @export var damage_cooldown: float = .5;
 var damage_cooldown_timer: float = 0.;
 
-@export var knockback_amount: float = 200;
+@export var knockback_amount: float = 500;
 @export var stun_duration: float = .25;
 
 # Called when the node enters the scene tree for the first time.

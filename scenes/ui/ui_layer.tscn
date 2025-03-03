@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1ap6hg0m83r8"]
+
+[ext_resource type="Script" path="res://scenes/ui/experience_progress_bar.gd" id="1_1yx45"]
+[ext_resource type="Script" path="res://scenes/ui/exp_text_label.gd" id="2_yof05"]
+
+[node name="UiLayer" type="CanvasLayer"]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_right = 595.0
+offset_bottom = 27.0
+show_percentage = false
+script = ExtResource("1_1yx45")
+
+[node name="RichTextLabel" type="Label" parent="."]
+offset_left = 605.0
+offset_right = 713.0
+offset_bottom = 40.0
+script = ExtResource("2_yof05")
