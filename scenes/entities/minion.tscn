@@ -94,6 +94,6 @@ script = ExtResource("8_20gw0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/TrackTargetState/AttackArea"]
 shape = SubResource("CircleShape2D_ehyuf")
 
-[connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]
 [connection signal="health_changed" from="HealthTracker" to="DeleteOnDeath" method="_on_health_change"]
+[connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]
 [connection signal="body_entered" from="StateMachine/FindTargetState/Area2D" to="StateMachine/FindTargetState" method="_on_body_enter_detection"]

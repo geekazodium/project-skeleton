@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://dubqfll6wt3er"]
+[gd_scene load_steps=15 format=3 uid="uid://dubqfll6wt3er"]
 
 [ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_t1ggi"]
 [ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_phvhl"]
 [ext_resource type="Script" path="res://scripts/entities/delete_on_death.gd" id="3_jn5bd"]
 [ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="3_s2mat"]
+[ext_resource type="Script" path="res://scripts/items/instantiate_on_exit.gd" id="4_0td2i"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/target_tracker.gd" id="4_fvfve"]
+[ext_resource type="PackedScene" uid="uid://bpj1aj0eh5h55" path="res://scenes/items/experience_drop.tscn" id="5_bio7f"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/state_machine.gd" id="5_tlqte"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/find_target_state.gd" id="6_ctvdv"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/track_target_state.gd" id="7_gae4f"]
@@ -32,6 +34,10 @@ script = ExtResource("2_phvhl")
 
 [node name="DeleteOnDeath" type="Node" parent="."]
 script = ExtResource("3_jn5bd")
+
+[node name="DeathInstantiate" type="Node" parent="."]
+script = ExtResource("4_0td2i")
+scene = ExtResource("5_bio7f")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 anchors_preset = 8
@@ -95,6 +101,7 @@ script = ExtResource("8_wkgd1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/TrackTargetState/AttackArea"]
 shape = SubResource("CircleShape2D_l7rto")
 
-[connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]
 [connection signal="health_changed" from="HealthTracker" to="DeleteOnDeath" method="_on_health_change"]
+[connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]
+[connection signal="death" from="DeleteOnDeath" to="DeathInstantiate" method="_instantiate"]
 [connection signal="body_entered" from="StateMachine/FindTargetState/Area2D" to="StateMachine/FindTargetState" method="_on_body_enter_detection"]

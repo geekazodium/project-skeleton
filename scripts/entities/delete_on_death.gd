@@ -1,15 +1,11 @@
 extends Node
 class_name DeleteOnDeath
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+signal death(dead_node: Node2D);
 
 func _on_health_change(current: float):
+	if self.get_parent().is_queued_for_deletion():
+		return;
 	if current <= 0.:
+		self.emit_signal("death", self.get_parent());
 		self.get_parent().queue_free();
