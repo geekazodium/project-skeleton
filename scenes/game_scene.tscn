@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://vq5kr86416s4"]
+[gd_scene load_steps=12 format=3 uid="uid://vq5kr86416s4"]
 
 [ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://scenes/entities/minion.tscn" id="1_4bfgp"]
 [ext_resource type="PackedScene" uid="uid://nydo5vwxibai" path="res://scenes/entities/player.tscn" id="1_tcglg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/entities/spawners/spawner_rotation.gd" id="4_ko6km"]
 [ext_resource type="Texture2D" uid="uid://dbhlxyr0jai8p" path="res://assets/sprites/pentagram.svg" id="5_5fu4y"]
 [ext_resource type="Script" path="res://scripts/camera/follow_camera_2d.gd" id="5_wc26p"]
+[ext_resource type="PackedScene" uid="uid://c1ap6hg0m83r8" path="res://scenes/ui/ui_layer.tscn" id="8_x4mid"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k0imj"]
 blend_mode = 4
@@ -70,16 +71,16 @@ rotate_speed = 25.0
 [node name="EnemySpawner" type="Node2D" parent="Player/SpawnerRotation" node_paths=PackedStringArray("spawn_to")]
 position = Vector2(800, 0)
 script = ExtResource("2_qdphv")
-spawn_interval_min = 1.4
-spawn_interval_max = 1.8
+spawn_interval_min = 1.8
+spawn_interval_max = 2.0
 spawn_scene = ExtResource("3_3rgyx")
 spawn_to = NodePath("../../..")
 
 [node name="EnemySpawner2" type="Node2D" parent="Player/SpawnerRotation" node_paths=PackedStringArray("spawn_to")]
 position = Vector2(-800, 0)
 script = ExtResource("2_qdphv")
-spawn_interval_min = 1.4
-spawn_interval_max = 1.8
+spawn_interval_min = 1.8
+spawn_interval_max = 2.0
 spawn_scene = ExtResource("3_3rgyx")
 spawn_to = NodePath("../../..")
 
@@ -91,3 +92,5 @@ navigation_polygon = SubResource("NavigationPolygon_fcdfl")
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("5_wc26p")
 target = NodePath("../Player")
+
+[node name="UiLayer" parent="." instance=ExtResource("8_x4mid")]

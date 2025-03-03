@@ -6,11 +6,6 @@ var tween_timer: float = 0.;
 @export var tween_velocity = 5;
 @export var distance_tolerance = 50;
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if tween_to == null:
@@ -20,7 +15,7 @@ func _process(delta: float) -> void:
 	var move_by: Vector2 = (position - self.global_position) * scale_fac;
 	self.position = self.position + move_by;
 	if (self.position - tween_to.position).length_squared() < distance_tolerance * distance_tolerance:
-		
+		ExperienceTracker.find_node(tween_to).gain_xp(1);
 		self.queue_free();
 
 func _on_body_entered(body: Node2D) -> void:

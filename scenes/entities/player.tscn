@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://nydo5vwxibai"]
+[gd_scene load_steps=8 format=3 uid="uid://nydo5vwxibai"]
 
 [ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_wxe34"]
 [ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_x2jr2"]
 [ext_resource type="Script" path="res://scripts/entities/delete_on_death.gd" id="3_p1onp"]
 [ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="4_jjrip"]
 [ext_resource type="Script" path="res://scripts/entities/user_controlled_movement.gd" id="5_oiksj"]
+[ext_resource type="Script" path="res://scripts/progress/experience_tracker.gd" id="6_pqjdb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm50p"]
 radius = 40.0
@@ -21,6 +22,9 @@ script = ExtResource("2_x2jr2")
 
 [node name="DeleteOnDeath" type="Node" parent="."]
 script = ExtResource("3_p1onp")
+
+[node name="ExperienceTracker" type="Node" parent="."]
+script = ExtResource("6_pqjdb")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 anchors_preset = 8
