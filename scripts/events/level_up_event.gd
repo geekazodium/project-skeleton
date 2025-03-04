@@ -4,6 +4,7 @@ class_name LevelUpEvent
 var experience_tracker: ExperienceTracker = null;
 var level: int = 0;
 
+@warning_ignore("shadowed_variable")
 static func new_inst(experience_tracker: ExperienceTracker, level: int) -> LevelUpEvent:
 	var _self: LevelUpEvent = LevelUpEvent.new();
 	_self.level = level;

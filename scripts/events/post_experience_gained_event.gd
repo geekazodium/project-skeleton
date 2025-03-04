@@ -3,6 +3,7 @@ class_name PostExperienceGainEvent
 
 var experience_tracker: ExperienceTracker = null;
 
+@warning_ignore("shadowed_variable")
 static func new_inst(experience_tracker: ExperienceTracker) -> PostExperienceGainEvent:
 	var _self: PostExperienceGainEvent = PostExperienceGainEvent.new();
 	_self.experience_tracker = experience_tracker;

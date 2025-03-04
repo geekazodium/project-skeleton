@@ -15,7 +15,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if self.target == null:
 		return;
-	var position: Vector2 = self.target.global_position;
+	var target_position: Vector2 = self.target.global_position;
 	var scale_fac: float = 1.-pow(EULER_CONST,-delta * self.tween_velocity);
-	var move_by: Vector2 = (position - self.global_position) * scale_fac;
+	var move_by: Vector2 = (target_position - self.global_position) * scale_fac;
 	self.position = self.position + move_by;

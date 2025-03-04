@@ -4,16 +4,10 @@ extends Node2D
 @export var detection_area: Area2D = null;
 @export var detected_state: String = "";
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var nearest: Node2D = AttackArea.get_hit_nearest_body(self.detection_area);
 	if nearest != null:
 		self._on_body_enter_detection(nearest);

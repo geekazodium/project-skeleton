@@ -12,11 +12,11 @@ func _ready() -> void:
 	if nav_agent == null:
 		push_error("no nav agent set on node");
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !self.target_tracker.has_target():
 		StateMachine.switch_state(self, target_lost_state);
 		return;

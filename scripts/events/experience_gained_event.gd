@@ -5,6 +5,7 @@ var base_amount_gained: float = 0;
 var amount_gained: float = 0;
 var experience_tracker: ExperienceTracker = null;
 
+@warning_ignore("shadowed_variable")
 static func new_inst(experience_tracker: ExperienceTracker, amount: float) -> ExperienceGainEvent:
 	var _self: ExperienceGainEvent = ExperienceGainEvent.new();
 	_self.amount_gained = amount;
