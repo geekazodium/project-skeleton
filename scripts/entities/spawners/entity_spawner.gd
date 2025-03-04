@@ -1,4 +1,5 @@
 extends Node2D
+class_name EntitySpawner
 
 @export var spawn_interval_min: float = .5;
 @export var spawn_interval_max: float = .7;

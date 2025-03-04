@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1ap6hg0m83r8"]
 
-[ext_resource type="Script" path="res://scenes/ui/experience_progress_bar.gd" id="1_1yx45"]
-[ext_resource type="Script" path="res://scenes/ui/exp_text_label.gd" id="2_yof05"]
+[ext_resource type="Script" path="res://scripts/ui/experience_progress_bar.gd" id="1_1yx45"]
+[ext_resource type="Script" path="res://scripts/ui/exp_text_label.gd" id="2_yof05"]
 
 [node name="UiLayer" type="CanvasLayer"]
 

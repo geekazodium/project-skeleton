@@ -12,7 +12,7 @@ func get_xp_until_level_up() -> float:
 
 func gain_xp(amount: float):
 	var exp_gained_event = ExperienceGainEvent.new_inst(self, amount);
-	EventBus.emit_signal("experience_gained", exp_gained_event);
+	EventBus.experience_gained.emit(exp_gained_event);
 	self.experience += exp_gained_event.amount_gained;
 	exp_gained_event.free();
 	
@@ -20,11 +20,11 @@ func gain_xp(amount: float):
 		self.experience -= get_xp_until_level_up();
 		self.level += 1;
 		var level_up_event = LevelUpEvent.new_inst(self, self.level);
-		EventBus.emit_signal("level_up",level_up_event);
+		EventBus.level_up.emit(level_up_event);
 		level_up_event.free();
 	
 	var post_exp_gained_event = PostExperienceGainEvent.new_inst(self);
-	EventBus.emit_signal("post_experience_gained", post_exp_gained_event);
+	EventBus.post_experience_gained.emit(post_exp_gained_event);
 	post_exp_gained_event.free();
 
 static func find_node(_parent: Node) -> ExperienceTracker:
