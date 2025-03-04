@@ -1,8 +1,9 @@
 extends Node2D
 
-@export var target_tracker: Node = null;
+@export var target_tracker: TargetTracker = null;
 @export var character_body: EntityBody = null;
 @export var nav_agent: NavigationAgent2D = null;
+@export var target_lost_state: String = "";
 
 @export var attack_area: AttackArea = null;
 
@@ -11,11 +12,14 @@ func _ready() -> void:
 	if nav_agent == null:
 		push_error("no nav agent set on node");
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	if !self.target_tracker.has_target():
+		StateMachine.switch_state(self, target_lost_state);
+		return;
 	var target = target_tracker.get_target();
 	character_body.move_in_direction(self.get_nav_dir(target.global_position));
 	attack_area.process_hits();

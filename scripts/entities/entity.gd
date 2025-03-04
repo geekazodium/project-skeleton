@@ -2,12 +2,14 @@ extends CharacterBody2D
 class_name EntityBody
 
 @export var move_speed: float = 10;
+@export var friction: float = 9;
 
 var stun_timer: float = 0;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	self.move_and_slide();
+	self.velocity -= self.velocity * friction * delta;
 	if stun_timer > 0.:
 		self.stun_timer -= delta;
 

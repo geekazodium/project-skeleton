@@ -1,8 +1,11 @@
 extends Node2D
+class_name EntitySpawner
 
 @export var spawn_interval_min: float = .5;
 @export var spawn_interval_max: float = .7;
 @export var spawn_scene: PackedScene = null;
+
+@export var spawn_to: Node = null;
 
 var spawn_timer: float = 0;
 
@@ -20,5 +23,10 @@ func _physics_process(delta: float) -> void:
 	self.attempt_spawn();
 
 func attempt_spawn():
-	self.add_child(spawn_scene.instantiate());
+	var new_inst = spawn_scene.instantiate();
+	if spawn_to == null:
+		self.add_child(new_inst);
+	else:
+		new_inst.global_position = self.global_position;
+		spawn_to.add_child(new_inst);
 	spawn_timer = randf_range(spawn_interval_min,spawn_interval_max);

@@ -11,15 +11,14 @@ func _ready() -> void:
 		state.set_process(false);
 		state.set_physics_process(false);
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("shadowed_variable")
 func _physics_process(delta: float) -> void:
 	if self.current_state.length() == 0:
 		return;
 	var current_state:Node = get_node(states.get(self.current_state));
 	current_state._physics_process(delta);
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("shadowed_variable")
 func _process(delta: float) -> void:
 	if self.current_state.length() == 0:
 		return;

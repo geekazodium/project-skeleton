@@ -4,6 +4,7 @@ class_name TargetTracker
 @export var target: Node2D = null;
 
 # use to set target that is being tracked.
+@warning_ignore("shadowed_variable")
 func set_target(target: Node2D):
 	if self.target != null:
 		self.target.disconnect("tree_exiting", self.target_reset);
