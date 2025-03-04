@@ -13,7 +13,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction: Vector2 = Vector2(
 		Input.get_axis(move_left_action,move_right_action),
 		Input.get_axis(move_up_action,move_down_action));

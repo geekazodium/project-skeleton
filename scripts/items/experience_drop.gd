@@ -10,9 +10,9 @@ var tween_timer: float = 0.;
 func _process(delta: float) -> void:
 	if tween_to == null:
 		return;
-	var position = tween_to.position;
+	var target_position = tween_to.position;
 	var scale_fac: float = 1.-pow(FollowCamera2D.EULER_CONST,-delta * self.tween_velocity);
-	var move_by: Vector2 = (position - self.global_position) * scale_fac;
+	var move_by: Vector2 = (target_position - self.global_position) * scale_fac;
 	self.position = self.position + move_by;
 	if (self.position - tween_to.position).length_squared() < distance_tolerance * distance_tolerance:
 		ExperienceTracker.find_node(tween_to).gain_xp(1);

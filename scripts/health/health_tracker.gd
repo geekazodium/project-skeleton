@@ -22,12 +22,12 @@ func change_health(amount: float):
 	self.health += amount;
 	self.health_changed.emit(self.health);
 	if self.health <= 0.:
-		self.on_death(self.get_parent());
+		self.on_death();
 
 ## this function is called when the entity's health changes and drops to zero or less.
 ## checks if node is already queued for deletion to prevent multiple death events of one entity.
 ## use the EntityDeathEvent to interact with this
-func on_death(node: Node2D):
+func on_death():
 	if self.get_parent().is_queued_for_deletion():
 		return;
 	var event = EntityDeathEvent.new_inst(self.get_parent());
@@ -35,8 +35,9 @@ func on_death(node: Node2D):
 	
 	if self.death_event.length() != 0:
 		EventBus.emit_signal(death_event,event);
-		
+	
 	if !event.is_canceled():
 		self.get_parent().queue_free();
+	event.free();
 
 static var default_path: String = "HealthTracker";
