@@ -47,7 +47,7 @@ static func get_hit_nearest_body(_self: Area2D):
 		#optimization since exact distance is not required, just comparison.
 		#(vector length requires sqrt operation, length_squared does not.)
 		var distance = (body.global_position - _self.global_position).length_squared();
-		if nearest == null || nearest_distance < distance:
+		if nearest == null || nearest_distance > distance:
 			nearest = body;
 			nearest_distance = distance;
 	return nearest;
