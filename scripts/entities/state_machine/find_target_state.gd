@@ -10,9 +10,9 @@ func _process(_delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	var nearest: Node2D = AttackArea.get_hit_nearest_body(self.detection_area);
 	if nearest != null:
-		self._on_body_enter_detection(nearest);
+		self.on_body_enter_detection(nearest);
 	
-func _on_body_enter_detection(body: Node2D):
+func on_body_enter_detection(body: Node2D):
 	if !StateMachine.is_active_state(self):
 		return;
 	target_tracker.set_target(body);
