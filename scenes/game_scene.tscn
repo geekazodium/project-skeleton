@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://vq5kr86416s4"]
+[gd_scene load_steps=20 format=3 uid="uid://vq5kr86416s4"]
 
 [ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://scenes/entities/minion.tscn" id="1_4bfgp"]
 [ext_resource type="PackedScene" uid="uid://nydo5vwxibai" path="res://scenes/entities/player.tscn" id="1_tcglg"]
@@ -9,6 +9,13 @@
 [ext_resource type="Script" path="res://scripts/camera/follow_camera_2d.gd" id="5_wc26p"]
 [ext_resource type="Script" path="res://scripts/entities/spawners/spawner_difficulty_increase.gd" id="7_g871n"]
 [ext_resource type="PackedScene" uid="uid://c1ap6hg0m83r8" path="res://scenes/ui/ui_layer.tscn" id="8_x4mid"]
+[ext_resource type="Script" path="res://scripts/progress/upgrade_pool.gd" id="10_p3qde"]
+[ext_resource type="Script" path="res://scripts/progress/upgrades/upgrade_strategy.gd" id="11_2yoqj"]
+[ext_resource type="Resource" uid="uid://dd24yirbinvnu" path="res://assets/upgrades/minion_damage.tres" id="12_tx0rt"]
+[ext_resource type="Resource" uid="uid://bth1wqc8bx3ro" path="res://assets/upgrades/minion_health.tres" id="13_a8l4i"]
+[ext_resource type="Resource" uid="uid://b066uwum3aw2r" path="res://assets/upgrades/minion_speed.tres" id="14_pypm3"]
+[ext_resource type="Resource" uid="uid://cjawab3q76a3c" path="res://assets/upgrades/player_speed.tres" id="15_la0wc"]
+[ext_resource type="Resource" uid="uid://da8kllt0ep1bq" path="res://assets/upgrades/minion_spawn_rate.tres" id="16_vajcb"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k0imj"]
 blend_mode = 4
@@ -88,6 +95,7 @@ spawn_to = NodePath("../../..")
 [node name="SpawnerDifficultyIncrease" type="Node" parent="Player/SpawnerRotation" node_paths=PackedStringArray("spawners")]
 script = ExtResource("7_g871n")
 spawners = [NodePath("../EnemySpawner"), NodePath("../EnemySpawner2")]
+timer_scale_fac = 0.99
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
@@ -99,3 +107,7 @@ script = ExtResource("5_wc26p")
 target = NodePath("../Player")
 
 [node name="UiLayer" parent="." instance=ExtResource("8_x4mid")]
+
+[node name="UpgradeStrategyContainer" type="Node" parent="."]
+script = ExtResource("10_p3qde")
+upgrade_pool = Array[ExtResource("11_2yoqj")]([ExtResource("12_tx0rt"), ExtResource("13_a8l4i"), ExtResource("14_pypm3"), ExtResource("15_la0wc"), ExtResource("16_vajcb")])

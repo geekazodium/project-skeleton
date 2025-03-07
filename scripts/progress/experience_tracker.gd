@@ -21,6 +21,7 @@ func gain_xp(amount: float):
 		self.level += 1;
 		var level_up_event = LevelUpEvent.new_inst(self, self.level);
 		EventBus.level_up.emit(level_up_event);
+		EventBus.level_up_tail.emit(level_up_event);
 		level_up_event.free();
 	
 	var post_exp_gained_event = PostExperienceGainEvent.new_inst(self);
