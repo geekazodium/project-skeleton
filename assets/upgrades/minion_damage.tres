@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="UpgradeStrategy" load_steps=2 format=3 uid="uid://dd24yirbinvnu"]
+
+[ext_resource type="Script" path="res://scripts/progress/upgrades/upgrade_strategy.gd" id="1_uqxx1"]
+
+[resource]
+script = ExtResource("1_uqxx1")
+upgrade_name = "Minion Damage"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UpgradeContainer" load_steps=3 format=3 uid="uid://bth1wqc8bx3ro"]
+
+[ext_resource type="Script" path="res://scripts/progress/upgrades/upgrade_strategy.gd" id="1_kd6di"]
+
+[sub_resource type="PackedScene" id="PackedScene_o3j5q"]
+
+[resource]
+script = ExtResource("1_kd6di")
+upgrade_name = "Minion Health"
+upgrade = SubResource("PackedScene_o3j5q")
