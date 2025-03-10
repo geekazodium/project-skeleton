@@ -40,4 +40,9 @@ func on_death():
 		self.get_parent().queue_free();
 	event.free();
 
+func add_max_health(amount: float):
+	self.health += amount;
+	self.max_health += amount;
+	self.health_changed.emit(self.health);
+
 static var default_path: String = "HealthTracker";

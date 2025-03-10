@@ -21,7 +21,8 @@ script = ExtResource("2_x2jr2")
 
 [node name="ExperienceTracker" type="Node" parent="."]
 script = ExtResource("6_pqjdb")
-base_xp_req_per_level = 1.0
+xp_req_increase_per_level = 5.0
+base_xp_req_per_level = 10.0
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 anchors_preset = 8

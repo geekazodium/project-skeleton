@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="UpgradeStrategy" load_steps=2 format=3 uid="uid://da8kllt0ep1bq"]
-
-[ext_resource type="Script" path="res://scripts/progress/upgrades/upgrade_strategy.gd" id="1_xelwd"]
-
-[resource]
-script = ExtResource("1_xelwd")
-upgrade_name = "Minion Spawn Rate"
