@@ -107,3 +107,4 @@ grow_vertical = 2
 shape = SubResource("CircleShape2D_ehyuf")
 
 [connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]
+[connection signal="max_health_changed" from="HealthTracker" to="ProgressBar" method="set_max"]
