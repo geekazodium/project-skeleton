@@ -2,6 +2,8 @@ name: 'Godot CI'
 on: push
 
 # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
+permissions:
+  contents: write
 
 env:
   GODOT_VERSION: 4.3
