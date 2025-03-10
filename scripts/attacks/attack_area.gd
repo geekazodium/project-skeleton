@@ -8,15 +8,14 @@ var damage_cooldown_timer: float = 0.;
 @export var knockback_amount: float = 500;
 @export var stun_duration: float = .25;
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
+@export var damage_event: String = "";
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if damage_cooldown_timer > 0:
 		damage_cooldown_timer -= delta;
+	else:
+		self.visible = false;
 
 func process_hits():
 	if damage_cooldown_timer > 0:
@@ -26,13 +25,21 @@ func process_hits():
 	if hit == null:
 		return;
 	
+	damage_cooldown_timer = damage_cooldown;
+	self.visible = true;
 	self.target_collide_damage(hit);
 	self.target_collide_knockback(hit);
 
 func target_collide_damage(target: Node2D):
-	var hit: HealthTracker = target.get_node(HealthTracker.default_path);
-	hit.change_health(-damage);
-	damage_cooldown_timer = damage_cooldown;
+	var event: EntityDealDamageEvent = EntityDealDamageEvent.new_inst(self,target,damage);
+	if damage_event != "":
+		EventBus.emit_signal(damage_event,event);
+	
+	if !event.is_canceled():
+		var hit: HealthTracker = target.get_node(HealthTracker.default_path);
+		hit.change_health(-event.get_damage());
+
+	event.free();
 
 func target_collide_knockback(target: Node2D):
 	var dir = target.global_position - self.global_position;

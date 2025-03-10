@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="UpgradeStrategy" load_steps=2 format=3 uid="uid://cjawab3q76a3c"]
+
+[ext_resource type="Script" path="res://scripts/progress/upgrades/upgrade_strategy.gd" id="1_r8s2q"]
+
+[resource]
+script = ExtResource("1_r8s2q")
+upgrade_name = "Player Speed"

@@ -7,11 +7,13 @@ class_name HealthTracker
 @export var death_event: String = "";
 
 signal health_changed(current:float);
+signal max_health_changed(current: float);
 signal death(event: EntityDeathEvent);
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.health_changed.emit(self.health);
+	self.max_health_changed.emit(self.max_health);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -39,5 +41,11 @@ func on_death():
 	if !event.is_canceled():
 		self.get_parent().queue_free();
 	event.free();
+
+func add_max_health(amount: float):
+	self.health += amount;
+	self.max_health += amount;
+	self.health_changed.emit(self.health);
+	self.max_health_changed.emit(self.max_health);
 
 static var default_path: String = "HealthTracker";

@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1ap6hg0m83r8"]
+[gd_scene load_steps=5 format=3 uid="uid://c1ap6hg0m83r8"]
 
 [ext_resource type="Script" path="res://scripts/ui/experience_progress_bar.gd" id="1_1yx45"]
 [ext_resource type="Script" path="res://scripts/ui/exp_text_label.gd" id="2_yof05"]
+[ext_resource type="Script" path="res://scripts/ui/upgrade_selector.gd" id="3_lu4am"]
+[ext_resource type="PackedScene" uid="uid://xl20e1pwb2f7" path="res://scenes/ui/upgrade_button.tscn" id="4_k8rti"]
 
 [node name="UiLayer" type="CanvasLayer"]
+process_mode = 3
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_right = 595.0
@@ -16,3 +19,31 @@ offset_left = 605.0
 offset_right = 713.0
 offset_bottom = 40.0
 script = ExtResource("2_yof05")
+
+[node name="ShopMenuContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("options_container")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -491.0
+offset_top = -239.5
+offset_right = 491.0
+offset_bottom = 239.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("3_lu4am")
+button = ExtResource("4_k8rti")
+options_container = NodePath("UpgradeOptions")
+
+[node name="Label" type="Label" parent="ShopMenuContainer"]
+layout_mode = 2
+text = "Welcome To Shop!"
+
+[node name="UpgradeOptions" type="HBoxContainer" parent="ShopMenuContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3

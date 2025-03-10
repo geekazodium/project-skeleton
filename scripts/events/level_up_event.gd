@@ -2,6 +2,7 @@ extends Object
 class_name LevelUpEvent
 
 var experience_tracker: ExperienceTracker = null;
+var upgrade_options: Array[UpgradeStrategy] = [];
 var level: int = 0;
 
 @warning_ignore("shadowed_variable")
@@ -16,3 +17,6 @@ func get_experience_tracker() -> ExperienceTracker:
 
 func get_level() -> int:
 	return level;
+
+func set_upgrade_options(options: Array[UpgradeStrategy]):
+	self.upgrade_options = options;

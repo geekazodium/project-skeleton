@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bth1wqc8bx3ro"]
+
+[ext_resource type="Script" path="res://scripts/progress/upgrades/minion_health.gd" id="1_tb30m"]
+
+[resource]
+script = ExtResource("1_tb30m")
+increase_per_level = 2.5
+upgrade_name = "Minion Health"
