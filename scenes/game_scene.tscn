@@ -95,7 +95,7 @@ spawn_to = NodePath("../../..")
 [node name="SpawnerDifficultyIncrease" type="Node" parent="Player/SpawnerRotation" node_paths=PackedStringArray("spawners")]
 script = ExtResource("7_g871n")
 spawners = [NodePath("../EnemySpawner"), NodePath("../EnemySpawner2")]
-timer_scale_fac = 0.96
+timer_scale_fac = 0.99
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false

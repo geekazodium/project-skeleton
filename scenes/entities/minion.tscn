@@ -89,19 +89,9 @@ collision_mask = 8
 script = ExtResource("8_20gw0")
 damage_event = "minion_dealt_damage"
 
-[node name="ColorRect" type="ColorRect" parent="StateMachine/TrackTargetState/AttackArea"]
+[node name="ColorRect" type="Sprite2D" parent="StateMachine/TrackTargetState/AttackArea"]
 z_index = -100
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -72.5
-offset_top = -72.5
-offset_right = 72.5
-offset_bottom = 72.5
-grow_horizontal = 2
-grow_vertical = 2
+texture = ExtResource("1_r8ng3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/TrackTargetState/AttackArea"]
 shape = SubResource("CircleShape2D_ehyuf")
