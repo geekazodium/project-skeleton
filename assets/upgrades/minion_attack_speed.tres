@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://da8kllt0ep1bq"]
+
+[ext_resource type="Script" path="res://scripts/progress/upgrades/minion_attack_speed.gd" id="1_nay35"]
+
+[resource]
+script = ExtResource("1_nay35")
+bonus_speed_per_level = 2.0
+upgrade_name = "Minion Attack Speed"

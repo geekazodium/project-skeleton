@@ -94,6 +94,7 @@ attack_area = NodePath("AttackArea")
 collision_layer = 0
 collision_mask = 6
 script = ExtResource("8_wkgd1")
+damage_event = "enemy_dealt_damage"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/TrackTargetState/AttackArea"]
 shape = SubResource("CircleShape2D_l7rto")
