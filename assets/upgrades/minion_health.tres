@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_tb30m")
-increase_per_level = 2.5
+increase_per_level = 5.0
 upgrade_name = "Minion Health"

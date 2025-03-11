@@ -3,11 +3,18 @@ extends Area2D
 var tween_to: Node2D = null;
 var tween_timer: float = 0.;
 
+var alive_timer: float = 200;
+
 @export var tween_velocity = 5;
 @export var distance_tolerance = 50;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	self.alive_timer -= delta;
+	if alive_timer <= 0:
+		self.queue_free();
+		return;
+	
 	if tween_to == null:
 		return;
 	var target_position = tween_to.position;
