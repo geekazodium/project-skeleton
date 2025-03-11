@@ -24,7 +24,6 @@ radius = 89.202
 collision_layer = 9
 motion_mode = 1
 script = ExtResource("1_t1ggi")
-move_speed = 100.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
@@ -82,13 +81,12 @@ collision_mask = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/FindTargetState/Area2D"]
 shape = SubResource("CircleShape2D_v5ac1")
 
-[node name="TrackTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "character_body", "nav_agent", "attack_area")]
+[node name="TrackTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "character_body", "nav_agent")]
 script = ExtResource("7_gae4f")
 target_tracker = NodePath("../../TargetTracker")
 character_body = NodePath("../..")
 nav_agent = NodePath("../../NavigationAgent2D")
 target_lost_state = "FindTarget"
-attack_area = NodePath("AttackArea")
 
 [node name="AttackArea" type="Area2D" parent="StateMachine/TrackTargetState"]
 collision_layer = 0

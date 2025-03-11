@@ -79,16 +79,16 @@ rotate_speed = 25.0
 [node name="EnemySpawner" type="Node2D" parent="Player/SpawnerRotation" node_paths=PackedStringArray("spawn_to")]
 position = Vector2(800, 0)
 script = ExtResource("2_qdphv")
-spawn_interval_min = 1.8
-spawn_interval_max = 3.0
+spawn_interval_min = 2.0
+spawn_interval_max = 2.8
 spawn_scene = ExtResource("3_3rgyx")
 spawn_to = NodePath("../../..")
 
 [node name="EnemySpawner2" type="Node2D" parent="Player/SpawnerRotation" node_paths=PackedStringArray("spawn_to")]
 position = Vector2(-800, 0)
 script = ExtResource("2_qdphv")
-spawn_interval_min = 1.8
-spawn_interval_max = 3.0
+spawn_interval_min = 2.0
+spawn_interval_max = 2.8
 spawn_scene = ExtResource("3_3rgyx")
 spawn_to = NodePath("../../..")
 
