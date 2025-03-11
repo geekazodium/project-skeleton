@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dubqfll6wt3er"]
+[gd_scene load_steps=15 format=3 uid="uid://dubqfll6wt3er"]
 
 [ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_t1ggi"]
 [ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_phvhl"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/entities/state_machine/find_target_state.gd" id="6_ctvdv"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/track_target_state.gd" id="7_gae4f"]
 [ext_resource type="Script" path="res://scripts/attacks/attack_area.gd" id="8_wkgd1"]
+[ext_resource type="SpriteFrames" uid="uid://b7v75jip16wrq" path="res://assets/sprites/attack_placeholder_animation.tres" id="11_wo7xy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm50p"]
 radius = 30.0
@@ -88,14 +89,23 @@ character_body = NodePath("../..")
 nav_agent = NodePath("../../NavigationAgent2D")
 target_lost_state = "FindTarget"
 
-[node name="AttackArea" type="Area2D" parent="StateMachine/TrackTargetState"]
+[node name="AttackArea" type="Area2D" parent="StateMachine/TrackTargetState" node_paths=PackedStringArray("hit_animation")]
 collision_layer = 0
 collision_mask = 6
 script = ExtResource("8_wkgd1")
 damage_event = "enemy_dealt_damage"
+hit_animation = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/TrackTargetState/AttackArea"]
 shape = SubResource("CircleShape2D_l7rto")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StateMachine/TrackTargetState/AttackArea"]
+modulate = Color(1, 0.290196, 0.294118, 1)
+position = Vector2(39, -6)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("11_wo7xy")
+frame = 4
+frame_progress = 1.0
 
 [connection signal="death" from="HealthTracker" to="InstantiateOnExit" method="_instantiate"]
 [connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]
