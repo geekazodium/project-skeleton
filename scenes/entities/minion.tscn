@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://krh4wqhn34oi"]
+[gd_scene load_steps=12 format=3 uid="uid://krh4wqhn34oi"]
 
 [ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_fk853"]
 [ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="1_r8ng3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/entities/state_machine/target_tracker.gd" id="5_ktk4i"]
 [ext_resource type="Script" path="res://scripts/entities/boid_movement.gd" id="5_xdtae"]
 [ext_resource type="Script" path="res://scripts/entities/deferred_velocity.gd" id="7_lthrt"]
+[ext_resource type="SpriteFrames" uid="uid://b7v75jip16wrq" path="res://assets/sprites/attack_placeholder_animation.tres" id="7_qpfxt"]
 [ext_resource type="Script" path="res://scripts/attacks/attack_area.gd" id="8_20gw0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm50p"]
@@ -41,6 +42,7 @@ grow_vertical = 2
 max_value = 10.0
 
 [node name="Minion" type="Sprite2D" parent="."]
+modulate = Color(0.2, 1, 0.294118, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_r8ng3")
 
@@ -58,19 +60,24 @@ seperation_force = 2.75
 protected_range = 90.0
 deferred_velocity = NodePath("../DeferredVelocity")
 
-[node name="AttackArea" type="Area2D" parent="BoidBehavior"]
-visible = false
+[node name="AttackArea" type="Area2D" parent="BoidBehavior" node_paths=PackedStringArray("hit_animation")]
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("8_20gw0")
 damage_event = "minion_dealt_damage"
-
-[node name="ColorRect" type="Sprite2D" parent="BoidBehavior/AttackArea"]
-z_index = -100
-texture = ExtResource("1_r8ng3")
+hit_animation = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BoidBehavior/AttackArea"]
+visible = false
 shape = SubResource("CircleShape2D_ehyuf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BoidBehavior/AttackArea"]
+modulate = Color(0.294118, 0.933333, 0.419608, 1)
+position = Vector2(39, -6)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_qpfxt")
+frame = 4
+frame_progress = 1.0
 
 [node name="NearbyMinionDetection" type="Area2D" parent="BoidBehavior"]
 collision_layer = 0

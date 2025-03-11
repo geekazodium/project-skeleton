@@ -9,6 +9,7 @@ var damage_cooldown_timer: float = 0.;
 @export var stun_duration: float = .25;
 
 @export var damage_event: String = "";
+@export var hit_animation: AnimatedSprite2D = null;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -30,6 +31,10 @@ func process_hits():
 	self.visible = true;
 	self.target_collide_damage(hit);
 	self.target_collide_knockback(hit);
+	if hit_animation != null:
+		hit_animation.stop();
+		hit_animation.play("default", damage_cooldown / damage_cooldown_timer);
+		self.rotation = ((hit.global_position - self.global_position).angle());
 
 func target_collide_damage(target: Node2D):
 	var event: EntityDealDamageEvent = EntityDealDamageEvent.new_inst(self,target,damage);
