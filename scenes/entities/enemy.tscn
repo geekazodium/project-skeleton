@@ -25,6 +25,7 @@ radius = 89.202
 collision_layer = 9
 motion_mode = 1
 script = ExtResource("1_t1ggi")
+move_speed = 1200.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 

@@ -16,18 +16,20 @@ radius = 30.0
 radius = 89.202
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n44id"]
-radius = 212.085
+radius = 142.014
 
 [node name="Minion" type="CharacterBody2D"]
+process_physics_priority = 2
 collision_layer = 5
 motion_mode = 1
 script = ExtResource("1_fk853")
-move_speed = 25.0
+move_speed = 1200.0
 
 [node name="HealthTracker" type="Node" parent="."]
 script = ExtResource("2_sfkwh")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -56,13 +58,17 @@ script = ExtResource("5_ktk4i")
 script = ExtResource("5_xdtae")
 body = NodePath("..")
 nearby_detection = NodePath("NearbyMinionDetection")
-seperation_force = 2.75
-protected_range = 90.0
+cohesion_force = 1.5
+seperation_force = 7.0
+protected_range_squared = 19600.0
+mouse_force_strength = 1.0
+direction_tolerance = -0.6
 deferred_velocity = NodePath("../DeferredVelocity")
 
 [node name="AttackArea" type="Area2D" parent="BoidBehavior" node_paths=PackedStringArray("hit_animation")]
 collision_layer = 0
 collision_mask = 8
+monitorable = false
 script = ExtResource("8_20gw0")
 damage_event = "minion_dealt_damage"
 hit_animation = NodePath("AnimatedSprite2D")
@@ -82,12 +88,13 @@ frame_progress = 1.0
 [node name="NearbyMinionDetection" type="Area2D" parent="BoidBehavior"]
 collision_layer = 0
 collision_mask = 6
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BoidBehavior/NearbyMinionDetection"]
 shape = SubResource("CircleShape2D_n44id")
 
 [node name="DeferredVelocity" type="Node" parent="." node_paths=PackedStringArray("body")]
-process_physics_priority = 10
+process_physics_priority = 1
 script = ExtResource("7_lthrt")
 body = NodePath("..")
 
