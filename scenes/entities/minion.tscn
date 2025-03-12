@@ -23,7 +23,7 @@ process_physics_priority = 2
 collision_layer = 5
 motion_mode = 1
 script = ExtResource("1_fk853")
-move_speed = 4200.0
+move_speed = 1200.0
 
 [node name="HealthTracker" type="Node" parent="."]
 script = ExtResource("2_sfkwh")
