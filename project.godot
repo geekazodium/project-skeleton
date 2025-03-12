@@ -53,6 +53,13 @@ move_right={
 2d_physics/layer_3="Summons"
 2d_physics/layer_4="Enemies"
 
+[physics]
+
+2d/run_on_separate_thread=true
+common/physics_ticks_per_second=20
+2d/physics_engine="GodotPhysics2D"
+common/physics_interpolation=true
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
