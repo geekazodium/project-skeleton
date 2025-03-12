@@ -29,7 +29,6 @@ move_speed = 1200.0
 script = ExtResource("2_sfkwh")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -58,11 +57,9 @@ script = ExtResource("5_ktk4i")
 script = ExtResource("5_xdtae")
 body = NodePath("..")
 nearby_detection = NodePath("NearbyMinionDetection")
-cohesion_force = 1.5
-seperation_force = 7.0
-protected_range_squared = 19600.0
+seperation_force = 2.0
+protected_range_squared = 16000.0
 mouse_force_strength = 1.0
-direction_tolerance = -0.6
 deferred_velocity = NodePath("../DeferredVelocity")
 
 [node name="AttackArea" type="Area2D" parent="BoidBehavior" node_paths=PackedStringArray("hit_animation")]

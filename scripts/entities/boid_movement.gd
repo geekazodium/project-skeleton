@@ -42,7 +42,7 @@ func _physics_process(_delta: float) -> void:
 		
 		var distance_squared: float = position_difference.length_squared();
 		if distance_squared < self.protected_range_squared:
-			seperation_force_avg -= position_difference / sqrt(distance_squared);
+			seperation_force_avg -= position_difference.normalized();
 			seperation_force_count += 1;
 	
 	var force = Vector2.ZERO;
@@ -51,9 +51,9 @@ func _physics_process(_delta: float) -> void:
 		force += alignment_force_avg.normalized() * self.alignment_force;
 		force += cohesion_force_center.normalized() * self.cohesion_force;
 		if seperation_force_count > 0:
-			force += seperation_force_avg.normalized() * self.seperation_force;
+			force += seperation_force_avg * self.seperation_force;
 	
-	self.deferred_velocity.direction_to_move = force + direction * .3;
+	self.deferred_velocity.direction_to_move = force + direction * .2;
 	#self.queue_redraw();
 
 ##commented out, useful for debugging cohesion and other forces
