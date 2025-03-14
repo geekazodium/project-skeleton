@@ -1,4 +1,15 @@
 extends Node2D
+class_name FollowTargetState
+
+## Class is a state to be added to a parent state machine as a possible state,
+## Node must have parent of state machine.
+## This state passes the location of target that is stored in `target_tracker`,
+## to the `nav_agent` and then moves the `entity_body` towards the next point
+## returned by the `nav_agent` if target is at any point lost, it switches the
+## state machine to `target_lost_state`
+##
+## Use in enemies that need to be able to follow a target. must have a
+## navigation agent 2d in that entity and set the `nav_agent` var to that.
 
 @export var target_tracker: TargetTracker = null;
 @export var character_body: EntityBody = null;
@@ -13,7 +24,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass;
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every physics tick. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if !self.target_tracker.has_target():
 		StateMachine.switch_state(self, target_lost_state);
