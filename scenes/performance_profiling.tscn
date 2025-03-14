@@ -6,7 +6,7 @@
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("label")]
 script = ExtResource("1_ycocm")
 to_instantiate = ExtResource("2_fmcx5")
-count = 400
+count = 500
 label = NodePath("CanvasLayer/Label")
 
 [node name="Camera2D" type="Camera2D" parent="."]
