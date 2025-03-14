@@ -39,7 +39,6 @@ func _physics_process(_delta: float) -> void:
 	var seperation_force_avg: Vector2 = Vector2.ZERO;
 	var seperation_force_count: int = 0;
 	var cohesion_force_center: Vector2 = Vector2.ZERO;
-	var other_count: int = 0;
 	
 	var direction: Vector2 = self.body.velocity.normalized();
 	
@@ -55,7 +54,6 @@ func _physics_process(_delta: float) -> void:
 		if position_difference.normalized().dot(-direction) < self.direction_tolerance:
 			continue;
 		
-		other_count += 1;
 		cohesion_force_center += position_difference;
 		
 		alignment_force_avg += nearby_body.velocity;

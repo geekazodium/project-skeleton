@@ -9,7 +9,7 @@ func _ready() -> void:
 	EventBus.level_up_tail.connect(self.on_level_up);
 	
 func on_level_up(event: LevelUpEvent):
-	self.set_options(event.upgrade_options);
+	self.set_options(event.get_upgrade_options());
 	self.visible = true;
 	self.get_tree().paused = true;
 
