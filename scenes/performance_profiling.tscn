@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b1pboqhj0vpo"]
 
-[ext_resource type="Script" path="res://scenes/performance_profiling.gd" id="1_ycocm"]
+[ext_resource type="Script" path="res://scripts/tools/performance_profiling.gd" id="1_ycocm"]
 [ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://scenes/entities/minion.tscn" id="2_fmcx5"]
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("label")]
