@@ -6,10 +6,14 @@ signal experience_gained(event: ExperienceGainEvent);
 @warning_ignore("unused_signal")
 signal post_experience_gained(event: PostExperienceGainEvent);
 
+## Event emitted on level up, connect anything that wants to modify level up
+## event details, such as power ups that are available, etc.
 @warning_ignore("unused_signal")
 signal level_up(event: LevelUpEvent);
 
-## Use for UI stuff
+## Use this for UI related stuff, this is the second phase of the level up event
+## never write anything into the event at this phase, this is for anything
+## that responds to the finialize details of the level up
 @warning_ignore("unused_signal")
 signal level_up_tail(event: LevelUpEvent);
 
