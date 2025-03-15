@@ -14,6 +14,9 @@ func _physics_process(delta: float) -> void:
 	if stun_timer > 0.:
 		self.stun_timer -= delta;
 
+func increase_move_speed(amount: float):
+	self.move_speed += amount;
+
 func move_in_direction(direction: Vector2, delta: float):
 	if stun_timer > 0.:
 		return;
