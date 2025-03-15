@@ -15,11 +15,11 @@ class_name FindTargetState
 @export var detected_state: String = "";
 
 # Called every frame, empty function to avoid errors from state machine parent
-func _process(_delta: float) -> void:
+func process(_delta: float) -> void:
 	pass
 
 # Finds target and swaps parent state when target is found
-func _physics_process(_delta: float) -> void:
+func physics_process(_delta: float) -> void:
 	var nearest: Node2D = AttackArea.get_hit_nearest_body(self.detection_area);
 	if nearest != null:
 		self.on_body_enter_detection(nearest);
