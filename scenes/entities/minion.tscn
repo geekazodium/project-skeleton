@@ -62,7 +62,6 @@ damage_event = "minion_dealt_damage"
 hit_animation = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-visible = false
 shape = SubResource("CircleShape2D_ehyuf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AttackArea"]

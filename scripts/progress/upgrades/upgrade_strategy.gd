@@ -31,6 +31,7 @@ func set_minions(minions: Node2D):
 func _ready():
 	pass;
 
+@warning_ignore("unused_parameter")
 func prerequisites_met(pool: Dictionary) -> bool:
 	return false;
 
