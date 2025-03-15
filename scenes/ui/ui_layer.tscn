@@ -21,7 +21,6 @@ offset_bottom = 40.0
 script = ExtResource("2_yof05")
 
 [node name="ShopMenuContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("options_container")]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -40,10 +39,18 @@ options_container = NodePath("UpgradeOptions")
 
 [node name="Label" type="Label" parent="ShopMenuContainer"]
 layout_mode = 2
-text = "Welcome To Shop!"
+text = "You've Leveled up! Select A Powerup!"
 
 [node name="UpgradeOptions" type="HBoxContainer" parent="ShopMenuContainer"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="."]
+offset_left = 808.0
+offset_top = 14.0
+offset_right = 1126.0
+offset_bottom = 93.0
+text = "W/A/S/D - move
+your summons follow your mouse cursor"
