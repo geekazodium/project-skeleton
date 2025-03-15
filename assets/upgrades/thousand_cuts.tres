@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_groxy")
-chance_per_level = 0.2
+chance_per_level = 0.4
+rush_force = 700.0
 upgrade_name = "Thousand Cuts"
