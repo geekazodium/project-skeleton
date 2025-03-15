@@ -72,7 +72,7 @@ func check_file(file: FileAccess):
 func filter_self_ref(result: RegExMatch) -> bool:
 	return result.get_string(1) != "self" && result.get_string(1) != "_self"
 
-func print_match(string: String,result: RegExMatch, context_size: int = 30):
+func print_match(string: String,result: RegExMatch, context_size: int = 70):
 	var start = result.get_start();
 	var end = result.get_end();
 	print_rich(
