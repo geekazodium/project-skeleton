@@ -29,14 +29,15 @@ func process_hits():
 	
 	damage_cooldown_timer = damage_cooldown;
 	self.visible = true;
-	self.target_collide_damage(hit);
-	self.target_collide_knockback(hit);
+	var has_hit: bool = self.target_collide_damage(hit);
+	if has_hit:
+		self.target_collide_knockback(hit);
 	if hit_animation != null:
 		hit_animation.stop();
 		hit_animation.play("default", damage_cooldown / damage_cooldown_timer);
 		self.rotation = ((hit.global_position - self.global_position).angle());
 
-func target_collide_damage(target: Node2D):
+func target_collide_damage(target: Node2D) -> bool:
 	var event: EntityDealDamageEvent = EntityDealDamageEvent.new_inst(self,target,damage);
 	if damage_event != "":
 		EventBus.emit_signal(damage_event,event);
@@ -44,8 +45,10 @@ func target_collide_damage(target: Node2D):
 	if !event.is_canceled():
 		var hit: HealthTracker = target.get_node(HealthTracker.default_path);
 		hit.change_health(-event.get_final_damage());
-
+	
+	var canceled: bool = event.is_canceled();
 	event.free();
+	return !canceled;
 
 func target_collide_knockback(target: Node2D):
 	var dir = target.global_position - self.global_position;
