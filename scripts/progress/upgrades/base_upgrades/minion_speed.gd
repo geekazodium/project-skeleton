@@ -7,9 +7,9 @@ func _ready():
 
 func on_minion_spawn(event: EntitySpawnEvent):
 	var entity_body: EntityBody = event.get_entity();
-	entity_body.increase_move_speed(self.increase_per_level * sqrt(self.level));
+	entity_body.increase_move_speed(self.increase_per_level * self.level);
 
 func _level_change(change: int):
-	var speed_gain = self.increase_per_level * (sqrt(self.level) - sqrt(self.level - change));
+	var speed_gain = self.increase_per_level * change;
 	for minion: EntityBody in self.get_minions():
 		minion.increase_move_speed(speed_gain);

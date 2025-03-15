@@ -23,7 +23,7 @@ func move_in_direction(direction: Vector2, delta: float):
 	self.velocity += direction.normalized() * delta * move_speed;
 
 func apply_knockback(knockback: Vector2):
-	self.velocity = knockback;
+	self.velocity += knockback;
 
 func apply_stun(duration: float):
 	self.stun_timer = duration;

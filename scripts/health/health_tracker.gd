@@ -40,7 +40,7 @@ func on_death():
 func add_max_health(amount: float):
 	self.health += amount;
 	self.max_health += amount;
-	self.health_changed.emit(self.health);
 	self.max_health_changed.emit(self.max_health);
+	self.health_changed.emit(self.health);
 
 static var default_path: String = "HealthTracker";

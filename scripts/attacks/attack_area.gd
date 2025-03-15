@@ -43,7 +43,7 @@ func target_collide_damage(target: Node2D):
 	
 	if !event.is_canceled():
 		var hit: HealthTracker = target.get_node(HealthTracker.default_path);
-		hit.change_health(-event.get_damage());
+		hit.change_health(-event.get_final_damage());
 
 	event.free();
 
