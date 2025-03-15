@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://vq5kr86416s4"]
+[gd_scene load_steps=24 format=3 uid="uid://vq5kr86416s4"]
 
 [ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://scenes/entities/minion.tscn" id="1_4bfgp"]
 [ext_resource type="PackedScene" uid="uid://nydo5vwxibai" path="res://scenes/entities/player.tscn" id="1_tcglg"]
@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://da8kllt0ep1bq" path="res://assets/upgrades/minion_attack_speed.tres" id="16_vajcb"]
 [ext_resource type="Resource" uid="uid://dr4nknxp07mml" path="res://assets/upgrades/thousand_cuts.tres" id="17_1eue0"]
 [ext_resource type="Resource" uid="uid://cgs6m8j6yac22" path="res://assets/upgrades/evasive_speed.tres" id="18_xlekw"]
+[ext_resource type="Script" path="res://scripts/ui/aim_cursor.gd" id="19_4atye"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k0imj"]
 blend_mode = 4
@@ -30,6 +31,8 @@ vertices = PackedVector2Array(83024.7, 46622, -61150.1, 46028, -62336.8, -28296,
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-61160, 46038, 83035, 46632, 81000, -28730, -62347, -28306)])
 parsed_geometry_type = 1
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2gxtp"]
 
 [node name="GameScene" type="Node2D"]
 
@@ -131,3 +134,9 @@ unavailable_upgrades_pool = {
 "Thousand Cuts": ExtResource("17_1eue0")
 }
 minions = NodePath("../Minions")
+
+[node name="AimCursor" type="Sprite2D" parent="."]
+position = Vector2(14.25, 14.25)
+scale = Vector2(29.5, 29.5)
+texture = SubResource("PlaceholderTexture2D_2gxtp")
+script = ExtResource("19_4atye")
