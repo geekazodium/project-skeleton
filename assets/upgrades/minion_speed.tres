@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_x7asg")
-increase_per_level = 750.0
+increase_per_level = 500.0
 upgrade_name = "Minion Speed"

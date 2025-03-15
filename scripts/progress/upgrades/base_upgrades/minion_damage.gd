@@ -6,4 +6,4 @@ func _ready():
 	EventBus.minion_dealt_damage.connect(self.on_minion_damage);
 
 func on_minion_damage(event: EntityDealDamageEvent):
-	event.add_damage(sqrt(self.level) * bonus_per_level);
+	event.add_damage(self.level * bonus_per_level);

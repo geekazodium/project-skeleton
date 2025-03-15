@@ -31,6 +31,10 @@ func set_minions(minions: Node2D):
 func _ready():
 	pass;
 
+func prerequisites_met(pool: Dictionary) -> bool:
+	return false;
+
 ## Called when this upgrade level is modified, after _ready is called
+@warning_ignore("unused_parameter")
 func _level_change(amount: int):
 	pass;
