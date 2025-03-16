@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://dd24yirbinvnu"]
 
-[ext_resource type="Script" path="res://scripts/progress/upgrades/minion_damage.gd" id="1_2ktfi"]
+[ext_resource type="Script" path="res://scripts/progress/upgrades/base_upgrades/minion_damage.gd" id="1_0dcw2"]
 
 [resource]
-script = ExtResource("1_2ktfi")
-bonus_per_level = 2.0
+script = ExtResource("1_0dcw2")
+bonus_per_level = 1.5
 upgrade_name = "Minion Damage"

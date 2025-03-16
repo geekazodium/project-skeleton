@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpj1aj0eh5h55"]
+[gd_scene load_steps=7 format=3 uid="uid://bpj1aj0eh5h55"]
 
 [ext_resource type="Script" path="res://scripts/items/experience_drop.gd" id="1_eeqqx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_alh5r"]
 radius = 91.0879
+
+[sub_resource type="Gradient" id="Gradient_bq4s8"]
+offsets = PackedFloat32Array(0, 0.365759, 0.550584, 0.99711)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.877036, 0, 0, 0, 0.652693, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4bjjp"]
+gradient = SubResource("Gradient_bq4s8")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.50641, 0.482906)
+fill_to = Vector2(0.523504, 1)
 
 [sub_resource type="Gradient" id="Gradient_1hsui"]
 offsets = PackedFloat32Array(0.00289017, 1)
@@ -24,6 +36,11 @@ script = ExtResource("1_eeqqx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_alh5r")
+
+[node name="ExperienceDropSprite2" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(0, 17)
+texture = SubResource("GradientTexture2D_4bjjp")
 
 [node name="ExperienceDropSprite" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_cl62k")

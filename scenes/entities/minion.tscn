@@ -53,13 +53,7 @@ shape = SubResource("CircleShape2D_bm50p")
 [node name="TargetTracker" type="Node" parent="."]
 script = ExtResource("5_ktk4i")
 
-[node name="BoidBehavior" type="Node2D" parent="." node_paths=PackedStringArray("body", "nearby_detection", "deferred_velocity")]
-script = ExtResource("5_xdtae")
-body = NodePath("..")
-nearby_detection = NodePath("NearbyMinionDetection")
-deferred_velocity = NodePath("../DeferredVelocity")
-
-[node name="AttackArea" type="Area2D" parent="BoidBehavior" node_paths=PackedStringArray("hit_animation")]
+[node name="AttackArea" type="Area2D" parent="." node_paths=PackedStringArray("hit_animation")]
 collision_layer = 0
 collision_mask = 8
 monitorable = false
@@ -67,17 +61,22 @@ script = ExtResource("8_20gw0")
 damage_event = "minion_dealt_damage"
 hit_animation = NodePath("AnimatedSprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BoidBehavior/AttackArea"]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("CircleShape2D_ehyuf")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BoidBehavior/AttackArea"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AttackArea"]
 modulate = Color(0.294118, 0.933333, 0.419608, 1)
 position = Vector2(39, -6)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("7_qpfxt")
 frame = 4
 frame_progress = 1.0
+
+[node name="BoidBehavior" type="Node2D" parent="." node_paths=PackedStringArray("body", "nearby_detection", "deferred_velocity")]
+script = ExtResource("5_xdtae")
+body = NodePath("..")
+nearby_detection = NodePath("NearbyMinionDetection")
+deferred_velocity = NodePath("../DeferredVelocity")
 
 [node name="NearbyMinionDetection" type="Area2D" parent="BoidBehavior"]
 collision_layer = 0

@@ -8,6 +8,14 @@ var alive_timer: float = 200;
 @export var tween_velocity = 5;
 @export var distance_tolerance = 50;
 
+func _ready() -> void:
+	var sprite: Sprite2D = $ExperienceDropSprite;
+	var tween: Tween = sprite.create_tween();
+	tween.tween_property(sprite, "position", Vector2.UP * 15, .5).set_ease(Tween.EASE_IN_OUT);
+	tween.tween_property(sprite, "position", Vector2.ZERO, .6).set_ease(Tween.EASE_IN_OUT);
+	tween.set_loops();
+	tween.play();
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	self.alive_timer -= delta;

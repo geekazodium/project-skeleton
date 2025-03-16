@@ -21,14 +21,14 @@ func _physics_process(delta: float) -> void:
 	if self.current_state.length() == 0:
 		return;
 	var current_state:Node = get_node(states.get(self.current_state));
-	current_state._physics_process(delta);
+	current_state.physics_process(delta);
 
 @warning_ignore("shadowed_variable")
 func _process(delta: float) -> void:
 	if self.current_state.length() == 0:
 		return;
 	var current_state:Node = get_node(states.get(self.current_state));
-	current_state._process(delta);
+	current_state.process(delta);
 
 ## Call this method in a state node to check if node is the active state
 static func is_active_state(_self: Node) -> bool:

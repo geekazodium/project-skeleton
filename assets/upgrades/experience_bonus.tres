@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://clh1ijjr0p5cs"]
+
+[ext_resource type="Script" path="res://scripts/progress/upgrades/base_upgrades/experience_bonus.gd" id="1_mk4hw"]
+
+[resource]
+script = ExtResource("1_mk4hw")
+bonus_per_level = 1.0
+upgrade_name = "Experience Bonus"

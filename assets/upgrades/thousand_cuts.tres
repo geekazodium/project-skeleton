@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dr4nknxp07mml"]
+
+[ext_resource type="Script" path="res://scripts/progress/upgrades/combination_upgrades/thousand_cuts.gd" id="1_groxy"]
+
+[resource]
+script = ExtResource("1_groxy")
+chance_per_level = 0.4
+rush_force = 700.0
+upgrade_name = "Thousand Cuts"

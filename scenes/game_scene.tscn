@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://vq5kr86416s4"]
+[gd_scene load_steps=24 format=3 uid="uid://vq5kr86416s4"]
 
 [ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://scenes/entities/minion.tscn" id="1_4bfgp"]
 [ext_resource type="PackedScene" uid="uid://nydo5vwxibai" path="res://scenes/entities/player.tscn" id="1_tcglg"]
@@ -8,12 +8,17 @@
 [ext_resource type="Texture2D" uid="uid://dbhlxyr0jai8p" path="res://assets/sprites/pentagram.svg" id="5_5fu4y"]
 [ext_resource type="Script" path="res://scripts/camera/follow_camera_2d.gd" id="5_wc26p"]
 [ext_resource type="Script" path="res://scripts/entities/spawners/spawner_difficulty_increase.gd" id="7_g871n"]
+[ext_resource type="Script" path="res://scripts/entities/spawners/minions.gd" id="8_b1bpx"]
 [ext_resource type="PackedScene" uid="uid://c1ap6hg0m83r8" path="res://scenes/ui/ui_layer.tscn" id="8_x4mid"]
 [ext_resource type="Script" path="res://scripts/progress/upgrade_pool.gd" id="10_p3qde"]
-[ext_resource type="Script" path="res://scripts/progress/upgrades/upgrade_strategy.gd" id="11_cxuin"]
 [ext_resource type="Resource" uid="uid://dd24yirbinvnu" path="res://assets/upgrades/minion_damage.tres" id="12_tx0rt"]
 [ext_resource type="Resource" uid="uid://bth1wqc8bx3ro" path="res://assets/upgrades/minion_health.tres" id="13_a8l4i"]
+[ext_resource type="Resource" uid="uid://clh1ijjr0p5cs" path="res://assets/upgrades/experience_bonus.tres" id="15_oyb8x"]
+[ext_resource type="Resource" uid="uid://b066uwum3aw2r" path="res://assets/upgrades/minion_speed.tres" id="16_jdukm"]
 [ext_resource type="Resource" uid="uid://da8kllt0ep1bq" path="res://assets/upgrades/minion_attack_speed.tres" id="16_vajcb"]
+[ext_resource type="Resource" uid="uid://dr4nknxp07mml" path="res://assets/upgrades/thousand_cuts.tres" id="17_1eue0"]
+[ext_resource type="Resource" uid="uid://cgs6m8j6yac22" path="res://assets/upgrades/evasive_speed.tres" id="18_xlekw"]
+[ext_resource type="Script" path="res://scripts/ui/aim_cursor.gd" id="19_4atye"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k0imj"]
 blend_mode = 4
@@ -26,6 +31,8 @@ vertices = PackedVector2Array(83024.7, 46622, -61150.1, 46028, -62336.8, -28296,
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-61160, 46038, 83035, 46632, 81000, -28730, -62347, -28306)])
 parsed_geometry_type = 1
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2gxtp"]
 
 [node name="GameScene" type="Node2D"]
 
@@ -60,7 +67,7 @@ script = ExtResource("2_qdphv")
 spawn_interval_min = 2.5
 spawn_interval_max = 2.5
 spawn_scene = ExtResource("1_4bfgp")
-spawn_to = NodePath("../../..")
+spawn_to = NodePath("../../../Minions")
 spawn_signal = "minion_spawn"
 
 [node name="MinionSpawner2" type="Node2D" parent="Player/SpawnerRotation2" node_paths=PackedStringArray("spawn_to")]
@@ -69,7 +76,7 @@ script = ExtResource("2_qdphv")
 spawn_interval_min = 2.5
 spawn_interval_max = 2.5
 spawn_scene = ExtResource("1_4bfgp")
-spawn_to = NodePath("../../..")
+spawn_to = NodePath("../../../Minions")
 spawn_signal = "minion_spawn"
 
 [node name="SpawnerRotation" type="Node2D" parent="Player"]
@@ -79,23 +86,28 @@ rotate_speed = 25.0
 [node name="EnemySpawner" type="Node2D" parent="Player/SpawnerRotation" node_paths=PackedStringArray("spawn_to")]
 position = Vector2(800, 0)
 script = ExtResource("2_qdphv")
-spawn_interval_min = 2.0
+spawn_interval_min = 2.4
 spawn_interval_max = 2.8
 spawn_scene = ExtResource("3_3rgyx")
-spawn_to = NodePath("../../..")
+spawn_to = NodePath("../../../Enemies")
 
 [node name="EnemySpawner2" type="Node2D" parent="Player/SpawnerRotation" node_paths=PackedStringArray("spawn_to")]
 position = Vector2(-800, 0)
 script = ExtResource("2_qdphv")
-spawn_interval_min = 2.0
+spawn_interval_min = 2.4
 spawn_interval_max = 2.8
 spawn_scene = ExtResource("3_3rgyx")
-spawn_to = NodePath("../../..")
+spawn_to = NodePath("../../../Enemies")
 
 [node name="SpawnerDifficultyIncrease" type="Node" parent="Player/SpawnerRotation" node_paths=PackedStringArray("spawners")]
 script = ExtResource("7_g871n")
 spawners = [NodePath("../EnemySpawner"), NodePath("../EnemySpawner2")]
 timer_scale_fac = 0.99
+
+[node name="Minions" type="Node2D" parent="."]
+script = ExtResource("8_b1bpx")
+
+[node name="Enemies" type="Node2D" parent="."]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
@@ -108,6 +120,23 @@ target = NodePath("../Player")
 
 [node name="UiLayer" parent="." instance=ExtResource("8_x4mid")]
 
-[node name="UpgradeStrategyContainer" type="Node" parent="."]
+[node name="UpgradeStrategyContainer" type="Node" parent="." node_paths=PackedStringArray("minions")]
 script = ExtResource("10_p3qde")
-upgrade_pool = Array[ExtResource("11_cxuin")]([ExtResource("12_tx0rt"), ExtResource("13_a8l4i"), ExtResource("16_vajcb")])
+upgrade_pool = {
+"Experience Bonus": ExtResource("15_oyb8x"),
+"Minion Attack Speed": ExtResource("16_vajcb"),
+"Minion Damage": ExtResource("12_tx0rt"),
+"Minion Health": ExtResource("13_a8l4i"),
+"Minion Speed": ExtResource("16_jdukm")
+}
+unavailable_upgrades_pool = {
+"Evasive Speed": ExtResource("18_xlekw"),
+"Thousand Cuts": ExtResource("17_1eue0")
+}
+minions = NodePath("../Minions")
+
+[node name="AimCursor" type="Sprite2D" parent="."]
+position = Vector2(14.25, 14.25)
+scale = Vector2(29.5, 29.5)
+texture = SubResource("PlaceholderTexture2D_2gxtp")
+script = ExtResource("19_4atye")

@@ -22,12 +22,16 @@ func _process(delta: float) -> void:
 	if !self.keybind_pressed:
 		return;
 	
-	check_folder("res://");
+	var count: int = self.check_folder("res://");
+	if count > 0:
+		print_rich("[color=yellow]warnings generated: "+String.num_int64(count));
+	else:
+		print_rich("[color=green]all clean!");
 	
 	print_rich("[color=pink]the linting is completed! please check the warnings and please try to address them");
 
 
-func check_folder(directory: String, layers: int = 64):
+func check_folder(directory: String, layers: int = 64) -> int:
 	
 	var dir_access: DirAccess = DirAccess.open(directory);
 	var files: PackedStringArray = dir_access.get_files();
@@ -36,25 +40,29 @@ func check_folder(directory: String, layers: int = 64):
 	if !directory.ends_with("/"):
 		parent_path += "/";
 	
+	var matches: int = 0;
+	
 	for f in files:
 		if f.get_extension() != self.lint_type:
 			continue;
 		var file: FileAccess = FileAccess.open(parent_path + f,FileAccess.READ);
-		self.check_file(file);
+		matches += self.check_file(file);
 		file.close();
 	
 	if layers <= 0:
 		push_warning("max depth reached, something may be wrong of max depth is not set properly.");
-		return;
+		return matches;
 	
 	var directories: PackedStringArray = dir_access.get_directories();
 	
 	for dir in directories:
-		check_folder(parent_path + dir, layers - 1);
+		matches += self.check_folder(parent_path + dir, layers - 1);
+	
+	return matches;
 
-func check_file(file: FileAccess):
+func check_file(file: FileAccess) -> int:
 	if self.get_script().get_path() == file.get_path():
-		return;
+		return 0;
 	
 	var text: String = file.get_as_text();
 	var printed: bool = false;
@@ -68,11 +76,13 @@ func check_file(file: FileAccess):
 		
 	for r in results:
 		self.print_match(text,r);
+	
+	return results.size();
 
 func filter_self_ref(result: RegExMatch) -> bool:
 	return result.get_string(1) != "self" && result.get_string(1) != "_self"
 
-func print_match(string: String,result: RegExMatch, context_size: int = 30):
+func print_match(string: String,result: RegExMatch, context_size: int = 70):
 	var start = result.get_start();
 	var end = result.get_end();
 	print_rich(
