@@ -19,6 +19,10 @@ func on_select():
 		self.ready = true;
 	self.level += 1;
 	self._level_change(1);
+	
+	var powerup_selected_event: PowerUpSelectedEvent = PowerUpSelectedEvent.new_inst(self);
+	EventBus.powerup_selected.emit(powerup_selected_event);
+	powerup_selected_event.free();
 	print("level up skill ",  upgrade_name, " to level ", self.level);
 
 func get_minions() -> Array[Node]:
@@ -26,7 +30,7 @@ func get_minions() -> Array[Node]:
 
 func set_minions(minions: Node2D):
 	self._minions = minions;
-
+	
 ## Called when this upgrade is selected for the first time
 func _ready():
 	pass;

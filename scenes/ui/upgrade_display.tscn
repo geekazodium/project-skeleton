@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://b8j22ka88ww26"]
+
+[node name="UpgradeDisplay" type="Label"]
+text = "This is a placeholder text."

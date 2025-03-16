@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1ap6hg0m83r8"]
+[gd_scene load_steps=7 format=3 uid="uid://c1ap6hg0m83r8"]
 
 [ext_resource type="Script" path="res://scripts/ui/experience_progress_bar.gd" id="1_1yx45"]
 [ext_resource type="Script" path="res://scripts/ui/exp_text_label.gd" id="2_yof05"]
 [ext_resource type="Script" path="res://scripts/ui/upgrade_selector.gd" id="3_lu4am"]
 [ext_resource type="PackedScene" uid="uid://xl20e1pwb2f7" path="res://scenes/ui/upgrade_button.tscn" id="4_k8rti"]
+[ext_resource type="Script" path="res://scripts/ui/powerups_display_container.gd" id="5_ynsjg"]
+[ext_resource type="PackedScene" uid="uid://b8j22ka88ww26" path="res://scenes/ui/upgrade_display.tscn" id="6_157hb"]
 
 [node name="UiLayer" type="CanvasLayer"]
 process_mode = 3
@@ -53,13 +55,23 @@ offset_right = 48.0
 offset_bottom = 48.0
 
 [node name="ProgressBar" type="ProgressBar" parent="Control"]
+layout_mode = 0
 offset_right = 595.0
 offset_bottom = 27.0
 show_percentage = false
 script = ExtResource("1_1yx45")
 
 [node name="RichTextLabel" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = 605.0
 offset_right = 713.0
 offset_bottom = 40.0
 script = ExtResource("2_yof05")
+
+[node name="PowerupsDisplayContainer" type="VBoxContainer" parent="."]
+offset_left = 941.0
+offset_top = 53.0
+offset_right = 1144.0
+offset_bottom = 195.0
+script = ExtResource("5_ynsjg")
+upgrade_display = ExtResource("6_157hb")
