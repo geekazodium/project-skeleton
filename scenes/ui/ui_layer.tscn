@@ -70,8 +70,8 @@ script = ExtResource("2_yof05")
 
 [node name="PowerupsDisplayContainer" type="VBoxContainer" parent="."]
 offset_left = 941.0
-offset_top = 53.0
+offset_top = 67.0
 offset_right = 1144.0
-offset_bottom = 195.0
+offset_bottom = 209.0
 script = ExtResource("5_ynsjg")
 upgrade_display = ExtResource("6_157hb")

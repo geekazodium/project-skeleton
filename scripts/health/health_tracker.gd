@@ -4,6 +4,7 @@ class_name HealthTracker
 @export var health: float = 10;
 @export var max_health: float = 10;
 @export var death_event: String = "";
+@export var increase_per_second: float = 0;
 
 signal health_changed(current:float);
 signal max_health_changed(current: float);
@@ -14,9 +15,14 @@ func _ready() -> void:
 	self.health_changed.emit(self.health);
 	self.max_health_changed.emit(self.max_health);
 
+func _physics_process(delta: float) -> void:
+	self.change_health(self.increase_per_second * delta);
+
 ## use this function to change the health of the entity.
 func change_health(amount: float):
 	self.health += amount;
+	if self.health > self.max_health:
+		self.health = self.max_health;
 	self.health_changed.emit(self.health);
 	if self.health <= 0.:
 		self.on_death();
