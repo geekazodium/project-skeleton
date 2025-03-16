@@ -28,3 +28,6 @@ signal enemy_dealt_damage(event: EntityDealDamageEvent);
 
 @warning_ignore("unused_signal")
 signal minion_spawn(event: EntitySpawnEvent);
+
+@warning_ignore("unused_signal")
+signal powerup_selected(event: PowerUpSelectedEvent);

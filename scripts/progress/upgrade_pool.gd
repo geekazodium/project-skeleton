@@ -1,4 +1,5 @@
 extends Node
+class_name UpgradePool
 
 @export var upgrade_pool: Dictionary = {};
 @export var unavailable_upgrades_pool: Dictionary = {};
