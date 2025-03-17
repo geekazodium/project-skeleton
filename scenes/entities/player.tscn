@@ -18,6 +18,7 @@ move_speed = 1200.0
 
 [node name="HealthTracker" type="Node" parent="."]
 script = ExtResource("2_x2jr2")
+increase_per_second = 0.1
 
 [node name="ExperienceTracker" type="Node" parent="."]
 script = ExtResource("6_pqjdb")

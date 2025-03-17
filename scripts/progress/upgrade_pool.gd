@@ -1,6 +1,8 @@
 extends Node
 class_name UpgradePool
 
+#@export var special_upgrade_pool: Dictionary = {};
+
 @export var upgrade_pool: Dictionary = {};
 @export var unavailable_upgrades_pool: Dictionary = {};
 @export var minions: Node2D = null;
