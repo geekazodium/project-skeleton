@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://vq5kr86416s4"]
+[gd_scene load_steps=26 format=3 uid="uid://vq5kr86416s4"]
 
 [ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://scenes/entities/minion.tscn" id="1_4bfgp"]
 [ext_resource type="PackedScene" uid="uid://nydo5vwxibai" path="res://scenes/entities/player.tscn" id="1_tcglg"]
@@ -20,6 +20,7 @@
 [ext_resource type="Resource" uid="uid://cgs6m8j6yac22" path="res://assets/upgrades/evasive_speed.tres" id="18_xlekw"]
 [ext_resource type="Script" path="res://scripts/ui/aim_cursor.gd" id="19_4atye"]
 [ext_resource type="Resource" uid="uid://7g4jwim31jqi" path="res://assets/upgrades/forceful_collision.tres" id="19_7uvfx"]
+[ext_resource type="Resource" uid="uid://c0u1sg4tvwpcm" path="res://assets/upgrades/vampirism.tres" id="20_h1dnb"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k0imj"]
 blend_mode = 4
@@ -133,7 +134,8 @@ upgrade_pool = {
 unavailable_upgrades_pool = {
 "Evasive Speed": ExtResource("18_xlekw"),
 "Forceful Collision": ExtResource("19_7uvfx"),
-"Thousand Cuts": ExtResource("17_1eue0")
+"Thousand Cuts": ExtResource("17_1eue0"),
+"Vampirism": ExtResource("20_h1dnb")
 }
 minions = NodePath("../Minions")
 
