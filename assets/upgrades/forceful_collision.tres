@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://7g4jwim31jqi"]
+
+[ext_resource type="Script" path="res://scripts/progress/upgrades/combination_upgrades/forceful_collision.gd" id="1_yh7fn"]
+
+[resource]
+script = ExtResource("1_yh7fn")
+bonus_per_speed = 0.01
+reduction_per_speed = 0.001
+upgrade_name = "Forceful Collision"
