@@ -3,17 +3,16 @@ class_name UpgradePool
 
 #@export var special_upgrade_pool: Dictionary = {};
 
+var upgrade_get_order: Array[String] = [];
 @export var upgrade_pool: Dictionary = {};
-@export var unavailable_upgrades_pool: Dictionary = {};
 @export var minions: Node2D = null;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	EventBus.level_up.connect(self.on_level_up);
+	EventBus.powerup_selected.connect(self.on_powerup_selected);
 
 func on_level_up(event: LevelUpEvent):
-	self.move_availibility();
-	
 	var _level: int = event.get_level();
 	var pool = upgrade_pool.values();
 	pool.shuffle();
@@ -25,9 +24,19 @@ func on_level_up(event: LevelUpEvent):
 	
 	event.set_upgrade_options(upgrades);
 
-func move_availibility():
-	for key in self.unavailable_upgrades_pool.keys():
-		var value = self.unavailable_upgrades_pool.get(key) as UpgradeStrategy;
-		if value.prerequisites_met(self.upgrade_pool):
-			self.upgrade_pool[key] = value;
-			self.unavailable_upgrades_pool.erase(key);
+func on_powerup_selected(event: PowerUpSelectedEvent):
+	upgrade_get_order.append(event.get_upgrade_strategy().upgrade_name);
+
+## returns if successfully removed
+func remove_upgrades(amount: int) -> bool:
+	if self.upgrade_get_order.size() < amount:
+		return false;
+	for i in range(amount):
+		var upgrade_name: String = self.upgrade_get_order.pop_back();
+		var upgrade: UpgradeStrategy = self.upgrade_pool.get(upgrade_name);
+		upgrade.on_remove();
+	return true;
+
+func remove_upgrade() -> bool:
+	print("boop");
+	return self.remove_upgrades(1);

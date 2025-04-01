@@ -17,13 +17,26 @@ func on_select():
 	if !self.ready:
 		self._ready();
 		self.ready = true;
-	self.level += 1;
-	self._level_change(1);
+	self._add_to_level(1);
 	
 	var powerup_selected_event: PowerUpSelectedEvent = PowerUpSelectedEvent.new_inst(self);
 	EventBus.powerup_selected.emit(powerup_selected_event);
 	powerup_selected_event.free();
 	print("level up skill ",  upgrade_name, " to level ", self.level);
+
+func on_remove():
+	if self.level <= 0:
+		print("failed to remove upgrade ", upgrade_name);
+		return;
+	self._add_to_level(-1);
+	
+	var powerup_removed_event: PowerupRemovedEvent = PowerupRemovedEvent.new_inst(self);
+	EventBus.powerup_removed.emit(powerup_removed_event);
+	powerup_removed_event.free();
+
+func _add_to_level(amount: int):
+	self.level += amount;
+	self._level_change(amount);
 
 func get_minions() -> Array[Node]:
 	return self._minions.get_children();

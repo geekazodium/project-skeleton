@@ -31,3 +31,6 @@ signal minion_spawn(event: EntitySpawnEvent);
 
 @warning_ignore("unused_signal")
 signal powerup_selected(event: PowerUpSelectedEvent);
+
+@warning_ignore("unused_signal")
+signal powerup_removed(event: PowerupRemovedEvent);
