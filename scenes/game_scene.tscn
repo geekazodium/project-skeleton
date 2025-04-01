@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://vq5kr86416s4"]
+[gd_scene load_steps=23 format=3 uid="uid://vq5kr86416s4"]
 
 [ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://scenes/entities/minion.tscn" id="1_4bfgp"]
 [ext_resource type="PackedScene" uid="uid://nydo5vwxibai" path="res://scenes/entities/player.tscn" id="1_tcglg"]
@@ -24,13 +24,18 @@ blend_mode = 4
 [sub_resource type="ViewportTexture" id="ViewportTexture_3khim"]
 viewport_path = NodePath("Player/PentagramSprite/SubViewport")
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_fcdfl"]
-vertices = PackedVector2Array(83024.7, 46622, -61150.1, 46028, -62336.8, -28296, 80990.3, -28720)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-61160, 46038, 83035, 46632, 81000, -28730, -62347, -28306)])
-parsed_geometry_type = 1
-
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2gxtp"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3y1db"]
+vertices = PackedVector2Array(348, 258, 1705.33, 1301.02, -2160.09, 1181.06, 150, 258, 1652.64, -1157.61, 348, 74, -1800.28, -1113.32, 150, 74)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(3, 2, 6, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1826, -1143, -2195, 1210, 1736, 1332, 1682, -1188)])
+parsed_geometry_type = 1
+parsed_collision_mask = 4294967056
+agent_radius = 30.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1novq"]
+size = Vector2(138, 124)
 
 [node name="GameScene" type="Node2D"]
 
@@ -107,11 +112,6 @@ script = ExtResource("8_b1bpx")
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-visible = false
-position = Vector2(-2156, -1036)
-navigation_polygon = SubResource("NavigationPolygon_fcdfl")
-
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("5_wc26p")
 target = NodePath("../Player")
@@ -134,3 +134,20 @@ position = Vector2(14.25, 14.25)
 scale = Vector2(29.5, 29.5)
 texture = SubResource("PlaceholderTexture2D_2gxtp")
 script = ExtResource("19_4atye")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_3y1db")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D"]
+position = Vector2(190, 114)
+collision_layer = 16
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D"]
+position = Vector2(59, 52)
+shape = SubResource("RectangleShape2D_1novq")
+
+[node name="ColorRect" type="ColorRect" parent="NavigationRegion2D/StaticBody2D"]
+offset_right = 123.0
+offset_bottom = 105.0
