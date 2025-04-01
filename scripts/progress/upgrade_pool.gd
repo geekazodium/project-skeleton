@@ -38,5 +38,4 @@ func remove_upgrades(amount: int) -> bool:
 	return true;
 
 func remove_upgrade() -> bool:
-	print("boop");
 	return self.remove_upgrades(1);

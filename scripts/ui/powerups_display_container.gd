@@ -17,7 +17,7 @@ func on_powerup_selected(event: PowerUpSelectedEvent):
 		self.add_child(inst);
 	
 	var node: Label = self.get_node(node_name);
-	node.text = upgrade_strategy.upgrade_name + " " + String.num_int64(upgrade_strategy.level);
+	node.text = self._format_upgrade_strategy(upgrade_strategy);
 
 func on_powerup_removed(event: PowerupRemovedEvent):
 	var upgrade_strategy: UpgradeStrategy = event.get_upgrade_strategy();
@@ -30,8 +30,11 @@ func on_powerup_removed(event: PowerupRemovedEvent):
 	if upgrade_strategy.level == 0:
 		self.remove_child(node);
 	else:
-		node.text = upgrade_strategy.upgrade_name + " " + String.num_int64(upgrade_strategy.level);
+		node.text = self._format_upgrade_strategy(upgrade_strategy);
 
 ## Assumption: user will not attempt to name anything along the lines of "--" or "assets-something"
 func _get_generated_node_name(path: String) -> String:
 	return "gen-" + path.replace("res://","").replace(".tres","").replace("/","-");
+
+func _format_upgrade_strategy(upgrade_strategy: UpgradeStrategy) -> String:
+	return upgrade_strategy.upgrade_name + " " + String.num_int64(upgrade_strategy.level);
