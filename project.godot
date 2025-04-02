@@ -66,10 +66,6 @@ move_right={
 2d_physics/layer_5="walls"
 2d_physics/layer_6="interactable"
 
-[navigation]
-
-2d/default_cell_size=50.0
-
 [physics]
 
 common/physics_ticks_per_second=20
