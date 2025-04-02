@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1ap6hg0m83r8"]
+[gd_scene load_steps=8 format=3 uid="uid://c1ap6hg0m83r8"]
 
 [ext_resource type="Script" path="res://scripts/ui/experience_progress_bar.gd" id="1_1yx45"]
 [ext_resource type="Script" path="res://scripts/ui/exp_text_label.gd" id="2_yof05"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://scripts/ui/powerups_display_container.gd" id="5_ynsjg"]
 [ext_resource type="PackedScene" uid="uid://b8j22ka88ww26" path="res://scenes/ui/upgrade_display.tscn" id="6_157hb"]
 [ext_resource type="Script" path="res://scripts/ui/death_menu.gd" id="7_bubem"]
-[ext_resource type="Script" path="res://scripts/ui/save_button.gd" id="8_ntrgb"]
 
 [node name="UiLayer" type="CanvasLayer"]
 process_mode = 3
@@ -108,14 +107,5 @@ size_flags_vertical = 3
 layout_mode = 2
 text = "Death is not the end, nothing is.
 Try again."
-
-[node name="CheckButton" type="CheckButton" parent="."]
-offset_left = 8.0
-offset_top = 608.0
-offset_right = 199.0
-offset_bottom = 639.0
-text = "testing save states
-"
-script = ExtResource("8_ntrgb")
 
 [connection signal="pressed" from="DeathMenu/Button" to="DeathMenu" method="_on_respawn_button_pressed"]

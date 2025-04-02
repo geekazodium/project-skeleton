@@ -5,7 +5,7 @@ extends VBoxContainer
 func _ready() -> void:
 	EventBus.player_dead.connect(self.on_player_death);
 
-func on_player_death(event: EntityDeathEvent):
+func on_player_death(_event: EntityDeathEvent):
 	self.visible = true;
 
 func _on_respawn_button_pressed() -> void:
