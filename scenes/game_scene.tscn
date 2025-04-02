@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://vq5kr86416s4"]
+[gd_scene load_steps=25 format=3 uid="uid://vq5kr86416s4"]
 
 [ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://scenes/entities/minion.tscn" id="1_4bfgp"]
 [ext_resource type="Script" path="res://scripts/entities/groups/players.gd" id="1_ingln"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://clh1ijjr0p5cs" path="res://assets/upgrades/experience_bonus.tres" id="15_oyb8x"]
 [ext_resource type="Resource" uid="uid://b066uwum3aw2r" path="res://assets/upgrades/minion_speed.tres" id="16_jdukm"]
 [ext_resource type="Resource" uid="uid://da8kllt0ep1bq" path="res://assets/upgrades/minion_attack_speed.tres" id="16_vajcb"]
+[ext_resource type="Resource" uid="uid://dvrofq6bewc3d" path="res://assets/upgrades/player_health.tres" id="18_lgxs7"]
 [ext_resource type="Script" path="res://scripts/ui/aim_cursor.gd" id="19_4atye"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k0imj"]
@@ -122,16 +123,16 @@ target = NodePath("../Players/Player")
 
 [node name="UiLayer" parent="." instance=ExtResource("8_x4mid")]
 
-[node name="UpgradeStrategyContainer" type="Node" parent="." node_paths=PackedStringArray("minions")]
+[node name="UpgradeStrategyContainer" type="Node" parent="."]
 script = ExtResource("10_p3qde")
 upgrade_pool = {
 "Experience Bonus": ExtResource("15_oyb8x"),
 "Minion Attack Speed": ExtResource("16_vajcb"),
 "Minion Damage": ExtResource("12_tx0rt"),
 "Minion Health": ExtResource("13_a8l4i"),
-"Minion Speed": ExtResource("16_jdukm")
+"Minion Speed": ExtResource("16_jdukm"),
+"Player Health": ExtResource("18_lgxs7")
 }
-minions = NodePath("../Minions")
 
 [node name="AimCursor" type="Sprite2D" parent="."]
 position = Vector2(14.25, 14.25)

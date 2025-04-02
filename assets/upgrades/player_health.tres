@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dvrofq6bewc3d"]
+
+[ext_resource type="Script" path="res://scripts/progress/upgrades/base_upgrades/player_health.gd" id="1_1rf8y"]
+
+[resource]
+script = ExtResource("1_1rf8y")
+bonus_per_level = 10.0
+upgrade_name = "Player Health"

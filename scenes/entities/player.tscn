@@ -56,3 +56,4 @@ move_right_action = "move_right"
 entity_body = NodePath("..")
 
 [connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]
+[connection signal="max_health_changed" from="HealthTracker" to="ProgressBar" method="set_max"]

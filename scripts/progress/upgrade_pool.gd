@@ -5,7 +5,6 @@ class_name UpgradePool
 
 var upgrade_get_order: Array[String] = [];
 @export var upgrade_pool: Dictionary = {};
-@export var minions: Node2D = null;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,13 +18,11 @@ func on_level_up(event: LevelUpEvent):
 	var upgrades: Array[UpgradeStrategy] = [];
 	upgrades.assign(pool.slice(0,3));
 	
-	for upgrade in upgrades:
-		upgrade.set_minions(self.minions);
-	
 	event.set_upgrade_options(upgrades);
 
 func on_powerup_selected(event: PowerUpSelectedEvent):
-	upgrade_get_order.append(event.get_upgrade_strategy().upgrade_name);
+	# assumption: no duplicates of the same upgrade resource in array
+	upgrade_get_order.append(self.upgrade_pool.find_key(event.get_upgrade_strategy()));
 
 ## returns if successfully removed
 func remove_upgrades(amount: int) -> bool:

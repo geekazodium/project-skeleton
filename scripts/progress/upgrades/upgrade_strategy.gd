@@ -42,10 +42,6 @@ func _add_to_level(amount: int):
 func _ready():
 	pass;
 
-@warning_ignore("unused_parameter")
-func prerequisites_met(pool: Dictionary) -> bool:
-	return false;
-
 ## Called when this upgrade level is modified, after _ready is called
 @warning_ignore("unused_parameter")
 func _level_change(amount: int):

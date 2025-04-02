@@ -1,8 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c0u1sg4tvwpcm"]
-
-[ext_resource type="Script" path="res://scripts/progress/upgrades/combination_upgrades/vampirism.gd" id="1_2qu2m"]
-
-[resource]
-script = ExtResource("1_2qu2m")
-recovery_per_level = 0.05
-upgrade_name = "Vampirism"
