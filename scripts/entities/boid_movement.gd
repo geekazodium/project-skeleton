@@ -18,6 +18,7 @@ class_name BoidMovement
 
 @export var body: EntityBody = null;
 @export var nearby_detection: Area2D = null;
+@export var nav_agent: NavigationAgent2D = null;
 
 @export var alignment_force: float = 2;
 @export var cohesion_force: float = .5;
@@ -64,7 +65,10 @@ func _physics_process(_delta: float) -> void:
 			seperation_force_count += 1;
 	
 	var force = Vector2.ZERO;
-	force += self.get_local_mouse_position().normalized() * mouse_force_strength;
+	
+	self.nav_agent.target_position = self.get_global_mouse_position();
+	
+	force += to_local(self.nav_agent.get_next_path_position()).normalized() * mouse_force_strength;
 	if nearby_detection.has_overlapping_bodies():
 		force += alignment_force_avg.normalized() * self.alignment_force;
 		force += cohesion_force_center.normalized() * self.cohesion_force;

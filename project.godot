@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 EventBus="*res://scripts/events/event_bus.gd"
 SaveState="*res://scripts/saves/save_state.gd"
+EntityGroups="*res://scripts/entities/groups/entity_groups.gd"
 
 [display]
 
@@ -62,6 +63,8 @@ move_right={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Summons"
 2d_physics/layer_4="Enemies"
+2d_physics/layer_5="walls"
+2d_physics/layer_6="interactable"
 
 [physics]
 

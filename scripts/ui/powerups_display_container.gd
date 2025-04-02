@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func on_powerup_selected(event: PowerUpSelectedEvent):
 	var upgrade_strategy: UpgradeStrategy = event.get_upgrade_strategy();
-	var node_name = self._get_generated_node_name(upgrade_strategy.resource_path);
+	var node_name = self._get_generated_node_name(upgrade_strategy);
 	
 	if !self.has_node(node_name):
 		var inst: Node = self.upgrade_display.instantiate();
@@ -21,7 +21,7 @@ func on_powerup_selected(event: PowerUpSelectedEvent):
 
 func on_powerup_removed(event: PowerupRemovedEvent):
 	var upgrade_strategy: UpgradeStrategy = event.get_upgrade_strategy();
-	var node_name = self._get_generated_node_name(upgrade_strategy.resource_path);
+	var node_name = self._get_generated_node_name(upgrade_strategy);
 	
 	if !self.has_node(node_name):
 		push_error("attempted to remove upgrade but upgrade does not exist in ui, possible desync");
@@ -33,8 +33,8 @@ func on_powerup_removed(event: PowerupRemovedEvent):
 		node.text = self._format_upgrade_strategy(upgrade_strategy);
 
 ## Assumption: user will not attempt to name anything along the lines of "--" or "assets-something"
-func _get_generated_node_name(path: String) -> String:
-	return "gen-" + path.replace("res://","").replace(".tres","").replace("/","-");
+func _get_generated_node_name(upgrade_strategy: UpgradeStrategy) -> String:
+	return "gen-" + String.num_uint64(upgrade_strategy.get_instance_id(),16,true);
 
 func _format_upgrade_strategy(upgrade_strategy: UpgradeStrategy) -> String:
 	return upgrade_strategy.upgrade_name + " " + String.num_int64(upgrade_strategy.level);

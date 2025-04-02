@@ -50,3 +50,6 @@ func add_max_health(amount: float):
 	self.health_changed.emit(self.health);
 
 static var default_path: String = "HealthTracker";
+
+static func get_health_tracker(entity: Node, path: String = default_path) -> HealthTracker:
+	return entity.get_node(path);

@@ -21,6 +21,7 @@ radius = 142.014
 [node name="Minion" type="CharacterBody2D"]
 process_physics_priority = 2
 collision_layer = 5
+collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_fk853")
 move_speed = 1200.0
@@ -72,10 +73,11 @@ sprite_frames = ExtResource("7_qpfxt")
 frame = 4
 frame_progress = 1.0
 
-[node name="BoidBehavior" type="Node2D" parent="." node_paths=PackedStringArray("body", "nearby_detection", "deferred_velocity")]
+[node name="BoidBehavior" type="Node2D" parent="." node_paths=PackedStringArray("body", "nearby_detection", "nav_agent", "deferred_velocity")]
 script = ExtResource("5_xdtae")
 body = NodePath("..")
 nearby_detection = NodePath("NearbyMinionDetection")
+nav_agent = NodePath("../NavigationAgent2D")
 deferred_velocity = NodePath("../DeferredVelocity")
 
 [node name="NearbyMinionDetection" type="Area2D" parent="BoidBehavior"]
@@ -90,6 +92,8 @@ shape = SubResource("CircleShape2D_n44id")
 process_physics_priority = 1
 script = ExtResource("7_lthrt")
 body = NodePath("..")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]
 [connection signal="max_health_changed" from="HealthTracker" to="ProgressBar" method="set_max"]

@@ -37,20 +37,10 @@ func on_remove():
 func _add_to_level(amount: int):
 	self.level += amount;
 	self._level_change(amount);
-
-func get_minions() -> Array[Node]:
-	return self._minions.get_children();
-
-func set_minions(minions: Node2D):
-	self._minions = minions;
 	
 ## Called when this upgrade is selected for the first time
 func _ready():
 	pass;
-
-@warning_ignore("unused_parameter")
-func prerequisites_met(pool: Dictionary) -> bool:
-	return false;
 
 ## Called when this upgrade level is modified, after _ready is called
 @warning_ignore("unused_parameter")

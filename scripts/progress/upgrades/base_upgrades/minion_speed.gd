@@ -11,5 +11,5 @@ func on_minion_spawn(event: EntitySpawnEvent):
 
 func _level_change(change: int):
 	var speed_gain = self.increase_per_level * change;
-	for minion: EntityBody in self.get_minions():
+	for minion: EntityBody in EntityGroups.get_minions():
 		minion.increase_move_speed(speed_gain);

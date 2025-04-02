@@ -1,8 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cgs6m8j6yac22"]
-
-[ext_resource type="Script" path="res://scripts/progress/upgrades/combination_upgrades/evasive_speed.gd" id="1_6677o"]
-
-[resource]
-script = ExtResource("1_6677o")
-chance_per_level = 0.3
-upgrade_name = "Evasive Speed"
