@@ -37,12 +37,6 @@ func on_remove():
 func _add_to_level(amount: int):
 	self.level += amount;
 	self._level_change(amount);
-
-func get_minions() -> Array[Node]:
-	return self._minions.get_children();
-
-func set_minions(minions: Node2D):
-	self._minions = minions;
 	
 ## Called when this upgrade is selected for the first time
 func _ready():

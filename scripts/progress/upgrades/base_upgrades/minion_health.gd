@@ -11,6 +11,6 @@ func on_minion_spawn(event: EntitySpawnEvent):
 
 func _level_change(change: int):
 	var health_gain = self.increase_per_level * change;
-	for minion: EntityBody in self.get_minions():
+	for minion: EntityBody in EntityGroups.get_minions():
 		var health_tracker: HealthTracker = minion.get_node(HealthTracker.default_path);
 		health_tracker.add_max_health(health_gain);

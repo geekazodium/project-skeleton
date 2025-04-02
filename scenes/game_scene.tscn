@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://vq5kr86416s4"]
+[gd_scene load_steps=24 format=3 uid="uid://vq5kr86416s4"]
 
 [ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://scenes/entities/minion.tscn" id="1_4bfgp"]
+[ext_resource type="Script" path="res://scripts/entities/groups/players.gd" id="1_ingln"]
 [ext_resource type="PackedScene" uid="uid://nydo5vwxibai" path="res://scenes/entities/player.tscn" id="1_tcglg"]
 [ext_resource type="Script" path="res://scripts/entities/spawners/entity_spawner.gd" id="2_qdphv"]
 [ext_resource type="PackedScene" uid="uid://dubqfll6wt3er" path="res://scenes/entities/enemy.tscn" id="3_3rgyx"]
@@ -8,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dbhlxyr0jai8p" path="res://assets/sprites/pentagram.svg" id="5_5fu4y"]
 [ext_resource type="Script" path="res://scripts/camera/follow_camera_2d.gd" id="5_wc26p"]
 [ext_resource type="Script" path="res://scripts/entities/spawners/spawner_difficulty_increase.gd" id="7_g871n"]
-[ext_resource type="Script" path="res://scripts/entities/spawners/minions.gd" id="8_b1bpx"]
+[ext_resource type="Script" path="res://scripts/entities/groups/minions.gd" id="8_b1bpx"]
 [ext_resource type="PackedScene" uid="uid://c1ap6hg0m83r8" path="res://scenes/ui/ui_layer.tscn" id="8_x4mid"]
 [ext_resource type="Script" path="res://scripts/progress/upgrade_pool.gd" id="10_p3qde"]
 [ext_resource type="Resource" uid="uid://dd24yirbinvnu" path="res://assets/upgrades/minion_damage.tres" id="12_tx0rt"]
@@ -22,7 +23,7 @@
 blend_mode = 4
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3khim"]
-viewport_path = NodePath("Player/PentagramSprite/SubViewport")
+viewport_path = NodePath("Players/Player/PentagramSprite/SubViewport")
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2gxtp"]
 
@@ -39,19 +40,22 @@ size = Vector2(138, 124)
 
 [node name="GameScene" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_tcglg")]
+[node name="Players" type="Node2D" parent="."]
+script = ExtResource("1_ingln")
 
-[node name="PentagramSprite" type="Sprite2D" parent="Player"]
+[node name="Player" parent="Players" instance=ExtResource("1_tcglg")]
+
+[node name="PentagramSprite" type="Sprite2D" parent="Players/Player"]
 z_index = -1
 material = SubResource("CanvasItemMaterial_k0imj")
 scale = Vector2(4, 4)
 texture = SubResource("ViewportTexture_3khim")
 
-[node name="SubViewport" type="SubViewport" parent="Player/PentagramSprite"]
+[node name="SubViewport" type="SubViewport" parent="Players/Player/PentagramSprite"]
 transparent_bg = true
 size = Vector2i(96, 96)
 
-[node name="Sprite2D" type="Sprite2D" parent="Player/PentagramSprite/SubViewport"]
+[node name="Sprite2D" type="Sprite2D" parent="Players/Player/PentagramSprite/SubViewport"]
 modulate = Color(1, 0, 0, 1)
 z_index = -1
 position = Vector2(48, 48)
@@ -60,49 +64,49 @@ texture = ExtResource("5_5fu4y")
 script = ExtResource("4_ko6km")
 rotate_speed = 1.0
 
-[node name="SpawnerRotation2" type="Node2D" parent="Player"]
+[node name="SpawnerRotation2" type="Node2D" parent="Players/Player"]
 script = ExtResource("4_ko6km")
 rotate_speed = 25.0
 
-[node name="MinionSpawner" type="Node2D" parent="Player/SpawnerRotation2" node_paths=PackedStringArray("spawn_to")]
+[node name="MinionSpawner" type="Node2D" parent="Players/Player/SpawnerRotation2" node_paths=PackedStringArray("spawn_to")]
 position = Vector2(120, 0)
 script = ExtResource("2_qdphv")
 spawn_interval_min = 2.5
 spawn_interval_max = 2.5
 spawn_scene = ExtResource("1_4bfgp")
-spawn_to = NodePath("../../../Minions")
+spawn_to = NodePath("../../../../Minions")
 spawn_signal = "minion_spawn"
 
-[node name="MinionSpawner2" type="Node2D" parent="Player/SpawnerRotation2" node_paths=PackedStringArray("spawn_to")]
+[node name="MinionSpawner2" type="Node2D" parent="Players/Player/SpawnerRotation2" node_paths=PackedStringArray("spawn_to")]
 position = Vector2(-120, 0)
 script = ExtResource("2_qdphv")
 spawn_interval_min = 2.5
 spawn_interval_max = 2.5
 spawn_scene = ExtResource("1_4bfgp")
-spawn_to = NodePath("../../../Minions")
+spawn_to = NodePath("../../../../Minions")
 spawn_signal = "minion_spawn"
 
-[node name="SpawnerRotation" type="Node2D" parent="Player"]
+[node name="SpawnerRotation" type="Node2D" parent="Players/Player"]
 script = ExtResource("4_ko6km")
 rotate_speed = 25.0
 
-[node name="EnemySpawner" type="Node2D" parent="Player/SpawnerRotation" node_paths=PackedStringArray("spawn_to")]
+[node name="EnemySpawner" type="Node2D" parent="Players/Player/SpawnerRotation" node_paths=PackedStringArray("spawn_to")]
 position = Vector2(800, 0)
 script = ExtResource("2_qdphv")
 spawn_interval_min = 2.4
 spawn_interval_max = 2.8
 spawn_scene = ExtResource("3_3rgyx")
-spawn_to = NodePath("../../../Enemies")
+spawn_to = NodePath("../../../../Enemies")
 
-[node name="EnemySpawner2" type="Node2D" parent="Player/SpawnerRotation" node_paths=PackedStringArray("spawn_to")]
+[node name="EnemySpawner2" type="Node2D" parent="Players/Player/SpawnerRotation" node_paths=PackedStringArray("spawn_to")]
 position = Vector2(-800, 0)
 script = ExtResource("2_qdphv")
 spawn_interval_min = 2.4
 spawn_interval_max = 2.8
 spawn_scene = ExtResource("3_3rgyx")
-spawn_to = NodePath("../../../Enemies")
+spawn_to = NodePath("../../../../Enemies")
 
-[node name="SpawnerDifficultyIncrease" type="Node" parent="Player/SpawnerRotation" node_paths=PackedStringArray("spawners")]
+[node name="SpawnerDifficultyIncrease" type="Node" parent="Players/Player/SpawnerRotation" node_paths=PackedStringArray("spawners")]
 script = ExtResource("7_g871n")
 spawners = [NodePath("../EnemySpawner"), NodePath("../EnemySpawner2")]
 timer_scale_fac = 0.99
@@ -114,7 +118,7 @@ script = ExtResource("8_b1bpx")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("5_wc26p")
-target = NodePath("../Player")
+target = NodePath("../Players/Player")
 
 [node name="UiLayer" parent="." instance=ExtResource("8_x4mid")]
 
