@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dubqfll6wt3er"]
+[gd_scene load_steps=14 format=3 uid="uid://dubqfll6wt3er"]
 
 [ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_t1ggi"]
 [ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_phvhl"]
@@ -7,16 +7,13 @@
 [ext_resource type="Script" path="res://scripts/entities/state_machine/target_tracker.gd" id="4_fvfve"]
 [ext_resource type="PackedScene" uid="uid://bpj1aj0eh5h55" path="res://scenes/items/experience_drop.tscn" id="5_bio7f"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/state_machine.gd" id="5_tlqte"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/find_target_state.gd" id="6_ctvdv"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/follow_target_state.gd" id="7_gae4f"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/set_player_target_state.gd" id="8_r1int"]
 [ext_resource type="Script" path="res://scripts/attacks/attack_area.gd" id="8_wkgd1"]
 [ext_resource type="SpriteFrames" uid="uid://b7v75jip16wrq" path="res://assets/sprites/attack_placeholder_animation.tres" id="11_wo7xy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm50p"]
 radius = 30.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_v5ac1"]
-radius = 4193.57
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l7rto"]
 radius = 89.202
@@ -71,18 +68,10 @@ states = {
 }
 current_state = "FindTarget"
 
-[node name="FindTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "detection_area")]
-script = ExtResource("6_ctvdv")
+[node name="FindTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker")]
+script = ExtResource("8_r1int")
 target_tracker = NodePath("../../TargetTracker")
-detection_area = NodePath("Area2D")
 detected_state = "TrackTarget"
-
-[node name="Area2D" type="Area2D" parent="StateMachine/FindTargetState"]
-collision_layer = 0
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/FindTargetState/Area2D"]
-shape = SubResource("CircleShape2D_v5ac1")
 
 [node name="FollowTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "character_body", "nav_agent")]
 script = ExtResource("7_gae4f")
@@ -94,6 +83,7 @@ target_lost_state = "FindTarget"
 [node name="AttackArea" type="Area2D" parent="StateMachine/FollowTargetState" node_paths=PackedStringArray("hit_animation")]
 collision_layer = 0
 collision_mask = 6
+monitorable = false
 script = ExtResource("8_wkgd1")
 damage_event = "enemy_dealt_damage"
 hit_animation = NodePath("AnimatedSprite2D")

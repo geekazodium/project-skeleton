@@ -62,6 +62,7 @@ entity_body = NodePath("..")
 [node name="InteractionArea2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 32
+monitorable = false
 script = ExtResource("6_f54h8")
 interact_action = "interact"
 

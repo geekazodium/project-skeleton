@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://kyeddjrbc5r"]
+
+[ext_resource type="Script" path="res://scripts/entities/spawners/entity_wave_spawner.gd" id="1_lyy6l"]
+[ext_resource type="PackedScene" uid="uid://dubqfll6wt3er" path="res://scenes/entities/enemy.tscn" id="2_7xjnh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hyoup"]
+radius = 500.0
+
+[node name="EntityWaveSpawner" type="Node2D" node_paths=PackedStringArray("spawn_safe_area")]
+script = ExtResource("1_lyy6l")
+spawn_radius = 450.0
+radius_from_player = 1400.0
+spawn_amount = 50.0
+spawns = Array[PackedScene]([ExtResource("2_7xjnh")])
+spawn_safe_area = NodePath("SpawnSafeArea")
+
+[node name="NextWaveTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="SpawnSafeArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnSafeArea"]
+shape = SubResource("CircleShape2D_hyoup")
+
+[connection signal="timeout" from="NextWaveTimer" to="." method="spawn_wave"]
