@@ -22,7 +22,7 @@
 [ext_resource type="Script" path="res://scripts/ui/aim_cursor.gd" id="19_4atye"]
 [ext_resource type="PackedScene" uid="uid://uimqiddrnkwg" path="res://scenes/items/saved_pickup_item_test.tscn" id="21_8dql7"]
 [ext_resource type="Script" path="res://scripts/dialog/dialog_tree.gd" id="22_mkjso"]
-[ext_resource type="Resource" uid="uid://bn7ktaychvai1" path="res://assets/dialog/alara_1.tres" id="23_0x6o3"]
+[ext_resource type="Resource" path="res://assets/dialog/alara_1.tres" id="23_0x6o3"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k0imj"]
 blend_mode = 4

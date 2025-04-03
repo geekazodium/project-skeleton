@@ -110,6 +110,7 @@ text = "Death is not the end, nothing is.
 Try again."
 
 [node name="DialogMenu" type="VBoxContainer" parent="." node_paths=PackedStringArray("title_box", "text_box")]
+visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
