@@ -123,11 +123,10 @@ grow_vertical = 0
 alignment = 2
 script = ExtResource("8_jchey")
 title_box = NodePath("TitleLabel")
-text_box = NodePath("TitleLabel")
+text_box = NodePath("TextLabel")
 
 [node name="TitleLabel" type="Label" parent="DialogMenu"]
 layout_mode = 2
-text = "Alara"
 
 [node name="ColorRect2" type="ColorRect" parent="DialogMenu/TitleLabel"]
 z_index = -1
@@ -154,9 +153,16 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.282353)
 
-[node name="Button" type="Button" parent="DialogMenu"]
-layout_mode = 2
+[node name="Button" type="Button" parent="DialogMenu/TextLabel"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Next"
 
 [connection signal="pressed" from="DeathMenu/Button" to="DeathMenu" method="_on_respawn_button_pressed"]
-[connection signal="pressed" from="DialogMenu/Button" to="DialogMenu" method="next_pressed"]
+[connection signal="pressed" from="DialogMenu/TextLabel/Button" to="DialogMenu" method="next_pressed"]
