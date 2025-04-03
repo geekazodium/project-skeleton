@@ -78,6 +78,7 @@ script = ExtResource("5_ynsjg")
 upgrade_display = ExtResource("6_157hb")
 
 [node name="DeathMenu" type="VBoxContainer" parent="."]
+process_mode = 2
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
