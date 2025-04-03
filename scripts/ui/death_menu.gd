@@ -10,5 +10,5 @@ func on_player_death(_event: EntityDeathEvent):
 	self.get_tree().paused = true;
 
 func _on_respawn_button_pressed() -> void:
-	self.get_tree().change_scene_to_file("res://scenes/game_scene.tscn");
 	self.get_tree().paused = false;
+	self.get_tree().change_scene_to_file("res://scenes/game_scene.tscn");
