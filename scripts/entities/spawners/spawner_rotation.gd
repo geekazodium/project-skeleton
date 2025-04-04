@@ -1,5 +1,7 @@
 extends Node2D
 
+## MAKE SURE IT PROCESSES AFTER THE SPAWNER, OTHERWISE THE SPAWNER MAY MOVE INTO A WALL
+## BEFORE SPAWNING AN ENTITY
 ## Rotates, make this the parent of something you want to
 ## constanly rotate around a pivot
 

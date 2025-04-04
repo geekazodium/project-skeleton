@@ -2,39 +2,43 @@ extends Node2D
 class_name EntityWaveSpawner
 
 @export var spawn_radius: float = 0;
-@export var radius_from_player: float = 0;
-@export var spawn_amount: float = 0;
 
 @export var spawn_to: Node2D = null;
 
-var spawn_count: int = 0;
-var spawn_center_position: Vector2 = Vector2.ZERO;
+@export var enemy_waves: Array[EnemyWave] = [];
 
-@export var spawns: Array[PackedScene] = [];
+var current_wave: int = -1;
 
 @export var spawn_safe_area: Area2D = null;
+@export var next_wave_timer: Timer = null;
+
+var spawning: bool = false;
 
 func _ready() -> void:
-	self.spawn_count = self.spawn_amount;
+	self.spawn_wave();
 
 func _physics_process(delta: float) -> void:
 	if self.spawn_safe_area.has_overlapping_bodies():
-		self.position = Vector2.UP.rotated(randf_range(0,PI * 2)) * self.radius_from_player;
-		self.spawn_center_position = self.global_position;
+		return;
+		
+	if !self.spawning: 
 		return;
 	
-	if self.spawn_count < self.spawn_amount:
+	if self.enemy_waves[self.current_wave].spawining_done():
+		self.spawning = false;
+		self.next_wave_timer.stop();
+		self.next_wave_timer.start();
+	else:
 		var random_offset = Vector2.UP.rotated(randf_range(0,PI * 2)) * self.sqrt_distribution(0,self.spawn_radius);
-		self.spawn_count += 1;
-		var spawn_position = self.spawn_center_position + random_offset;
-		var new_instance = spawns.pick_random().instantiate();
-		new_instance.position = spawn_position - self.spawn_to.global_position;
-		self.spawn_to.add_child(new_instance);
+		var spawn_position = self.global_position + random_offset;
+		self.enemy_waves[self.current_wave].attempt_spawn(self.spawn_to,spawn_position);
 
 func spawn_wave() -> void:
-	self.spawn_count = 0;
-	self.position = Vector2.UP.rotated(randf_range(0,PI * 2)) * self.radius_from_player;
-	self.spawn_center_position = self.global_position;
+	self.spawning = true;
+	self.current_wave += 1;
+	print(self.current_wave);
+	self.current_wave = min(self.current_wave, self.enemy_waves.size() - 1);
+	self.enemy_waves[self.current_wave].reset();
 
 func sqrt_distribution(min_val: int, max_val: int):
 	return max(randf_range(min_val,max_val),randf_range(min_val,max_val));

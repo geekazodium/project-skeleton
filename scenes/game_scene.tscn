@@ -1,14 +1,19 @@
-[gd_scene load_steps=22 format=4 uid="uid://vq5kr86416s4"]
+[gd_scene load_steps=27 format=4 uid="uid://vq5kr86416s4"]
 
 [ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://scenes/entities/minion.tscn" id="1_4bfgp"]
 [ext_resource type="Script" path="res://scripts/entities/groups/players.gd" id="1_ingln"]
 [ext_resource type="PackedScene" uid="uid://nydo5vwxibai" path="res://scenes/entities/player.tscn" id="1_tcglg"]
 [ext_resource type="Script" path="res://scripts/entities/spawners/entity_spawner.gd" id="2_qdphv"]
 [ext_resource type="Script" path="res://scripts/entities/spawners/spawner_rotation.gd" id="4_ko6km"]
-[ext_resource type="PackedScene" uid="uid://kyeddjrbc5r" path="res://scenes/entities/entity_wave_spawner.tscn" id="4_ko8hw"]
+[ext_resource type="PackedScene" uid="uid://nktra47xqs3i" path="res://scenes/entities/entity_wave_spawner.tscn" id="4_ko8hw"]
+[ext_resource type="Script" path="res://scripts/entities/spawners/enemy_wave.gd" id="5_876e0"]
 [ext_resource type="Script" path="res://scripts/camera/follow_camera_2d.gd" id="5_wc26p"]
+[ext_resource type="Resource" uid="uid://dy7oc84tqpfa1" path="res://assets/waves/test_wave_1.tres" id="6_g7w0m"]
+[ext_resource type="Resource" uid="uid://dplkikvgl0x0w" path="res://assets/waves/test_wave_2.tres" id="7_uh8hv"]
 [ext_resource type="Script" path="res://scripts/entities/groups/minions.gd" id="8_b1bpx"]
+[ext_resource type="Resource" uid="uid://ctiyydcnmdan1" path="res://assets/waves/test_wave_3.tres" id="8_fvcfq"]
 [ext_resource type="PackedScene" uid="uid://c1ap6hg0m83r8" path="res://scenes/ui/ui_layer.tscn" id="8_x4mid"]
+[ext_resource type="Resource" uid="uid://dgnvqpjxfguj4" path="res://assets/waves/test_wave_4.tres" id="9_su1j4"]
 [ext_resource type="Script" path="res://scripts/progress/upgrade_pool.gd" id="10_p3qde"]
 [ext_resource type="Resource" uid="uid://dd24yirbinvnu" path="res://assets/upgrades/minion_damage.tres" id="12_tx0rt"]
 [ext_resource type="Resource" uid="uid://bth1wqc8bx3ro" path="res://assets/upgrades/minion_health.tres" id="13_a8l4i"]
@@ -36,7 +41,6 @@ agent_radius = 55.0
 
 [node name="SpawnerRotation" type="Node2D" parent="Spawners"]
 script = ExtResource("4_ko6km")
-rotate_speed = 25.0
 
 [node name="MinionSpawner" type="Node2D" parent="Spawners/SpawnerRotation" node_paths=PackedStringArray("spawn_to")]
 position = Vector2(120, 0)
@@ -56,8 +60,14 @@ spawn_scene = ExtResource("1_4bfgp")
 spawn_to = NodePath("../../../Minions")
 spawn_signal = "minion_spawn"
 
-[node name="EntityWaveSpawner" parent="Spawners" node_paths=PackedStringArray("spawn_to") instance=ExtResource("4_ko8hw")]
-spawn_to = NodePath("../../Enemies")
+[node name="SpawnerRotation2" type="Node2D" parent="Spawners"]
+process_physics_priority = 5
+script = ExtResource("4_ko6km")
+
+[node name="EntityWaveSpawner" parent="Spawners/SpawnerRotation2" node_paths=PackedStringArray("spawn_to") instance=ExtResource("4_ko8hw")]
+position = Vector2(1200, 0)
+spawn_to = NodePath("../../../Enemies")
+enemy_waves = Array[ExtResource("5_876e0")]([ExtResource("6_g7w0m"), ExtResource("6_g7w0m"), ExtResource("6_g7w0m"), ExtResource("7_uh8hv"), ExtResource("7_uh8hv"), ExtResource("8_fvcfq"), ExtResource("8_fvcfq"), ExtResource("9_su1j4")])
 
 [node name="Players" type="Node2D" parent="."]
 script = ExtResource("1_ingln")
@@ -97,6 +107,7 @@ texture = SubResource("PlaceholderTexture2D_2gxtp")
 script = ExtResource("19_4atye")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+z_index = -5
 navigation_polygon = SubResource("NavigationPolygon_3y1db")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="NavigationRegion2D"]
