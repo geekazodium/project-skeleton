@@ -37,3 +37,10 @@ signal powerup_removed(event: PowerupRemovedEvent);
 
 @warning_ignore("unused_signal")
 signal player_dead(event: EntityDeathEvent);
+
+@warning_ignore("unused_signal")
+signal ui_dialog_next_clicked(event: DialogNextClickedEvent);
+
+## FIXME: TOO LAZY TO MAKE THIS AN EVENT, SORRY.
+@warning_ignore("unused_signal")
+signal ui_dialog_show_next(next: DialogTreeNode);

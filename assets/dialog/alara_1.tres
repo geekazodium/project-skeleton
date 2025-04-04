@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="SimpleDialogTreeNode" load_steps=6 format=3 uid="uid://bn7ktaychvai1"]
+
+[ext_resource type="Script" path="res://scripts/dialog/simple_dialog_tree_node.gd" id="1_oaxn4"]
+[ext_resource type="Script" path="res://scripts/dialog/branch_if_flag_node.gd" id="2_q5gem"]
+
+[sub_resource type="Resource" id="Resource_cwtia"]
+script = ExtResource("1_oaxn4")
+text = "oh cool."
+title = "Alara"
+
+[sub_resource type="Resource" id="Resource_tykv5"]
+script = ExtResource("2_q5gem")
+flag = &"photo-album-pickup"
+_true = SubResource("Resource_cwtia")
+
+[sub_resource type="Resource" id="Resource_ojf5d"]
+script = ExtResource("1_oaxn4")
+_next = SubResource("Resource_tykv5")
+text = "Boop"
+title = "Alara"
+
+[resource]
+script = ExtResource("1_oaxn4")
+_next = SubResource("Resource_ojf5d")
+text = "Beep"
+title = "Alara"
