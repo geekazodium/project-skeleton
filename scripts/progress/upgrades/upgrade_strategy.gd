@@ -1,8 +1,6 @@
 extends Resource
 class_name UpgradeStrategy
 
-var _minions: Node2D = null;
-
 @export var upgrade_name: String = "";
 var level: int = 0;
 var ready: bool = false;

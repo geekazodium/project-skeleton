@@ -1,13 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://nydo5vwxibai"]
+[gd_scene load_steps=9 format=3 uid="uid://nydo5vwxibai"]
 
 [ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_wxe34"]
 [ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_x2jr2"]
 [ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="4_jjrip"]
 [ext_resource type="Script" path="res://scripts/entities/user_controlled_movement.gd" id="5_oiksj"]
+[ext_resource type="Script" path="res://scripts/items/interaction_area_2d.gd" id="6_f54h8"]
 [ext_resource type="Script" path="res://scripts/progress/experience_tracker.gd" id="6_pqjdb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm50p"]
 radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cxv88"]
+radius = 122.016
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
@@ -54,6 +58,16 @@ move_down_action = "move_down"
 move_left_action = "move_left"
 move_right_action = "move_right"
 entity_body = NodePath("..")
+
+[node name="InteractionArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+script = ExtResource("6_f54h8")
+interact_action = "interact"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea2D"]
+shape = SubResource("CircleShape2D_cxv88")
 
 [connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]
 [connection signal="max_health_changed" from="HealthTracker" to="ProgressBar" method="set_max"]
