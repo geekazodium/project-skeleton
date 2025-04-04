@@ -1,0 +1,11 @@
+Current Art Assets:
+
+    ./assets/sprites/attack_placeholder_animation.tres
+    ./assets/sprites/attack_placeholder.png
+    ./assets/sprites/attack_placeholder.png.import
+    ./assets/sprites/pentagram.svg
+    ./assets/sprites/pentagram.svg.import
+
+Copyright 2025 Geekazodium. This work is openly licensed via CC-BY-4.0
+
+https://creativecommons.org/licenses/by/4.0/
