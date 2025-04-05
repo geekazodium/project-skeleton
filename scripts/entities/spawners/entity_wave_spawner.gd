@@ -36,7 +36,6 @@ func _physics_process(delta: float) -> void:
 func spawn_wave() -> void:
 	self.spawning = true;
 	self.current_wave += 1;
-	print(self.current_wave);
 	self.current_wave = min(self.current_wave, self.enemy_waves.size() - 1);
 	self.enemy_waves[self.current_wave].reset();
 
