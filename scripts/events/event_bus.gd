@@ -11,11 +11,8 @@ signal post_experience_gained(event: PostExperienceGainEvent);
 @warning_ignore("unused_signal")
 signal level_up(event: LevelUpEvent);
 
-## Use this for UI related stuff, this is the second phase of the level up event
-## never write anything into the event at this phase, this is for anything
-## that responds to the finialize details of the level up
 @warning_ignore("unused_signal")
-signal level_up_tail(event: LevelUpEvent);
+signal level_ups_generated(event: PowerUpsGeneratedEvent);
 
 @warning_ignore("unused_signal")
 signal enemy_dead(event: EntityDeathEvent);
@@ -33,7 +30,7 @@ signal minion_spawn(event: EntitySpawnEvent);
 signal powerup_selected(event: PowerUpSelectedEvent);
 
 @warning_ignore("unused_signal")
-signal powerup_removed(event: PowerupRemovedEvent);
+signal powerup_removed(event: PowerUpRemovedEvent);
 
 @warning_ignore("unused_signal")
 signal player_dead(event: EntityDeathEvent);

@@ -28,7 +28,7 @@ func on_remove():
 		return;
 	self._add_to_level(-1);
 	
-	var powerup_removed_event: PowerupRemovedEvent = PowerupRemovedEvent.new_inst(self);
+	var powerup_removed_event: PowerUpRemovedEvent = PowerUpRemovedEvent.new_inst(self);
 	EventBus.powerup_removed.emit(powerup_removed_event);
 	powerup_removed_event.free();
 

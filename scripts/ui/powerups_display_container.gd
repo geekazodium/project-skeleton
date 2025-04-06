@@ -19,7 +19,7 @@ func on_powerup_selected(event: PowerUpSelectedEvent):
 	var node: Label = self.get_node(node_name);
 	node.text = self._format_upgrade_strategy(upgrade_strategy);
 
-func on_powerup_removed(event: PowerupRemovedEvent):
+func on_powerup_removed(event: PowerUpRemovedEvent):
 	var upgrade_strategy: UpgradeStrategy = event.get_upgrade_strategy();
 	var node_name = self._get_generated_node_name(upgrade_strategy);
 	

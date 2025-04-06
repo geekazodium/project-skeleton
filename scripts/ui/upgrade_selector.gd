@@ -6,9 +6,9 @@ class_name UpgradeSelector
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	EventBus.level_up_tail.connect(self.on_level_up);
+	EventBus.level_ups_generated.connect(self.on_powerups_generated);
 	
-func on_level_up(event: LevelUpEvent):
+func on_powerups_generated(event: PowerUpsGeneratedEvent):
 	self.set_options(event.get_upgrade_options());
 	self.visible = true;
 	self.get_tree().paused = true;
