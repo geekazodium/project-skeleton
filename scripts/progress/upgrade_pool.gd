@@ -6,6 +6,8 @@ var upgrade_get_order: Array[String] = [];
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	for upgrade: UpgradeStrategy in upgrade_pool.values():
+		upgrade.level = 0;
 	EventBus.level_up.connect(self.on_level_up);
 	EventBus.powerup_selected.connect(self.on_powerup_selected);
 
