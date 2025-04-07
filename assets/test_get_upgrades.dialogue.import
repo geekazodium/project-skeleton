@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://nkbtkywv7jyg"
+path="res://.godot/imported/test_get_upgrades.dialogue-1c2e0984eba625c563cd850a7c89b8da.tres"
+
+[deps]
+
+source_file="res://assets/test_get_upgrades.dialogue"
+dest_files=["res://.godot/imported/test_get_upgrades.dialogue-1c2e0984eba625c563cd850a7c89b8da.tres"]
+
+[params]
+
+defaults=true
