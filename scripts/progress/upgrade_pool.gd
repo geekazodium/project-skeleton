@@ -1,8 +1,6 @@
 extends Node
 class_name UpgradePool
 
-#@export var special_upgrade_pool: Dictionary = {};
-
 var upgrade_get_order: Array[String] = [];
 @export var upgrade_pool: Dictionary = {};
 
@@ -18,7 +16,9 @@ func on_level_up(event: LevelUpEvent):
 	var upgrades: Array[UpgradeStrategy] = [];
 	upgrades.assign(pool.slice(0,3));
 	
-	event.set_upgrade_options(upgrades);
+	var pool_generated_event: PowerUpsGeneratedEvent = PowerUpsGeneratedEvent.new_inst(upgrades);
+	EventBus.level_ups_generated.emit(pool_generated_event);
+	pool_generated_event.free();
 
 func on_powerup_selected(event: PowerUpSelectedEvent):
 	# assumption: no duplicates of the same upgrade resource in array

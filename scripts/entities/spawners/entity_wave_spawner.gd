@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 		self.next_wave_timer.stop();
 		self.next_wave_timer.start();
 	else:
-		var random_offset = Vector2.UP.rotated(randf_range(0,PI * 2)) * self.sqrt_distribution(0,self.spawn_radius);
+		var random_offset: Vector2 = Vector2.UP.rotated(randf_range(0.,PI * 2.)) * self.sqrt_distribution(0,self.spawn_radius);
 		var spawn_position = self.global_position + random_offset;
 		self.enemy_waves[self.current_wave].attempt_spawn(self.spawn_to,spawn_position);
 
@@ -39,5 +39,5 @@ func spawn_wave() -> void:
 	self.current_wave = min(self.current_wave, self.enemy_waves.size() - 1);
 	self.enemy_waves[self.current_wave].reset();
 
-func sqrt_distribution(min_val: int, max_val: int):
+func sqrt_distribution(min_val: float, max_val: float):
 	return max(randf_range(min_val,max_val),randf_range(min_val,max_val));
