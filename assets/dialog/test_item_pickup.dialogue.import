@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://coydmm258xlkf"
+path="res://.godot/imported/test_item_pickup.dialogue-88fa333aeddb5369f0a8eda961092fa5.tres"
+
+[deps]
+
+source_file="res://assets/dialog/test_item_pickup.dialogue"
+dest_files=["res://.godot/imported/test_item_pickup.dialogue-88fa333aeddb5369f0a8eda961092fa5.tres"]
+
+[params]
+
+defaults=true
