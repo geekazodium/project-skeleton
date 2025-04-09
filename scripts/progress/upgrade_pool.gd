@@ -6,7 +6,9 @@ var upgrade_get_order: Array[String] = [];
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for upgrade: UpgradeStrategy in upgrade_pool.values():
+	for key: String in self.upgrade_pool.keys():
+		var upgrade: UpgradeStrategy = self.upgrade_pool[key];
+		upgrade.set_upgrade_key(key);
 		upgrade.level = 0;
 	EventBus.level_up.connect(self.on_level_up);
 	EventBus.powerup_selected.connect(self.on_powerup_selected);
@@ -23,10 +25,11 @@ func on_level_up(event: LevelUpEvent):
 	pool_generated_event.free();
 
 func on_powerup_selected(event: PowerUpSelectedEvent):
-	if !self.upgrade_pool.has(event.get_upgrade_strategy()):
+	var key: StringName = event.get_upgrade_strategy().get_upgrade_key();
+	if !self.upgrade_pool.has(key):
 		return;
 	# assumption: no duplicates of the same upgrade resource in array
-	upgrade_get_order.append(self.upgrade_pool.find_key(event.get_upgrade_strategy()));
+	upgrade_get_order.append(key);
 
 ## returns if successfully removed
 func remove_upgrades(amount: int) -> bool:

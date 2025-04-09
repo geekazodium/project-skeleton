@@ -5,7 +5,9 @@ class_name SpecialUpgradePool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for upgrade: UpgradeStrategy in upgrade_pool.values():
+	for key: String in self.upgrade_pool.keys():
+		var upgrade: UpgradeStrategy = self.upgrade_pool[key];
+		upgrade.set_upgrade_key(key);
 		upgrade.level = 0;
 
 func generate_upgrades():
