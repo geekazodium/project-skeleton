@@ -23,6 +23,8 @@ func on_level_up(event: LevelUpEvent):
 	pool_generated_event.free();
 
 func on_powerup_selected(event: PowerUpSelectedEvent):
+	if !self.upgrade_pool.has(event.get_upgrade_strategy()):
+		return;
 	# assumption: no duplicates of the same upgrade resource in array
 	upgrade_get_order.append(self.upgrade_pool.find_key(event.get_upgrade_strategy()));
 

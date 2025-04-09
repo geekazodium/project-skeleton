@@ -34,3 +34,6 @@ signal powerup_removed(event: PowerUpRemovedEvent);
 
 @warning_ignore("unused_signal")
 signal player_dead(event: EntityDeathEvent);
+
+@warning_ignore("unused_signal")
+signal trade_upgrades(type: String);

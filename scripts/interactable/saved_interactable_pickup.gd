@@ -12,7 +12,7 @@ func _ready() -> void:
 	if picked_up:
 		self.queue_free();
 
-func on_interact():
+func _on_interact():
 	SaveState.set_flag(self.interacted_flag_name, true);
 	print("picked up item "+self.name);
 	self.queue_free();
