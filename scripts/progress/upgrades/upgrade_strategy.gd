@@ -2,8 +2,18 @@ extends Resource
 class_name UpgradeStrategy
 
 @export var upgrade_name: String = "";
+var _upgrade_key: StringName = &"";
 var level: int = 0;
 var ready: bool = false;
+
+func set_upgrade_key(key: StringName):
+	if self._upgrade_key != &"" && self._upgrade_key != key:
+		push_error("attempted to add same upgrade into 2 pools");
+		return;
+	self._upgrade_key = key;
+
+func get_upgrade_key() -> StringName:
+	return self._upgrade_key;
 
 func instantiate_button(button: PackedScene) -> Button:
 	var inst: Button = button.instantiate();

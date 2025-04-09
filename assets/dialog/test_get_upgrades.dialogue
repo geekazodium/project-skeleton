@@ -2,9 +2,13 @@
 Alara: Of course, of course you wold grasp for contracts, for those undead could not hold onto meaning.
 - trade upgrade
 	Alara: Sure, sure, of course, here's the offer.
-	if SaveState.get_flag("photo-album-pickup"):
-		Alara: oop
-		do EventBus.trade_upgrades.emit("alara") 
+	=> trade_upgrades
 - end conversation
 	Alara: Bye, beware of fate. => END
+
+~ trade_upgrades
+if SaveState.get_flag("photo-album-pickup"):
+	Alara: oop
+	do EventBus.trade_upgrades.emit("alara")
+ 
 => END
