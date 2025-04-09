@@ -1,0 +1,36 @@
+[gd_scene load_steps=11 format=3 uid="uid://6qvndbockbj3"]
+
+[ext_resource type="Script" path="res://scripts/progress/player_upgrade_pools.gd" id="1_0rfud"]
+[ext_resource type="Script" path="res://scripts/progress/upgrade_pool.gd" id="2_d1io5"]
+[ext_resource type="Resource" uid="uid://clh1ijjr0p5cs" path="res://assets/upgrades/generic/experience_bonus.tres" id="3_m8fsu"]
+[ext_resource type="Resource" uid="uid://da8kllt0ep1bq" path="res://assets/upgrades/generic/minion_attack_speed.tres" id="4_f334a"]
+[ext_resource type="Resource" uid="uid://dd24yirbinvnu" path="res://assets/upgrades/generic/minion_damage.tres" id="5_xn170"]
+[ext_resource type="Resource" uid="uid://bth1wqc8bx3ro" path="res://assets/upgrades/generic/minion_health.tres" id="6_gfbyt"]
+[ext_resource type="Resource" uid="uid://b066uwum3aw2r" path="res://assets/upgrades/generic/minion_speed.tres" id="7_jbhpw"]
+[ext_resource type="Resource" uid="uid://dvrofq6bewc3d" path="res://assets/upgrades/generic/player_health.tres" id="8_vnq3e"]
+[ext_resource type="Script" path="res://scripts/progress/special_upgrade_pool.gd" id="9_3qdnv"]
+[ext_resource type="Resource" uid="uid://c4el8mc0wdnak" path="res://assets/upgrades/special/super_damage_upgrade.tres" id="10_8i703"]
+
+[node name="PlayerUpgradePools" type="Node" node_paths=PackedStringArray("generic_upgrade_pool")]
+script = ExtResource("1_0rfud")
+generic_upgrade_pool = NodePath("UpgradePoolGeneric")
+special_upgrade_pools = {
+"alara": NodePath("SpecialUpgradePool")
+}
+
+[node name="UpgradePoolGeneric" type="Node" parent="."]
+script = ExtResource("2_d1io5")
+upgrade_pool = {
+"Experience Bonus": ExtResource("3_m8fsu"),
+"Minion Attack Speed": ExtResource("4_f334a"),
+"Minion Damage": ExtResource("5_xn170"),
+"Minion Health": ExtResource("6_gfbyt"),
+"Minion Speed": ExtResource("7_jbhpw"),
+"Player Health": ExtResource("8_vnq3e")
+}
+
+[node name="SpecialUpgradePool" type="Node" parent="."]
+script = ExtResource("9_3qdnv")
+upgrade_pool = {
+"Super Damage": ExtResource("10_8i703")
+}

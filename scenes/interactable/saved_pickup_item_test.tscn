@@ -6,11 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_1w53i"]
 
 [node name="InteractableArea2D" type="Area2D"]
-position = Vector2(343, 180)
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("1_6ssfc")
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1w53i")
