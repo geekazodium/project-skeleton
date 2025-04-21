@@ -12,18 +12,10 @@ var needs_update: bool = false;
 
 var last_rect: Rect2i = Rect2i(0,0,0,0);
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	self.tile_data_source.changed.connect(self.on_source_changed);
-
-func on_source_changed() -> void:
-	self.needs_update = true;
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	self.update_autotile();
-	if self.needs_update:
-		self.needs_update = false;
+	if Engine.is_editor_hint():
+		self.update_autotile();
 
 func update_autotile() -> void:
 	var rect = self.tile_data_source.get_used_rect();
