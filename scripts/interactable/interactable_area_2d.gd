@@ -8,10 +8,14 @@ func on_interact():
 	var ballon = DialogueManager.show_dialogue_balloon(self.dialog);
 	ballon.process_mode = Node.PROCESS_MODE_ALWAYS;
 	ballon.tree_exiting.connect(self.on_dialog_ended);
-	self._on_interact();
+	self._interact();
 
 func on_dialog_ended():
 	self.get_tree().paused = false;
+	self._dialog_ended();
 
-func _on_interact():
+func _interact():
+	pass
+
+func _dialog_ended():
 	pass
