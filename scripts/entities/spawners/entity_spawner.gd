@@ -1,4 +1,4 @@
-extends Node2D
+extends ShapeCast2D
 class_name EntitySpawner
 
 @export var spawn_interval_min: float = .5;
@@ -22,6 +22,9 @@ func _physics_process(delta: float) -> void:
 
 func attempt_spawn():
 	var new_inst = spawn_scene.instantiate();
+	self.force_shapecast_update();
+	var spawn_position: Vector2 = self.get_closest_collision_safe_fraction() * self.target_position;
+	spawn_position = spawn_position.rotated(self.global_rotation);
 	
 	var event: EntitySpawnEvent = EntitySpawnEvent.new_inst(new_inst);
 	
@@ -32,7 +35,7 @@ func attempt_spawn():
 		if spawn_to == null:
 			self.add_child(new_inst);
 		else:
-			new_inst.global_position = self.global_position;
+			new_inst.global_position = self.global_position + spawn_position;
 			spawn_to.add_child(new_inst);
 		spawn_timer = randf_range(spawn_interval_min,spawn_interval_max);
 	event.free();

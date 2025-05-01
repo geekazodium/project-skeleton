@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://vq5kr86416s4"]
+[gd_scene load_steps=28 format=4 uid="uid://vq5kr86416s4"]
 
 [ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://scenes/entities/minion.tscn" id="1_4bfgp"]
 [ext_resource type="Script" path="res://scripts/entities/groups/players.gd" id="1_ingln"]
@@ -24,6 +24,12 @@
 [ext_resource type="Resource" uid="uid://nkbtkywv7jyg" path="res://assets/dialog/test_get_upgrades.dialogue" id="21_k0lob"]
 [ext_resource type="PackedScene" uid="uid://bdn7h51hub04e" path="res://scenes/interactable/interactable_character.tscn" id="25_52tun"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_w312m"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d2dtc"]
+radius = 40.0
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2gxtp"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_p68iv"]
@@ -41,8 +47,11 @@ agent_radius = 50.0
 [node name="SpawnerRotation" type="Node2D" parent="Spawners"]
 script = ExtResource("4_ko6km")
 
-[node name="MinionSpawner" type="Node2D" parent="Spawners/SpawnerRotation" node_paths=PackedStringArray("spawn_to")]
-position = Vector2(120, 0)
+[node name="MinionSpawner" type="ShapeCast2D" parent="Spawners/SpawnerRotation" node_paths=PackedStringArray("spawn_to")]
+enabled = false
+shape = SubResource("CircleShape2D_w312m")
+target_position = Vector2(120, 0)
+collision_mask = 16
 script = ExtResource("2_qdphv")
 spawn_interval_min = 2.5
 spawn_interval_max = 2.5
@@ -50,8 +59,11 @@ spawn_scene = ExtResource("1_4bfgp")
 spawn_to = NodePath("../../../Minions")
 spawn_signal = "minion_spawn"
 
-[node name="MinionSpawner2" type="Node2D" parent="Spawners/SpawnerRotation" node_paths=PackedStringArray("spawn_to")]
-position = Vector2(-120, 0)
+[node name="MinionSpawner2" type="ShapeCast2D" parent="Spawners/SpawnerRotation" node_paths=PackedStringArray("spawn_to")]
+enabled = false
+shape = SubResource("CircleShape2D_d2dtc")
+target_position = Vector2(-120, 0)
+collision_mask = 16
 script = ExtResource("2_qdphv")
 spawn_interval_min = 2.5
 spawn_interval_max = 2.5
