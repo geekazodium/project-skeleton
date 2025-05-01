@@ -57,7 +57,7 @@ func _physics_process(_delta: float) -> void:
 		
 		cohesion_force_center += position_difference;
 		
-		alignment_force_avg += nearby_body.velocity;
+		alignment_force_avg += nearby_body.get_node("DeferredVelocity").direction_to_move;
 		
 		var distance_squared: float = position_difference.length_squared();
 		if distance_squared < self.protected_range_squared:
