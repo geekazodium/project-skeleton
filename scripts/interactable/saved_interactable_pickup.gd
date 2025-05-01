@@ -17,4 +17,5 @@ func _interact():
 	print("picked up item "+self.name);
 
 func _dialog_ended():
+	self.get_tree().paused = false;
 	self.queue_free();
