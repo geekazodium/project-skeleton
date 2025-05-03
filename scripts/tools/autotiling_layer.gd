@@ -8,14 +8,19 @@ class_name AutotilingLayer
 
 const TILE_TYPE_DATA_LAYER: String = "tile_type";
 
-var needs_update: bool = false;
+var update_interval: float = .1;
+var update_interval_timer: float = .5;
 
 var last_rect: Rect2i = Rect2i(0,0,0,0);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
-		self.update_autotile();
+		if self.update_interval_timer > 0.:
+			self.update_interval_timer -= delta;
+		else:
+			self.update_interval_timer = self.update_interval
+			self.call_deferred("update_autotile");
 
 func update_autotile() -> void:
 	var rect = self.tile_data_source.get_used_rect();

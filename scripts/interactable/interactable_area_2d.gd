@@ -11,7 +11,6 @@ func on_interact():
 	self._interact();
 
 func on_dialog_ended():
-	self.get_tree().paused = false;
 	self._dialog_ended();
 
 func _interact():
