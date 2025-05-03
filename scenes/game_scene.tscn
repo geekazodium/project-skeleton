@@ -93,7 +93,7 @@ script = ExtResource("8_b1bpx")
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+[node name="FollowCamera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("5_wc26p")
 target = NodePath("../Players/Player")

@@ -17,7 +17,7 @@ var spawning: bool = false;
 func _ready() -> void:
 	self.spawn_wave();
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if self.spawn_safe_area.has_overlapping_bodies():
 		return;
 		

@@ -6,11 +6,6 @@ const EULER_CONST: float = 2.71828182845904523536028747135266250;
 @export var target: Node2D = null;
 @export var tween_velocity: float = 4;
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if self.target == null:
