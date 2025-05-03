@@ -73,6 +73,7 @@ func update_autotile() -> void:
 				continue;
 			data_index -= 1;
 			
+			@warning_ignore("integer_division")
 			var atlas_pos: Vector2i = Vector2i(data_index % 5, data_index / 5);
 			
 			self.set_cell(cell,0,atlas_pos);
