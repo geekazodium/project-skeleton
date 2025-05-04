@@ -1,5 +1,5 @@
 @tool
-extends Node;
+extends Node
 class_name ClassAccessSafetyTool
 
 var keybind_pressed: bool = false;
