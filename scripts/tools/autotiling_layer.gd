@@ -1,4 +1,3 @@
-@tool
 extends TileMapLayer
 class_name AutotilingLayer
 
@@ -8,19 +7,16 @@ class_name AutotilingLayer
 
 const TILE_TYPE_DATA_LAYER: String = "tile_type";
 
-var update_interval: float = .1;
-var update_interval_timer: float = .5;
-
 var last_rect: Rect2i = Rect2i(0,0,0,0);
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Engine.is_editor_hint():
-		if self.update_interval_timer > 0.:
-			self.update_interval_timer -= delta;
-		else:
-			self.update_interval_timer = self.update_interval
-			self.call_deferred("update_autotile");
+var packed_tileset_mapping: PackedByteArray = [255, 20, 18, 19, 2, 16, 10, 1, 4, 12, 17, 0, 3, 8, 9, 11];
+
+func tileset_mapping_lookup_coords(k: int) -> Vector2i:
+	var index: int = packed_tileset_mapping[k];
+	return Vector2i(index & 0x7, (index >> 3) & 0x3);
+
+func _ready() -> void:
+	self.update_autotile();
 
 func update_autotile() -> void:
 	var rect = self.tile_data_source.get_used_rect();
@@ -71,9 +67,5 @@ func update_autotile() -> void:
 			if data_index == 0:
 				self.set_cell(cell);
 				continue;
-			data_index -= 1;
-			
-			@warning_ignore("integer_division")
-			var atlas_pos: Vector2i = Vector2i(data_index % 5, data_index / 5);
-			
+			var atlas_pos: Vector2i = self.tileset_mapping_lookup_coords(data_index);
 			self.set_cell(cell,0,atlas_pos);
