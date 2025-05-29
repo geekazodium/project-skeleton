@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://vq5kr86416s4"]
+[gd_scene load_steps=29 format=4 uid="uid://vq5kr86416s4"]
 
 [ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://scenes/entities/minion.tscn" id="1_4bfgp"]
 [ext_resource type="Script" path="res://scripts/entities/groups/players.gd" id="1_ingln"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://c1ap6hg0m83r8" path="res://scenes/ui/ui_layer.tscn" id="8_x4mid"]
 [ext_resource type="Resource" uid="uid://dgnvqpjxfguj4" path="res://assets/waves/test_wave_4.tres" id="9_su1j4"]
 [ext_resource type="Script" path="res://scripts/entities/groups/projectiles.gd" id="12_p21u8"]
-[ext_resource type="PackedScene" uid="uid://bkm6f6xlfxets" path="res://scenes/entities/ranged_enemy.tscn" id="14_w0ye8"]
 [ext_resource type="PackedScene" uid="uid://6qvndbockbj3" path="res://scenes/player_upgrade_pools.tscn" id="15_rq6xm"]
 [ext_resource type="TileSet" uid="uid://co4tdkv7prrsq" path="res://assets/tilemap/grass_tiles.tres" id="18_2ficl"]
 [ext_resource type="Script" path="res://scripts/tools/autotiling_layer.gd" id="18_ld131"]
@@ -97,9 +96,6 @@ script = ExtResource("12_p21u8")
 script = ExtResource("8_b1bpx")
 
 [node name="Enemies" type="Node2D" parent="."]
-
-[node name="Enemy" parent="Enemies" instance=ExtResource("14_w0ye8")]
-position = Vector2(1790, 83)
 
 [node name="FollowCamera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 zoom = Vector2(0.5, 0.5)
