@@ -78,7 +78,7 @@ script = ExtResource("7_gae4f")
 target_tracker = NodePath("../../TargetTracker")
 character_body = NodePath("../..")
 nav_agent = NodePath("../../NavigationAgent2D")
-target_lost_state = "FindTarget"
+target_lost_state = &"FindTarget"
 
 [node name="AttackArea" type="Area2D" parent="StateMachine/FollowTargetState" node_paths=PackedStringArray("hit_animation")]
 collision_layer = 0

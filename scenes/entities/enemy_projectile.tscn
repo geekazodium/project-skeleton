@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxh3scksoylm8"]
+
+[ext_resource type="Script" path="res://scripts/entities/projectile.gd" id="1_g3lik"]
+
+[sub_resource type="Gradient" id="Gradient_xbppv"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bw4tv"]
+gradient = SubResource("Gradient_xbppv")
+
+[node name="EnemyProjectile" type="RayCast2D"]
+enabled = false
+collision_mask = 6
+script = ExtResource("1_g3lik")
+damage = 5.0
+damage_event = &"enemy_dealt_damage"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.68272, 0.403853)
+texture = SubResource("GradientTexture2D_bw4tv")
