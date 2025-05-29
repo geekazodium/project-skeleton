@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="EnemyWave" load_steps=3 format=3 uid="uid://dy7oc84tqpfa1"]
 
 [ext_resource type="Script" path="res://scripts/entities/spawners/enemy_wave.gd" id="1_nyhr1"]
-[ext_resource type="PackedScene" uid="uid://dubqfll6wt3er" path="res://scenes/entities/enemy.tscn" id="2_m0o58"]
+[ext_resource type="PackedScene" uid="uid://dubqfll6wt3er" path="res://scenes/entities/enemies/enemy.tscn" id="2_m0o58"]
 
 [resource]
 script = ExtResource("1_nyhr1")
 spawns = Array[PackedScene]([ExtResource("2_m0o58")])
-spawn_amount = 10
+spawn_amounts = Array[int]([10])
