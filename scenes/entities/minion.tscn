@@ -24,7 +24,7 @@ collision_layer = 5
 collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_fk853")
-move_speed = 1200.0
+move_speed = 1400.0
 
 [node name="HealthTracker" type="Node" parent="."]
 script = ExtResource("2_sfkwh")

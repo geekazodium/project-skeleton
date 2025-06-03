@@ -1,4 +1,4 @@
-extends RayCast2D
+extends ShapeCast2D
 
 @export var damage: float = 0;
 @export var damage_event: StringName = "";
@@ -9,9 +9,9 @@ func get_move_speed() -> float:
 func _physics_process(delta: float) -> void:
 	self.position += Vector2.RIGHT.rotated(self.global_rotation) * delta * self.get_move_speed();
 	self.target_position = Vector2i.RIGHT * self.get_move_speed() * delta;
-	self.force_raycast_update();
+	self.force_shapecast_update();
 	if self.is_colliding():
-		var colliding: EntityBody = self.get_collider() as EntityBody;
+		var colliding: EntityBody = self.get_collider(0) as EntityBody;
 		if colliding != null:
 			self.target_collide_damage(colliding);
 		self.queue_free();

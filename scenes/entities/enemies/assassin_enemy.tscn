@@ -1,42 +1,39 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfx4oba6wg4c7"]
+[gd_scene load_steps=14 format=3 uid="uid://b4vu306w0k4ia"]
 
-[ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_7kma0"]
-[ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_gjexi"]
-[ext_resource type="Script" path="res://scripts/items/instantiate_on_exit.gd" id="3_pmdhu"]
-[ext_resource type="PackedScene" uid="uid://bpj1aj0eh5h55" path="res://scenes/items/experience_drop.tscn" id="4_ef78l"]
-[ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="5_3nujl"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/target_tracker.gd" id="6_g3xv1"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/state_machine.gd" id="7_rdiwb"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/set_player_target_state.gd" id="8_ek3y5"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/follow_target_state.gd" id="9_rcqxp"]
-[ext_resource type="Script" path="res://scripts/attacks/attack_area.gd" id="10_8ai2d"]
-[ext_resource type="SpriteFrames" uid="uid://b7v75jip16wrq" path="res://assets/sprites/attack_placeholder_animation.tres" id="11_21ulv"]
+[ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_vebnh"]
+[ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_8s5dq"]
+[ext_resource type="Script" path="res://scripts/items/instantiate_on_exit.gd" id="3_rpm1m"]
+[ext_resource type="PackedScene" uid="uid://bpj1aj0eh5h55" path="res://scenes/items/experience_drop.tscn" id="4_5ofwd"]
+[ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="5_qp20e"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/target_tracker.gd" id="6_lv3dg"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/state_machine.gd" id="7_qg8e2"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/set_player_target_state.gd" id="8_bggy3"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/follow_target_state.gd" id="9_fdpjd"]
+[ext_resource type="Script" path="res://scripts/attacks/attack_area.gd" id="10_kio8k"]
+[ext_resource type="SpriteFrames" uid="uid://b7v75jip16wrq" path="res://assets/sprites/attack_placeholder_animation.tres" id="11_jcc07"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm50p"]
-radius = 45.0
+radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l7rto"]
-radius = 104.2
+radius = 77.2
 
-[node name="TankEnemy" type="CharacterBody2D"]
+[node name="AssassinEnemy" type="CharacterBody2D"]
 collision_layer = 9
 collision_mask = 17
 motion_mode = 1
-script = ExtResource("1_7kma0")
-move_speed = 700.0
+script = ExtResource("1_vebnh")
+move_speed = 6000.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="HealthTracker" type="Node" parent="."]
-script = ExtResource("2_gjexi")
-health = 20.0
-max_health = 20.0
+script = ExtResource("2_8s5dq")
 death_event = "enemy_dead"
-increase_per_second = 0.1
 
 [node name="InstantiateOnExit" type="Node" parent="."]
-script = ExtResource("3_pmdhu")
-scene = ExtResource("4_ef78l")
+script = ExtResource("3_rpm1m")
+scene = ExtResource("4_5ofwd")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 anchors_preset = 8
@@ -45,26 +42,26 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -56.0
-offset_top = -82.0
+offset_top = -64.0
 offset_right = 56.0
-offset_bottom = -55.0
+offset_bottom = -37.0
 grow_horizontal = 2
 grow_vertical = 2
-max_value = 20.0
+max_value = 10.0
 
 [node name="Enemy" type="Sprite2D" parent="."]
-modulate = Color(0.809307, 0.27856, 0, 1)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("5_3nujl")
+modulate = Color(0.894276, 0, 0.214811, 1)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("5_qp20e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bm50p")
 
 [node name="TargetTracker" type="Node" parent="."]
-script = ExtResource("6_g3xv1")
+script = ExtResource("6_lv3dg")
 
 [node name="StateMachine" type="Node2D" parent="."]
-script = ExtResource("7_rdiwb")
+script = ExtResource("7_qg8e2")
 states = {
 "FindTarget": NodePath("FindTargetState"),
 "TrackTarget": NodePath("FollowTargetState")
@@ -72,12 +69,12 @@ states = {
 current_state = "FindTarget"
 
 [node name="FindTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker")]
-script = ExtResource("8_ek3y5")
+script = ExtResource("8_bggy3")
 target_tracker = NodePath("../../TargetTracker")
 detected_state = "TrackTarget"
 
 [node name="FollowTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "character_body", "nav_agent")]
-script = ExtResource("9_rcqxp")
+script = ExtResource("9_fdpjd")
 target_tracker = NodePath("../../TargetTracker")
 character_body = NodePath("../..")
 nav_agent = NodePath("../../NavigationAgent2D")
@@ -87,7 +84,9 @@ target_lost_state = &"FindTarget"
 collision_layer = 0
 collision_mask = 6
 monitorable = false
-script = ExtResource("10_8ai2d")
+script = ExtResource("10_kio8k")
+damage = 5.0
+stun_duration = 0.5
 damage_event = "enemy_dealt_damage"
 hit_animation = NodePath("AnimatedSprite2D")
 
@@ -98,7 +97,7 @@ shape = SubResource("CircleShape2D_l7rto")
 modulate = Color(1, 0.290196, 0.294118, 1)
 position = Vector2(39, -6)
 scale = Vector2(3, 3)
-sprite_frames = ExtResource("11_21ulv")
+sprite_frames = ExtResource("11_jcc07")
 frame = 4
 frame_progress = 1.0
 
