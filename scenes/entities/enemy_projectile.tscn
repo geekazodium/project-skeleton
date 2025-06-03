@@ -13,7 +13,7 @@ gradient = SubResource("Gradient_sbgdy")
 enabled = false
 collision_mask = 6
 script = ExtResource("1_g3lik")
-damage = 5.0
+damage = 2.0
 damage_event = &"enemy_dealt_damage"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
