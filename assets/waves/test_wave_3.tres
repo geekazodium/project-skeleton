@@ -8,4 +8,4 @@
 [resource]
 script = ExtResource("1_xhytj")
 spawns = Array[PackedScene]([ExtResource("2_y1bxi"), ExtResource("3_2n3ct"), ExtResource("4_cxmi0")])
-spawn_amounts = Array[int]([60, 5, 20])
+spawn_amounts = Array[int]([60, 1, 15])
