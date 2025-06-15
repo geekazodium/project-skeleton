@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1ap6hg0m83r8"]
+[gd_scene load_steps=11 format=3 uid="uid://c1ap6hg0m83r8"]
 
 [ext_resource type="Script" path="res://scripts/ui/experience_progress_bar.gd" id="1_1yx45"]
 [ext_resource type="Script" path="res://scripts/ui/exp_text_label.gd" id="2_yof05"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://scripts/ui/powerups_display_container.gd" id="5_ynsjg"]
 [ext_resource type="PackedScene" uid="uid://b8j22ka88ww26" path="res://scenes/ui/upgrade_display.tscn" id="6_157hb"]
 [ext_resource type="Script" path="res://scripts/ui/death_menu.gd" id="7_bubem"]
+[ext_resource type="Script" path="res://scripts/ui/pause/pause_menu_container.gd" id="8_qsj6i"]
+[ext_resource type="PackedScene" uid="uid://ba8p7ushwq5cl" path="res://scenes/ui/quit_button.tscn" id="9_0xyot"]
+[ext_resource type="Script" path="res://scripts/ui/switch_scene_button.gd" id="9_krs3d"]
 
 [node name="UiLayer" type="CanvasLayer"]
 process_mode = 3
@@ -109,4 +112,54 @@ layout_mode = 2
 text = "Death is not the end, nothing is.
 Try again."
 
+[node name="PauseMenuContainer" type="Control" parent="." node_paths=PackedStringArray("default_button")]
+visible = false
+z_index = 100
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_qsj6i")
+default_button = NodePath("VBoxContainer/ContinueButton")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenuContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.298039)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenuContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -130.0
+offset_right = 290.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContinueButton" type="Button" parent="PauseMenuContainer/VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="MainMenuButton" type="Button" parent="PauseMenuContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+script = ExtResource("9_krs3d")
+next_scene = "res://scenes/ui/menus/main_menu.tscn"
+unpause = true
+
+[node name="QuitButton" parent="PauseMenuContainer/VBoxContainer" instance=ExtResource("9_0xyot")]
+layout_mode = 2
+
 [connection signal="pressed" from="DeathMenu/Button" to="DeathMenu" method="_on_respawn_button_pressed"]
+[connection signal="pressed" from="PauseMenuContainer/VBoxContainer/ContinueButton" to="PauseMenuContainer" method="_on_continue_button_pressed"]
