@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba8p7ushwq5cl"]
+
+[ext_resource type="Script" path="res://scripts/ui/quit_game_button.gd" id="1_4n54d"]
+
+[node name="QuitButton" type="Button" node_paths=PackedStringArray("confirmation_container", "default_dialog_button")]
+text = "Quit"
+script = ExtResource("1_4n54d")
+confirmation_container = NodePath("ConfirmationContainer")
+default_dialog_button = NodePath("ConfirmationContainer/ColorRect/VBoxContainer/HBoxContainer/CancelButton")
+
+[node name="ConfirmationContainer" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="ConfirmationContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -177.0
+offset_top = -66.5
+offset_right = 177.0
+offset_bottom = 66.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.462745)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConfirmationContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.5
+offset_top = -29.0
+offset_right = 80.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Prompt" type="Label" parent="ConfirmationContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Are you sure?"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ConfirmationContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ConfirmButton" type="Button" parent="ConfirmationContainer/ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Confirm"
+
+[node name="CancelButton" type="Button" parent="ConfirmationContainer/ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="hidden" from="ConfirmationContainer" to="." method="_on_confirmation_container_hidden"]
+[connection signal="pressed" from="ConfirmationContainer/ColorRect/VBoxContainer/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="ConfirmationContainer/ColorRect/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
