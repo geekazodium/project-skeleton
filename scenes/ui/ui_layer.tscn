@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1ap6hg0m83r8"]
+[gd_scene load_steps=11 format=3 uid="uid://c1ap6hg0m83r8"]
 
 [ext_resource type="Script" path="res://scripts/ui/experience_progress_bar.gd" id="1_1yx45"]
 [ext_resource type="Script" path="res://scripts/ui/exp_text_label.gd" id="2_yof05"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/ui/death_menu.gd" id="7_bubem"]
 [ext_resource type="Script" path="res://scripts/ui/pause/pause_menu_container.gd" id="8_qsj6i"]
 [ext_resource type="PackedScene" uid="uid://ba8p7ushwq5cl" path="res://scenes/ui/quit_button.tscn" id="9_0xyot"]
+[ext_resource type="Script" path="res://scripts/ui/switch_scene_button.gd" id="9_krs3d"]
 
 [node name="UiLayer" type="CanvasLayer"]
 process_mode = 3
@@ -149,6 +150,13 @@ grow_vertical = 2
 [node name="ContinueButton" type="Button" parent="PauseMenuContainer/VBoxContainer"]
 layout_mode = 2
 text = "Continue"
+
+[node name="MainMenuButton" type="Button" parent="PauseMenuContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+script = ExtResource("9_krs3d")
+next_scene = "res://scenes/ui/menus/main_menu.tscn"
+unpause = true
 
 [node name="QuitButton" parent="PauseMenuContainer/VBoxContainer" instance=ExtResource("9_0xyot")]
 layout_mode = 2

@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca67877wjttkj"]
+
+[ext_resource type="PackedScene" uid="uid://ba8p7ushwq5cl" path="res://scenes/ui/quit_button.tscn" id="2_3pyye"]
+[ext_resource type="Script" path="res://scripts/ui/switch_scene_button.gd" id="2_krb47"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -239.0
+offset_right = 239.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TitleMenu" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Project B I M P S"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MainMenuOptionsContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="VBoxContainer/MainMenuOptionsContainer"]
+layout_mode = 2
+text = "Play"
+script = ExtResource("2_krb47")
+next_scene = "res://scenes/game_scene.tscn"
+auto_grab_focus = true
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer/MainMenuOptionsContainer"]
+layout_mode = 2
+text = "Credits"
+script = ExtResource("2_krb47")
+next_scene = "res://scenes/ui/menus/credits_menu.tscn"
+
+[node name="QuitButton" parent="VBoxContainer/MainMenuOptionsContainer" instance=ExtResource("2_3pyye")]
+layout_mode = 2

@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Project B I M P S"
 config/version="dev-2.0"
-run/main_scene="res://scenes/game_scene.tscn"
+run/main_scene="res://scenes/ui/menus/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
