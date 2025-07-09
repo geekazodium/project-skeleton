@@ -6,6 +6,8 @@ class_name InteractableArea2D
 ## The node is designed to represent any object that can trigger dialog interactions.
 
 @export var dialog: DialogueResource = null;
+var default_modulate: Color;
+@export var targeting_modulate: Color;
 
 func on_interact() -> void:
 	print("Interaction started with dialog: ", self.dialog);
@@ -24,3 +26,10 @@ func _interact() -> void:
 
 func _dialog_ended() -> void:
 	pass
+
+func on_target() -> void:
+	self.default_modulate = self.modulate;
+	self.modulate = self.targeting_modulate;
+
+func on_lose_target() -> void:
+	self.modulate = self.default_modulate;
