@@ -9,6 +9,7 @@
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("1_6ssfc")
+targeting_modulate = Color(0.666569, 0.666569, 0.666569, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1w53i")
