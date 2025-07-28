@@ -37,3 +37,8 @@ signal player_dead(event: EntityDeathEvent);
 
 @warning_ignore("unused_signal")
 signal trade_upgrades(type: String);
+
+signal physics_processed(delta: float);
+
+func _physics_process(delta: float) -> void:
+	self.physics_processed.emit(delta);

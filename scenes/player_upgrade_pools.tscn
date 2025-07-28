@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://6qvndbockbj3"]
+[gd_scene load_steps=12 format=3 uid="uid://6qvndbockbj3"]
 
 [ext_resource type="Script" path="res://scripts/progress/player_upgrade_pools.gd" id="1_0rfud"]
 [ext_resource type="Script" path="res://scripts/progress/upgrade_pool.gd" id="2_d1io5"]
@@ -9,13 +9,14 @@
 [ext_resource type="Resource" uid="uid://b066uwum3aw2r" path="res://assets/upgrades/generic/minion_speed.tres" id="7_jbhpw"]
 [ext_resource type="Resource" uid="uid://dvrofq6bewc3d" path="res://assets/upgrades/generic/player_health.tres" id="8_vnq3e"]
 [ext_resource type="Script" path="res://scripts/progress/special_upgrade_pool.gd" id="9_3qdnv"]
-[ext_resource type="Resource" uid="uid://c4el8mc0wdnak" path="res://assets/upgrades/special/super_damage_upgrade.tres" id="10_8i703"]
+[ext_resource type="Resource" uid="uid://bo40befreu1aq" path="res://assets/upgrades/special/infused_vitality_upgrade.tres" id="11_1jb13"]
+[ext_resource type="Resource" uid="uid://chgw6k4ml26jj" path="res://assets/upgrades/special/healing_aura_upgrade.tres" id="11_4euq3"]
 
 [node name="PlayerUpgradePools" type="Node" node_paths=PackedStringArray("generic_upgrade_pool")]
 script = ExtResource("1_0rfud")
 generic_upgrade_pool = NodePath("UpgradePoolGeneric")
 special_upgrade_pools = {
-"alara": NodePath("SpecialUpgradePool")
+"alara": NodePath("AlaraSpecialUpgradePool")
 }
 
 [node name="UpgradePoolGeneric" type="Node" parent="."]
@@ -29,8 +30,9 @@ upgrade_pool = {
 "Player Health": ExtResource("8_vnq3e")
 }
 
-[node name="SpecialUpgradePool" type="Node" parent="."]
+[node name="AlaraSpecialUpgradePool" type="Node" parent="."]
 script = ExtResource("9_3qdnv")
 upgrade_pool = {
-"Super Damage": ExtResource("10_8i703")
+"Healing Aura": ExtResource("11_4euq3"),
+"Infused Vitality": ExtResource("11_1jb13")
 }
