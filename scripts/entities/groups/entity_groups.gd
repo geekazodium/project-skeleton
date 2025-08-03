@@ -3,6 +3,7 @@ extends Node
 var _minions: Node2D = null;
 var _players: Node2D = null;
 var _projectiles: Node2D = null;
+var _enemies: Node2D = null;
 
 func get_minions() -> Array[Node]:
 	return self._minions.get_children();
@@ -24,3 +25,12 @@ func add_projectile(projectile: Node2D) -> void:
 
 func set_projectiles_ref(projectiles: Node2D) -> void:
 	self._projectiles = projectiles;
+
+func set_enemies_ref(enemies: Node2D) -> void:
+	self._enemies = enemies;
+
+func get_enemies() -> Array[Node]:
+	return self._enemies.get_children();
+
+func get_enemy_count() -> int:
+	return self._enemies.get_child_count();

@@ -10,7 +10,9 @@ class_name EntityWaveSpawner
 var current_wave: int = -1;
 
 @export var spawn_safe_area: Area2D = null;
-@export var next_wave_timer: Timer = null;
+@export var next_wave_timer: ScaledTimer = null;
+
+@export var enemies_left_for_next_wave: int = 20;
 
 var spawning: bool = false;
 
@@ -20,8 +22,13 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if self.spawn_safe_area.has_overlapping_bodies():
 		return;
-		
-	if !self.spawning: 
+	
+	if EntityGroups.get_enemy_count() > self.enemies_left_for_next_wave:
+		self.next_wave_timer.this_time_scale = .2;
+	else:
+		self.next_wave_timer.this_time_scale = 1;
+	
+	if !self.spawning:
 		return;
 	
 	if self.enemy_waves[self.current_wave].spawining_done():

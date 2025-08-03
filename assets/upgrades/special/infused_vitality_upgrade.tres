@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_c1uti")
-increase_per_level = 0.1
+increase_per_level = 0.3
 upgrade_name = "Infused Vitality"

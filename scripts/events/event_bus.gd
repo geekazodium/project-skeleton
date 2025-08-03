@@ -38,6 +38,9 @@ signal player_dead(event: EntityDeathEvent);
 @warning_ignore("unused_signal")
 signal trade_upgrades(type: String);
 
+@warning_ignore("unused_signal")
+signal spawn_experience(spawn_position: Vector2, experience_value: float);
+
 signal physics_processed(delta: float);
 
 func _physics_process(delta: float) -> void:

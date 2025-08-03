@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://nktra47xqs3i"]
+[gd_scene load_steps=4 format=3 uid="uid://nktra47xqs3i"]
 
 [ext_resource type="Script" path="res://scripts/entities/spawners/entity_wave_spawner.gd" id="1_lyy6l"]
+[ext_resource type="Script" path="res://scripts/entities/spawners/scaled_timer.gd" id="2_di2fp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hyoup"]
 radius = 250.0
@@ -12,10 +13,9 @@ spawn_radius = 200.0
 spawn_safe_area = NodePath("SpawnSafeArea")
 next_wave_timer = NodePath("NextWaveTimer")
 
-[node name="NextWaveTimer" type="Timer" parent="."]
-process_callback = 0
-wait_time = 12.5
-one_shot = true
+[node name="NextWaveTimer" type="Node" parent="."]
+script = ExtResource("2_di2fp")
+wait_time = 10.5
 
 [node name="SpawnSafeArea" type="Area2D" parent="."]
 collision_layer = 0

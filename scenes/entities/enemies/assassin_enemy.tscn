@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://b4vu306w0k4ia"]
+[gd_scene load_steps=13 format=3 uid="uid://b4vu306w0k4ia"]
 
 [ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_vebnh"]
 [ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_8s5dq"]
-[ext_resource type="Script" path="res://scripts/items/instantiate_on_exit.gd" id="3_rpm1m"]
-[ext_resource type="PackedScene" uid="uid://bpj1aj0eh5h55" path="res://scenes/items/experience_drop.tscn" id="4_5ofwd"]
+[ext_resource type="Script" path="res://scripts/entities/experience/experience_drop_on_death.gd" id="5_3pm56"]
 [ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="5_qp20e"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/target_tracker.gd" id="6_lv3dg"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/state_machine.gd" id="7_qg8e2"]
@@ -31,9 +30,8 @@ move_speed = 6000.0
 script = ExtResource("2_8s5dq")
 death_event = "enemy_dead"
 
-[node name="InstantiateOnExit" type="Node" parent="."]
-script = ExtResource("3_rpm1m")
-scene = ExtResource("4_5ofwd")
+[node name="ExperienceDropOnDeath" type="Node" parent="."]
+script = ExtResource("5_3pm56")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 anchors_preset = 8
@@ -101,5 +99,5 @@ sprite_frames = ExtResource("11_jcc07")
 frame = 4
 frame_progress = 1.0
 
-[connection signal="death" from="HealthTracker" to="InstantiateOnExit" method="_instantiate"]
+[connection signal="death" from="HealthTracker" to="ExperienceDropOnDeath" method="death"]
 [connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]

@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_mk4hw")
-bonus_per_level = 1.0
+bonus_per_level = 0.75
 upgrade_name = "Experience Bonus"
