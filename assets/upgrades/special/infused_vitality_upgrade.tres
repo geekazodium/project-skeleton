@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://bo40befreu1aq"]
 
-[ext_resource type="Script" path="res://scripts/progress/upgrades/special_upgrades/minion_health_regeneration.gd" id="1_c1uti"]
+[ext_resource type="Script" path="res://scripts/progress/upgrades/special_upgrades/infused_vitality.gd" id="1_c1uti"]
 
 [resource]
 script = ExtResource("1_c1uti")
