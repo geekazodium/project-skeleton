@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://chgw6k4ml26jj"]
+
+[ext_resource type="Script" path="res://scripts/progress/upgrades/special_upgrades/healing_aura_spawns.gd" id="1_q50ar"]
+[ext_resource type="PackedScene" uid="uid://cavdjh4atexpf" path="res://scenes/entities/healing_aura.tscn" id="2_72yih"]
+
+[resource]
+script = ExtResource("1_q50ar")
+spawns_per_second = 0.1
+spawn_scene = ExtResource("2_72yih")
+upgrade_name = "Healing Aura"

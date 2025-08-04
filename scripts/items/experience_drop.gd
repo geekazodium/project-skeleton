@@ -1,9 +1,12 @@
 extends Area2D
+class_name ExperienceEntity
 
 var tween_to: Node2D = null;
 var tween_timer: float = 0.;
 
 var alive_timer: float = 200;
+
+@export var xp_value: float = 0;
 
 @export var tween_velocity = 5;
 @export var distance_tolerance = 50;
@@ -30,7 +33,7 @@ func _process(delta: float) -> void:
 	var move_by: Vector2 = (target_position - self.global_position) * scale_fac;
 	self.position = self.position + move_by;
 	if (self.position - tween_to.position).length_squared() < distance_tolerance * distance_tolerance:
-		ExperienceTracker.find_node(tween_to).gain_xp(1);
+		ExperienceTracker.find_node(tween_to).gain_xp(self.xp_value);
 		self.queue_free();
 
 func _on_body_entered(body: Node2D) -> void:
