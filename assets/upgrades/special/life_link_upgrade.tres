@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cwr1rt1nb10ku"]
+
+[ext_resource type="Script" path="res://scripts/progress/upgrades/special_upgrades/life_link.gd" id="1_v8x00"]
+
+[resource]
+script = ExtResource("1_v8x00")
+reduction_per_level = 1.5
+max_health_per_level = 10.0
+upgrade_name = "Life Link"
