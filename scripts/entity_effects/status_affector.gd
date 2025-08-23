@@ -1,0 +1,12 @@
+extends Node
+
+@export var effect_types: Dictionary = {};
+
+func _ready() -> void:
+	self.register_effect_type(preload("res://assets/status_effects/deaths_door.tres"));
+
+func register_effect_type(status_effect: StatusEffect) -> void:
+	self.effect_types[status_effect.get_effect_name()] = status_effect;
+
+func update(character_body: EntityBody, key: StringName, stacks: int) -> void:
+	self.effect_types[key].update(character_body, stacks);

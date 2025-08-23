@@ -17,5 +17,5 @@ func on_tick(delta: float) -> void:
 		spawn_projectile.global_position = (EntityGroups.get_players()[0] as Node2D).global_position;
 		spawn_projectile.reset_physics_interpolation();
 
-func _level_change(change: int):
+func _level_change(_change: int):
 	self.spawn_timer = 1;

@@ -25,5 +25,5 @@ func on_enemy_hit(event: EntityDealDamageEvent) -> void:
 		var reduction: float = self.reduction_per_level * self.level;
 		reduction = min(self.health_left, reduction);
 		event.add_damage(-reduction);
-		print(self.health_left,",", reduction);
+		#print(self.health_left,",", reduction);
 		self.health_left -= reduction;

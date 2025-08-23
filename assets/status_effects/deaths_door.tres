@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="DeathsDoor" load_steps=2 format=3 uid="uid://buvsxsjdpnt87"]
+
+[ext_resource type="Script" path="res://scripts/entity_effects/effects/deaths_door.gd" id="1_58y3k"]
+
+[resource]
+script = ExtResource("1_58y3k")

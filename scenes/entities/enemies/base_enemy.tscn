@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://c64yy4l8il3l3"]
+
+[ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_b22qe"]
+[ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_xdryf"]
+[ext_resource type="Script" path="res://scripts/entities/experience/experience_drop_on_death.gd" id="3_hai21"]
+[ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="4_toic5"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/target_tracker.gd" id="5_38n0e"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/state_machine.gd" id="6_1jt3o"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/set_player_target_state.gd" id="7_061u5"]
+[ext_resource type="Script" path="res://scripts/entity_effects/status_tracker.gd" id="8_v5hd4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bm50p"]
+radius = 30.0
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 9
+collision_mask = 17
+motion_mode = 1
+script = ExtResource("1_b22qe")
+move_speed = 1200.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="HealthTracker" type="Node" parent="."]
+script = ExtResource("2_xdryf")
+death_event = "enemy_dead"
+
+[node name="ExperienceDropOnDeath" type="Node" parent="."]
+script = ExtResource("3_hai21")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -64.0
+offset_right = 56.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 10.0
+
+[node name="Enemy" type="Sprite2D" parent="."]
+modulate = Color(0.894276, 0, 0.214811, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_toic5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bm50p")
+
+[node name="TargetTracker" type="Node" parent="."]
+script = ExtResource("5_38n0e")
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("6_1jt3o")
+states = {
+"FindTarget": NodePath("FindTargetState")
+}
+current_state = "FindTarget"
+
+[node name="FindTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker")]
+script = ExtResource("7_061u5")
+target_tracker = NodePath("../../TargetTracker")
+detected_state = "FindTarget"
+
+[node name="StatusTracker" type="Node" parent="."]
+script = ExtResource("8_v5hd4")
+
+[connection signal="death" from="HealthTracker" to="ExperienceDropOnDeath" method="death"]
+[connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]

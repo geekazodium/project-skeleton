@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bkm6f6xlfxets"]
+[gd_scene load_steps=13 format=3 uid="uid://bkm6f6xlfxets"]
 
 [ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_7n5sd"]
 [ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_7muoj"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/entities/state_machine/follow_target_state.gd" id="9_qeswj"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/shoot_target_state.gd" id="10_n2y06"]
 [ext_resource type="PackedScene" uid="uid://bxh3scksoylm8" path="res://scenes/entities/enemy_projectile.tscn" id="11_74fqk"]
+[ext_resource type="Script" path="res://scripts/entity_effects/status_tracker.gd" id="11_h7ucw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm50p"]
 radius = 30.0
@@ -92,6 +93,9 @@ projectile = ExtResource("11_74fqk")
 process_callback = 0
 wait_time = 1.5
 one_shot = true
+
+[node name="StatusTracker" type="Node" parent="."]
+script = ExtResource("11_h7ucw")
 
 [connection signal="death" from="HealthTracker" to="ExperienceDropOnDeath" method="death"]
 [connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dfx4oba6wg4c7"]
+[gd_scene load_steps=14 format=3 uid="uid://dfx4oba6wg4c7"]
 
 [ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_7kma0"]
 [ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_gjexi"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/entities/state_machine/follow_target_state.gd" id="9_rcqxp"]
 [ext_resource type="Script" path="res://scripts/attacks/attack_area.gd" id="10_8ai2d"]
 [ext_resource type="SpriteFrames" uid="uid://b7v75jip16wrq" path="res://assets/sprites/attack_placeholder_animation.tres" id="11_21ulv"]
+[ext_resource type="Script" path="res://scripts/entity_effects/status_tracker.gd" id="11_rtnxd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm50p"]
 radius = 45.0
@@ -99,6 +100,9 @@ scale = Vector2(3, 3)
 sprite_frames = ExtResource("11_21ulv")
 frame = 4
 frame_progress = 1.0
+
+[node name="StatusTracker" type="Node" parent="."]
+script = ExtResource("11_rtnxd")
 
 [connection signal="death" from="HealthTracker" to="ExperienceDropOnDeath" method="death"]
 [connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]

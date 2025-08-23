@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://6qvndbockbj3"]
+[gd_scene load_steps=13 format=3 uid="uid://6qvndbockbj3"]
 
 [ext_resource type="Script" path="res://scripts/progress/player_upgrade_pools.gd" id="1_0rfud"]
 [ext_resource type="Script" path="res://scripts/progress/upgrade_pool.gd" id="2_d1io5"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/progress/special_upgrade_pool.gd" id="9_3qdnv"]
 [ext_resource type="Resource" uid="uid://chgw6k4ml26jj" path="res://assets/upgrades/special/healing_aura_upgrade.tres" id="11_4euq3"]
 [ext_resource type="Resource" uid="uid://cwr1rt1nb10ku" path="res://assets/upgrades/special/life_link_upgrade.tres" id="11_pmn7e"]
+[ext_resource type="Resource" uid="uid://cb0oocxuro3kk" path="res://assets/upgrades/special/breath_of_life.tres" id="12_rlrtu"]
 
 [node name="PlayerUpgradePools" type="Node" node_paths=PackedStringArray("generic_upgrade_pool")]
 script = ExtResource("1_0rfud")
@@ -33,6 +34,7 @@ upgrade_pool = {
 [node name="AlaraSpecialUpgradePool" type="Node" parent="."]
 script = ExtResource("9_3qdnv")
 upgrade_pool = {
+"Breath of Life": ExtResource("12_rlrtu"),
 "Healing Aura": ExtResource("11_4euq3"),
 "Life Link": ExtResource("11_pmn7e")
 }

@@ -22,6 +22,7 @@ EventBus="*res://scripts/events/event_bus.gd"
 SaveState="*res://scripts/saves/save_state.gd"
 EntityGroups="*res://scripts/entities/groups/entity_groups.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+StatusAffector="*res://scripts/entity_effects/status_affector.gd"
 
 [display]
 

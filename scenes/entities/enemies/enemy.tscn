@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dubqfll6wt3er"]
+[gd_scene load_steps=13 format=3 uid="uid://bygbgtpbi8bux"]
 
 [ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_t1ggi"]
 [ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_phvhl"]
