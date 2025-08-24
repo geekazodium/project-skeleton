@@ -17,9 +17,20 @@ func get_stacks(key: StringName) -> int:
 func add_stacks(key: StringName, amount: int) -> void:
 	if !self.effects.has(key):
 		self.effects[key] = amount;
+		StatusAffector.emit_effect_first_added(self.parent_body, key, amount);
 	else:
 		self.effects[key] += amount;
+		StatusAffector.emit_effect_added(self.parent_body, key, effects.get(key));
 
+func remove_stacks(key: StringName, amount: int) -> void:
+	var pre_remove: int = self.effects[key];
+	if self.effects.has(key):
+		self.effects[key] -= amount;
+		if self.effects[key] <= 0:
+			self.effects.erase(key);
+			StatusAffector.emit_effect_final_removed(self.parent_body,key,pre_remove);
+		else:
+			StatusAffector.emit_effect_removed(self.parent_body,key,pre_remove);
 static var default_path: String = "StatusTracker";
 
 static func get_status_tracker(entity: Node, path: String = default_path) -> StatusTracker:

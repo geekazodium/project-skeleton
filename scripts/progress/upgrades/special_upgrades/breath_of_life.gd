@@ -11,3 +11,5 @@ func on_minion_dead(event: EntityDeathEvent) -> void:
 	if status_tracker.get_stacks(self.death_condition) < self.level:
 		status_tracker.add_stacks(self.death_condition,1);
 		event.set_canceled(true);
+		var health_tracker: HealthTracker = HealthTracker.get_health_tracker(event.get_entity());
+		health_tracker.change_health(-health_tracker.health + 1);
