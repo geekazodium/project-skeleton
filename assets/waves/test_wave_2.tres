@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EnemyWave" load_steps=4 format=3 uid="uid://dplkikvgl0x0w"]
 
 [ext_resource type="Script" path="res://scripts/entities/spawners/enemy_wave.gd" id="1_dnskk"]
-[ext_resource type="PackedScene" uid="uid://dubqfll6wt3er" path="res://scenes/entities/enemies/enemy.tscn" id="2_4usne"]
+[ext_resource type="PackedScene" uid="uid://bygbgtpbi8bux" path="res://scenes/entities/enemies/enemy.tscn" id="2_4usne"]
 [ext_resource type="PackedScene" uid="uid://dfx4oba6wg4c7" path="res://scenes/entities/enemies/tank_enemy.tscn" id="3_f7st0"]
 
 [resource]

@@ -5,9 +5,9 @@ class_name StatusTracker
 var effects: Dictionary = {};
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	for k in effects.keys():
-		StatusAffector.update(self.parent_body,k,effects.get(k));
+		StatusAffector.update(delta, self,k,effects.get(k));
 
 func get_stacks(key: StringName) -> int:
 	if !self.effects.has(key):
