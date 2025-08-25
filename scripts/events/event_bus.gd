@@ -42,6 +42,9 @@ signal minion_dead(event: EntityDeathEvent);
 signal trade_upgrades(type: String);
 
 @warning_ignore("unused_signal")
+signal trade_upgrades_failed(type: String);
+
+@warning_ignore("unused_signal")
 signal spawn_experience(spawn_position: Vector2, experience_value: float);
 
 signal physics_processed(delta: float);

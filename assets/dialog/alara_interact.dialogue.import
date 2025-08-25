@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://nkbtkywv7jyg"
+path="res://.godot/imported/alara_interact.dialogue-3bbe40c7863678c908330664f01d3b58.tres"
+
+[deps]
+
+source_file="res://assets/dialog/alara_interact.dialogue"
+dest_files=["res://.godot/imported/alara_interact.dialogue-3bbe40c7863678c908330664f01d3b58.tres"]
+
+[params]
+
+defaults=true

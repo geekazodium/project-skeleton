@@ -67,6 +67,7 @@ _data = {
 }
 
 [node name="HealingAuraRoot" type="Node2D"]
+z_index = -2
 
 [node name="HealingAuraProjectile" type="Node2D" parent="." node_paths=PackedStringArray("animation_player", "hitbox")]
 script = ExtResource("1_does7")

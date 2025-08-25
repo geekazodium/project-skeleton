@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://cistu64qgnf58"
+path="res://.godot/imported/alara_no_upgrades.dialogue-5833048fd58f3875c3463ae92f165d17.tres"
+
+[deps]
+
+source_file="res://assets/dialog/alara_no_upgrades.dialogue"
+dest_files=["res://.godot/imported/alara_no_upgrades.dialogue-5833048fd58f3875c3463ae92f165d17.tres"]
+
+[params]
+
+defaults=true
