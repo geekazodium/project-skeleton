@@ -1,14 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnelj6xfuftv3"]
+[gd_scene load_steps=7 format=3 uid="uid://bnelj6xfuftv3"]
 
 [ext_resource type="PackedScene" uid="uid://c64yy4l8il3l3" path="res://scenes/entities/enemies/base_enemy.tscn" id="1_i75hw"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/follow_target_state.gd" id="7_gae4f"]
 [ext_resource type="Script" path="res://scripts/attacks/attack_area.gd" id="8_wkgd1"]
 [ext_resource type="SpriteFrames" uid="uid://b7v75jip16wrq" path="res://assets/sprites/attack_placeholder_animation.tres" id="11_wo7xy"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7vwnr"]
+radius = 30.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ywja"]
 radius = 89.202
 
 [node name="Enemy" instance=ExtResource("1_i75hw")]
+
+[node name="CollisionShape2D" parent="." index="5"]
+shape = SubResource("CircleShape2D_7vwnr")
 
 [node name="StateMachine" parent="." index="7"]
 states = {
