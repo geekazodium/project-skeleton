@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="EnemyWave" load_steps=5 format=3 uid="uid://boe2xvnr3jwqb"]
+[gd_resource type="Resource" script_class="EnemyWave" load_steps=6 format=3 uid="uid://boe2xvnr3jwqb"]
 
 [ext_resource type="Script" path="res://scripts/entities/spawners/enemy_wave.gd" id="1_w5fak"]
-[ext_resource type="PackedScene" uid="uid://dfx4oba6wg4c7" path="res://scenes/entities/enemies/tank_enemy.tscn" id="2_btc13"]
-[ext_resource type="PackedScene" uid="uid://bkm6f6xlfxets" path="res://scenes/entities/enemies/ranged_enemy.tscn" id="3_k1ywt"]
-[ext_resource type="PackedScene" uid="uid://b4vu306w0k4ia" path="res://scenes/entities/enemies/assassin_enemy.tscn" id="4_hsowj"]
+[ext_resource type="PackedScene" uid="uid://dea1jp3yhjlj6" path="res://scenes/entities/enemies/tank_enemy.tscn" id="2_btc13"]
+[ext_resource type="PackedScene" uid="uid://bnelj6xfuftv3" path="res://scenes/entities/enemies/enemy.tscn" id="3_30b36"]
+[ext_resource type="PackedScene" uid="uid://c7es50ywh8pfr" path="res://scenes/entities/enemies/ranged_enemy.tscn" id="3_k1ywt"]
+[ext_resource type="PackedScene" uid="uid://dohvcjl6wodex" path="res://scenes/entities/enemies/assassin_enemy.tscn" id="4_hsowj"]
 
 [resource]
 script = ExtResource("1_w5fak")
-spawns = Array[PackedScene]([ExtResource("4_hsowj"), ExtResource("3_k1ywt"), ExtResource("2_btc13")])
-spawn_amounts = Array[int]([50, 30, 20])
+spawns = Array[PackedScene]([ExtResource("4_hsowj"), ExtResource("3_30b36"), ExtResource("2_btc13"), ExtResource("3_k1ywt")])
+spawn_amounts = Array[int]([10, 30, 20, 30])

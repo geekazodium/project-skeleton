@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cb0oocxuro3kk"]
+
+[ext_resource type="Script" path="res://scripts/progress/upgrades/special_upgrades/breath_of_life.gd" id="1_praxl"]
+
+[resource]
+script = ExtResource("1_praxl")
+upgrade_name = "Breath of Life"

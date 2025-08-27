@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://krh4wqhn34oi"]
+[gd_scene load_steps=13 format=3 uid="uid://krh4wqhn34oi"]
 
 [ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_fk853"]
 [ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="1_r8ng3"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/entities/deferred_velocity.gd" id="7_lthrt"]
 [ext_resource type="SpriteFrames" uid="uid://b7v75jip16wrq" path="res://assets/sprites/attack_placeholder_animation.tres" id="7_qpfxt"]
 [ext_resource type="Script" path="res://scripts/attacks/attack_area.gd" id="8_20gw0"]
+[ext_resource type="Script" path="res://scripts/entity_effects/status_tracker.gd" id="9_m7s2t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm50p"]
 radius = 30.0
@@ -28,6 +29,7 @@ move_speed = 1400.0
 
 [node name="HealthTracker" type="Node" parent="."]
 script = ExtResource("2_sfkwh")
+death_event = "minion_dead"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 anchors_preset = 8
@@ -94,6 +96,10 @@ script = ExtResource("7_lthrt")
 body = NodePath("..")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="StatusTracker" type="Node" parent="." node_paths=PackedStringArray("parent_body")]
+script = ExtResource("9_m7s2t")
+parent_body = NodePath("..")
 
 [connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]
 [connection signal="max_health_changed" from="HealthTracker" to="ProgressBar" method="set_max"]

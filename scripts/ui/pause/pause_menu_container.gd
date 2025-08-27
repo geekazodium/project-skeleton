@@ -2,7 +2,7 @@ extends Control
 
 @export var default_button: Button;
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !self.get_tree().paused:
 		if Input.is_action_just_pressed("ui_cancel"):
 			self.on_pause();

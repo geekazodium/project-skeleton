@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdn7h51hub04e"]
+[gd_scene load_steps=5 format=3 uid="uid://bdn7h51hub04e"]
 
 [ext_resource type="Script" path="res://scripts/interactable/interactable_character.gd" id="1_b4k6j"]
 [ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="1_scgp3"]
+[ext_resource type="Script" path="res://scripts/interactable/failed_upgrade_handler.gd" id="3_uk76l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_48ok0"]
 radius = 34.0
@@ -18,3 +19,7 @@ shape = SubResource("CircleShape2D_48ok0")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_scgp3")
+
+[node name="UpgradeFailedHandler" type="Node" parent="." node_paths=PackedStringArray("interactable_character")]
+script = ExtResource("3_uk76l")
+interactable_character = NodePath("..")

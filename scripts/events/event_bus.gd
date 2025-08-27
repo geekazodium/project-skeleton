@@ -36,7 +36,13 @@ signal powerup_removed(event: PowerUpRemovedEvent);
 signal player_dead(event: EntityDeathEvent);
 
 @warning_ignore("unused_signal")
+signal minion_dead(event: EntityDeathEvent);
+
+@warning_ignore("unused_signal")
 signal trade_upgrades(type: String);
+
+@warning_ignore("unused_signal")
+signal trade_upgrades_failed(type: String);
 
 @warning_ignore("unused_signal")
 signal spawn_experience(spawn_position: Vector2, experience_value: float);

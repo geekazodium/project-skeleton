@@ -9,19 +9,22 @@ class_name InteractableCharacter
 var unpause: bool = true;
 
 func _interact() -> void:
-	if !EventBus.level_ups_generated.is_connected(self.disable_unpause):
-		EventBus.level_ups_generated.connect(self.disable_unpause);
+	if !EventBus.level_ups_generated.is_connected(self.disable_unpause_on_end):
+		EventBus.level_ups_generated.connect(self.disable_unpause_on_end);
 		self.unpause = true;
 	else:
 		push_warning("Warning: _interact called multiple times without dialog ending.");
 
 # if level ups are generated, do not unpause
-func disable_unpause(_unused) -> void:
+func disable_unpause_on_end(_unused: PowerUpsGeneratedEvent) -> void:
+	self.unpause = false;
+
+func disable_unpause() -> void:
 	self.unpause = false;
 
 func _dialog_ended() -> void:
-	if EventBus.level_ups_generated.is_connected(self.disable_unpause):
-		EventBus.level_ups_generated.disconnect(self.disable_unpause);
+	if EventBus.level_ups_generated.is_connected(self.disable_unpause_on_end):
+		EventBus.level_ups_generated.disconnect(self.disable_unpause_on_end);
 		if self.unpause:
 			self.get_tree().paused = false;
 	else:

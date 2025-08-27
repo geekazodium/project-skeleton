@@ -16,3 +16,5 @@ func on_trade_upgrades(key: String):
 	
 	if self.generic_upgrade_pool.remove_upgrades(2):
 		upgrade_pool.generate_upgrades();
+	else: 
+		EventBus.trade_upgrades_failed.emit(key);
