@@ -1,12 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c64yy4l8il3l3"]
+[gd_scene load_steps=8 format=3 uid="uid://c64yy4l8il3l3"]
 
 [ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_b22qe"]
 [ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_xdryf"]
 [ext_resource type="Script" path="res://scripts/entities/experience/experience_drop_on_death.gd" id="3_hai21"]
 [ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="4_toic5"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/target_tracker.gd" id="5_38n0e"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/state_machine.gd" id="6_1jt3o"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/set_player_target_state.gd" id="7_061u5"]
 [ext_resource type="Script" path="res://scripts/entity_effects/status_tracker.gd" id="8_v5hd4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm50p"]
@@ -52,18 +50,6 @@ shape = SubResource("CircleShape2D_bm50p")
 
 [node name="TargetTracker" type="Node" parent="."]
 script = ExtResource("5_38n0e")
-
-[node name="StateMachine" type="Node2D" parent="."]
-script = ExtResource("6_1jt3o")
-states = {
-"FindTarget": NodePath("FindTargetState")
-}
-current_state = "FindTarget"
-
-[node name="FindTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker")]
-script = ExtResource("7_061u5")
-target_tracker = NodePath("../../TargetTracker")
-detected_state = "FindTarget"
 
 [node name="StatusTracker" type="Node" parent="."]
 script = ExtResource("8_v5hd4")

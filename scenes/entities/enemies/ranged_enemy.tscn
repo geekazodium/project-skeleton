@@ -1,63 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkm6f6xlfxets"]
+[gd_scene load_steps=7 format=3 uid="uid://c7es50ywh8pfr"]
 
-[ext_resource type="Script" path="res://scripts/entities/entity.gd" id="1_7n5sd"]
-[ext_resource type="Script" path="res://scripts/health/health_tracker.gd" id="2_7muoj"]
-[ext_resource type="Script" path="res://scripts/entities/experience/experience_drop_on_death.gd" id="3_i7h7d"]
-[ext_resource type="Texture2D" uid="uid://onhpoqcmxp7r" path="res://icon.svg" id="5_6uyr2"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/target_tracker.gd" id="6_2d0hl"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/state_machine.gd" id="7_j0kak"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/set_player_target_state.gd" id="8_0xap5"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/follow_target_state.gd" id="9_qeswj"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/shoot_target_state.gd" id="10_n2y06"]
-[ext_resource type="PackedScene" uid="uid://bxh3scksoylm8" path="res://scenes/entities/enemy_projectile.tscn" id="11_74fqk"]
-[ext_resource type="Script" path="res://scripts/entity_effects/status_tracker.gd" id="11_h7ucw"]
+[ext_resource type="PackedScene" uid="uid://c64yy4l8il3l3" path="res://scenes/entities/enemies/base_enemy.tscn" id="1_bbcnp"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/state_machine.gd" id="2_6lo4m"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/set_player_target_state.gd" id="3_rdqkc"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/follow_target_state.gd" id="4_77yhn"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/shoot_target_state.gd" id="5_fo0r8"]
+[ext_resource type="PackedScene" uid="uid://bxh3scksoylm8" path="res://scenes/entities/enemy_projectile.tscn" id="6_w0r78"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bm50p"]
-radius = 30.0
+[node name="Enemy" instance=ExtResource("1_bbcnp")]
 
-[node name="RangedEnemy" type="CharacterBody2D"]
-collision_layer = 9
-collision_mask = 17
-motion_mode = 1
-script = ExtResource("1_7n5sd")
-move_speed = 1200.0
+[node name="ExperienceDropOnDeath" parent="." index="2"]
+experience_value = 2.0
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="Enemy" parent="." index="4"]
+modulate = Color(0.693713, 0.0030486, 0.952776, 1)
 
-[node name="HealthTracker" type="Node" parent="."]
-script = ExtResource("2_7muoj")
-death_event = "enemy_dead"
-
-[node name="ExperienceDropOnDeath" type="Node" parent="."]
-script = ExtResource("3_i7h7d")
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -56.0
-offset_top = -64.0
-offset_right = 56.0
-offset_bottom = -37.0
-grow_horizontal = 2
-grow_vertical = 2
-max_value = 10.0
-
-[node name="Enemy" type="Sprite2D" parent="."]
-modulate = Color(0.805889, 0.000162297, 0.69971, 1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_6uyr2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_bm50p")
-
-[node name="TargetTracker" type="Node" parent="."]
-script = ExtResource("6_2d0hl")
-
-[node name="StateMachine" type="Node2D" parent="."]
-script = ExtResource("7_j0kak")
+[node name="StateMachine" type="Node2D" parent="." index="8"]
+script = ExtResource("2_6lo4m")
 states = {
 "FindTarget": NodePath("FindTargetState"),
 "ShootTarget": NodePath("ShootTargetState"),
@@ -65,13 +24,13 @@ states = {
 }
 current_state = "FindTarget"
 
-[node name="FindTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker")]
-script = ExtResource("8_0xap5")
+[node name="FindTargetState" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("target_tracker")]
+script = ExtResource("3_rdqkc")
 target_tracker = NodePath("../../TargetTracker")
 detected_state = "TrackTarget"
 
-[node name="FollowTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "character_body", "nav_agent")]
-script = ExtResource("9_qeswj")
+[node name="FollowTargetState" type="Node2D" parent="StateMachine" index="1" node_paths=PackedStringArray("target_tracker", "character_body", "nav_agent")]
+script = ExtResource("4_77yhn")
 target_tracker = NodePath("../../TargetTracker")
 character_body = NodePath("../..")
 nav_agent = NodePath("../../NavigationAgent2D")
@@ -79,24 +38,19 @@ target_lost_state = &"FindTarget"
 distance_tolerance = 1000.0
 distance_tolerance_reached_state = &"ShootTarget"
 
-[node name="ShootTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "cooldown_timer", "nav_agent", "character_body")]
-script = ExtResource("10_n2y06")
+[node name="ShootTargetState" type="Node2D" parent="StateMachine" index="2" node_paths=PackedStringArray("target_tracker", "cooldown_timer", "nav_agent", "character_body")]
+script = ExtResource("5_fo0r8")
 target_tracker = NodePath("../../TargetTracker")
 cooldown_ended_state = &"TrackTarget"
 target_lost_state = &"FindTarget"
 cooldown_timer = NodePath("ShootCooldownTimer")
 nav_agent = NodePath("../../NavigationAgent2D")
 character_body = NodePath("../..")
-projectile = ExtResource("11_74fqk")
+projectile = ExtResource("6_w0r78")
 
-[node name="ShootCooldownTimer" type="Timer" parent="StateMachine/ShootTargetState"]
+[node name="ShootCooldownTimer" type="Timer" parent="StateMachine/ShootTargetState" index="0"]
 process_callback = 0
 wait_time = 1.5
 one_shot = true
 
-[node name="StatusTracker" type="Node" parent="."]
-script = ExtResource("11_h7ucw")
-
-[connection signal="death" from="HealthTracker" to="ExperienceDropOnDeath" method="death"]
-[connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]
 [connection signal="timeout" from="StateMachine/ShootTargetState/ShootCooldownTimer" to="StateMachine/ShootTargetState" method="cooldown_ended"]

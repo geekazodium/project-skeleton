@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dohvcjl6wodex"]
+[gd_scene load_steps=9 format=3 uid="uid://dohvcjl6wodex"]
 
 [ext_resource type="PackedScene" uid="uid://c64yy4l8il3l3" path="res://scenes/entities/enemies/base_enemy.tscn" id="1_sqg3g"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/state_machine.gd" id="2_w148k"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/set_player_target_state.gd" id="3_oki6o"]
 [ext_resource type="Script" path="res://scripts/entities/state_machine/follow_target_state.gd" id="9_fdpjd"]
 [ext_resource type="Script" path="res://scripts/attacks/attack_area.gd" id="10_kio8k"]
 [ext_resource type="SpriteFrames" uid="uid://b7v75jip16wrq" path="res://assets/sprites/attack_placeholder_animation.tres" id="11_jcc07"]
@@ -14,19 +16,26 @@ radius = 85.0
 [node name="AssassinEnemy" instance=ExtResource("1_sqg3g")]
 move_speed = 5000.0
 
+[node name="ExperienceDropOnDeath" parent="." index="2"]
+experience_value = 1.5
+
 [node name="Enemy" parent="." index="4"]
 scale = Vector2(0.3125, 0.3125)
 
 [node name="CollisionShape2D" parent="." index="5"]
 shape = SubResource("CircleShape2D_pshce")
 
-[node name="StateMachine" parent="." index="7"]
+[node name="StateMachine" type="Node2D" parent="." index="8"]
+script = ExtResource("2_w148k")
 states = {
 "FindTarget": NodePath("FindTargetState"),
 "TrackTarget": NodePath("FollowTargetState")
 }
+current_state = "FindTarget"
 
-[node name="FindTargetState" parent="StateMachine" index="0"]
+[node name="FindTargetState" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("target_tracker")]
+script = ExtResource("3_oki6o")
+target_tracker = NodePath("../../TargetTracker")
 detected_state = "TrackTarget"
 
 [node name="FollowTargetState" type="Node2D" parent="StateMachine" index="1" node_paths=PackedStringArray("target_tracker", "character_body", "nav_agent")]
