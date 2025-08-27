@@ -16,7 +16,7 @@ func _interact() -> void:
 		push_warning("Warning: _interact called multiple times without dialog ending.");
 
 # if level ups are generated, do not unpause
-func disable_unpause_on_end(_unused: DialogueResource) -> void:
+func disable_unpause_on_end(_unused: PowerUpsGeneratedEvent) -> void:
 	self.unpause = false;
 
 func disable_unpause() -> void:
