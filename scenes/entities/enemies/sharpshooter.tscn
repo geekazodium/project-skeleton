@@ -1,22 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7es50ywh8pfr"]
+[gd_scene load_steps=7 format=3 uid="uid://63pd5tla2x1t"]
 
-[ext_resource type="PackedScene" uid="uid://c64yy4l8il3l3" path="res://scenes/entities/enemies/base_enemy.tscn" id="1_bbcnp"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/state_machine.gd" id="2_6lo4m"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/set_player_target_state.gd" id="3_rdqkc"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/follow_target_state.gd" id="4_77yhn"]
-[ext_resource type="Script" path="res://scripts/entities/state_machine/shoot_target_state.gd" id="5_fo0r8"]
-[ext_resource type="PackedScene" uid="uid://bxh3scksoylm8" path="res://scenes/entities/projectiles/enemy_projectile.tscn" id="6_w0r78"]
+[ext_resource type="PackedScene" uid="uid://c64yy4l8il3l3" path="res://scenes/entities/enemies/base_enemy.tscn" id="1_hkaul"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/state_machine.gd" id="2_x1kvu"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/set_player_target_state.gd" id="3_008mi"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/follow_target_state.gd" id="4_prcx6"]
+[ext_resource type="Script" path="res://scripts/entities/state_machine/shoot_target_state.gd" id="5_2smcc"]
+[ext_resource type="PackedScene" uid="uid://dymmlhsn7y1wc" path="res://scenes/entities/projectiles/sharpshooter_projectile.tscn" id="6_pyduh"]
 
-[node name="Enemy" instance=ExtResource("1_bbcnp")]
+[node name="SharpshooterEnemy" instance=ExtResource("1_hkaul")]
 
 [node name="ExperienceDropOnDeath" parent="." index="2"]
 experience_value = 2.0
 
 [node name="Enemy" parent="." index="4"]
-modulate = Color(0.693713, 0.0030486, 0.952776, 1)
+modulate = Color(0.822951, 6.44952e-05, 0.644183, 1)
 
 [node name="StateMachine" type="Node2D" parent="." index="8"]
-script = ExtResource("2_6lo4m")
+script = ExtResource("2_x1kvu")
 states = {
 "FindTarget": NodePath("FindTargetState"),
 "ShootTarget": NodePath("ShootTargetState"),
@@ -25,12 +25,12 @@ states = {
 current_state = "FindTarget"
 
 [node name="FindTargetState" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("target_tracker")]
-script = ExtResource("3_rdqkc")
+script = ExtResource("3_008mi")
 target_tracker = NodePath("../../TargetTracker")
 detected_state = "TrackTarget"
 
 [node name="FollowTargetState" type="Node2D" parent="StateMachine" index="1" node_paths=PackedStringArray("target_tracker", "character_body", "nav_agent")]
-script = ExtResource("4_77yhn")
+script = ExtResource("4_prcx6")
 target_tracker = NodePath("../../TargetTracker")
 character_body = NodePath("../..")
 nav_agent = NodePath("../../NavigationAgent2D")
@@ -39,14 +39,14 @@ distance_tolerance = 1000.0
 distance_tolerance_reached_state = &"ShootTarget"
 
 [node name="ShootTargetState" type="Node2D" parent="StateMachine" index="2" node_paths=PackedStringArray("target_tracker", "cooldown_timer", "nav_agent", "character_body")]
-script = ExtResource("5_fo0r8")
+script = ExtResource("5_2smcc")
 target_tracker = NodePath("../../TargetTracker")
 cooldown_ended_state = &"TrackTarget"
 target_lost_state = &"FindTarget"
 cooldown_timer = NodePath("ShootCooldownTimer")
 nav_agent = NodePath("../../NavigationAgent2D")
 character_body = NodePath("../..")
-projectile = ExtResource("6_w0r78")
+projectile = ExtResource("6_pyduh")
 
 [node name="ShootCooldownTimer" type="Timer" parent="StateMachine/ShootTargetState" index="0"]
 process_callback = 0
