@@ -8,6 +8,7 @@ var keybind_pressed: bool = false;
 var safety_iter_limit: int = 100;
 
 var no_private_access_rule: RegEx = RegEx.create_from_string("([_a-zA-Z0-9]+)[ \n\t]*\\.[ \n\t]*_.+");
+var explicit_return_type: RegEx = RegEx.create_from_string("func[ \t]+[a-zA-Z0-9_]+\\(.*\\)[\t ]*:");
 
 func _process(delta: float) -> void:
 	if !Engine.is_editor_hint():
@@ -68,6 +69,7 @@ func check_file(file: FileAccess) -> int:
 	var printed: bool = false;
 	
 	var results: Array[RegExMatch] = no_private_access_rule.search_all(text);
+	results.append_array(explicit_return_type.search_all(text));
 	
 	results = results.filter(filter_self_ref);
 	
