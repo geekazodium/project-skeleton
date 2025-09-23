@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Pasta" load_steps=3 format=3 uid="uid://c7ibhylh3nqp7"]
+
+[ext_resource type="Script" path="res://addons/no_spaghetti/checker/exception.gd" id="1_qj42o"]
+[ext_resource type="Script" path="res://addons/no_spaghetti/checker/pasta.gd" id="1_vc67q"]
+
+[resource]
+script = ExtResource("1_vc67q")
+file_type = "gd"
+rule = "func[ \\t]+[a-zA-Z0-9_]+\\(.*\\)[\\t ]*:"
+exceptions = Array[ExtResource("1_qj42o")]([])

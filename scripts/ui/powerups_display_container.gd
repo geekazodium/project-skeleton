@@ -7,7 +7,7 @@ func _ready() -> void:
 	EventBus.powerup_selected.connect(self.on_powerup_selected);
 	EventBus.powerup_removed.connect(self.on_powerup_removed);
 
-func on_powerup_selected(event: PowerUpSelectedEvent):
+func on_powerup_selected(event: PowerUpSelectedEvent) -> void:
 	var upgrade_strategy: UpgradeStrategy = event.get_upgrade_strategy();
 	var node_name = self._get_generated_node_name(upgrade_strategy);
 	
@@ -19,7 +19,7 @@ func on_powerup_selected(event: PowerUpSelectedEvent):
 	var node: Label = self.get_node(node_name);
 	node.text = self._format_upgrade_strategy(upgrade_strategy);
 
-func on_powerup_removed(event: PowerUpRemovedEvent):
+func on_powerup_removed(event: PowerUpRemovedEvent) -> void:
 	var upgrade_strategy: UpgradeStrategy = event.get_upgrade_strategy();
 	var node_name = self._get_generated_node_name(upgrade_strategy);
 	

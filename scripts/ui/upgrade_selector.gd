@@ -8,23 +8,23 @@ class_name UpgradeSelector
 func _ready() -> void:
 	EventBus.level_ups_generated.connect(self.on_powerups_generated);
 	
-func on_powerups_generated(event: PowerUpsGeneratedEvent):
+func on_powerups_generated(event: PowerUpsGeneratedEvent) -> void:
 	self.set_options(event.get_upgrade_options());
 	self.visible = true;
 	self.get_tree().paused = true;
 
-func set_options(options: Array[UpgradeStrategy]):
+func set_options(options: Array[UpgradeStrategy]) -> void:
 	for option in options:
 		var button_instance: Button = option.instantiate_button(self.button);
 		button_instance.pressed.connect(self.on_resume);
 		self.options_container.add_child(button_instance);
 
-func on_resume():
+func on_resume() -> void:
 	self.clean_up_options();
 	self.visible = false;
 	self.get_tree().paused = false;
 
-func clean_up_options():
+func clean_up_options() -> void:
 	for child in self.options_container.get_children():
 		child.set_block_signals(true);
 		child.queue_free();

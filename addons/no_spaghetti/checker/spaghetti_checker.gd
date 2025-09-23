@@ -1,14 +1,13 @@
 @tool
 extends Node
-class_name ClassAccessSafetyTool
+class_name SpaghettiChecker
 
 var keybind_pressed: bool = false;
 @export var buttons: Array[int] = [KEY_F,KEY_M];
 @export var lint_type: String = "gd";
-var safety_iter_limit: int = 100;
+var safety_iter_limit: int = 128;
 
-var no_private_access_rule: RegEx = RegEx.create_from_string("([_a-zA-Z0-9]+)[ \n\t]*\\.[ \n\t]*_.+");
-var explicit_return_type: RegEx = RegEx.create_from_string("func[ \t]+[a-zA-Z0-9_]+\\(.*\\)[\t ]*:");
+@export var pastas: Array[Pasta] = [];
 
 func _process(delta: float) -> void:
 	if !Engine.is_editor_hint():
@@ -22,6 +21,12 @@ func _process(delta: float) -> void:
 	
 	if !self.keybind_pressed:
 		return;
+	
+	self.check_program();
+
+func check_program() -> void:
+	for pasta in self.pastas:
+		pasta.compile_rules();
 	
 	var count: int = self.check_folder("res://");
 	if count > 0:
@@ -44,14 +49,10 @@ func check_folder(directory: String, layers: int = 64) -> int:
 	var matches: int = 0;
 	
 	for f in files:
-		if f.get_extension() != self.lint_type:
-			continue;
-		var file: FileAccess = FileAccess.open(parent_path + f,FileAccess.READ);
-		matches += self.check_file(file);
-		file.close();
+		matches += self.check_file(parent_path + f);
 	
 	if layers <= 0:
-		push_warning("max depth reached, something may be wrong of max depth is not set properly.");
+		SpaghettiLogger.warning("max depth reached, something may be wrong of max depth is not set properly.");
 		return matches;
 	
 	var directories: PackedStringArray = dir_access.get_directories();
@@ -61,17 +62,22 @@ func check_folder(directory: String, layers: int = 64) -> int:
 	
 	return matches;
 
-func check_file(file: FileAccess) -> int:
-	if self.get_script().get_path() == file.get_path():
-		return 0;
+func check_file(file_path_string: String) -> int:
+	var file: FileAccess = FileAccess.open(file_path_string,FileAccess.READ);
 	
-	var text: String = file.get_as_text();
-	var printed: bool = false;
+	var text: String;
+	var parsed: bool = false;
 	
-	var results: Array[RegExMatch] = no_private_access_rule.search_all(text);
-	results.append_array(explicit_return_type.search_all(text));
-	
-	results = results.filter(filter_self_ref);
+	var results: Array[RegExMatch] = [];
+	for pasta in self.pastas:
+		if file_path_string.get_extension() != pasta.file_type:
+			continue;
+		if !parsed:
+			text = file.get_as_text();
+			parsed = true;
+		pasta.search_all(text, results);
+	#
+	#results = results.filter(filter_self_ref);
 	
 	if results.size() > 0:
 		print_rich("\n[color=white]matches in: "+file.get_path());
@@ -79,10 +85,11 @@ func check_file(file: FileAccess) -> int:
 	for r in results:
 		self.print_match(text,r);
 	
+	file.close();
 	return results.size();
-
-func filter_self_ref(result: RegExMatch) -> bool:
-	return result.get_string(1) != "self" && result.get_string(1) != "_self"
+#
+#func filter_self_ref(result: RegExMatch) -> bool:
+	#return result.get_string(1) != "self" && result.get_string(1) != "_self"
 
 func print_match(string: String,result: RegExMatch, context_size: int = 70):
 	var start = result.get_start();
