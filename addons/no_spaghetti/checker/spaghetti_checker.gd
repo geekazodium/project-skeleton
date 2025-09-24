@@ -2,6 +2,7 @@
 extends Node
 class_name SpaghettiChecker
 
+const ignore_file: String = ".nsignore"
 var safety_iter_limit: int = 128;
 @export var pastas: Array[Pasta] = [];
 
@@ -23,8 +24,9 @@ func check_program() -> void:
 	SpaghettiLogger.rich("[color=pink]the linting is completed!");
 
 
-func check_folder(directory: String, layers: int = 64) -> int:
+func check_folder(directory: String, layers: int = 64, ignores: PackedStringArray = []) -> int:
 	var dir_access: DirAccess = DirAccess.open(directory);
+	dir_access.include_hidden = true;
 	var files: PackedStringArray = dir_access.get_files();
 	
 	var parent_path: String = directory;
@@ -32,8 +34,14 @@ func check_folder(directory: String, layers: int = 64) -> int:
 		parent_path += "/";
 	
 	var matches: int = 0;
+	var new_ignores: PackedStringArray = ignores;
+	if files.has(self.ignore_file):
+		new_ignores = self.get_ignores(parent_path,self.ignore_file);
+		new_ignores.append_array(ignores);
 	
 	for f in files:
+		if self.is_ignored(parent_path + f, ignores):
+			continue;
 		matches += self.check_file(parent_path + f);
 	
 	if layers <= 0:
@@ -43,7 +51,7 @@ func check_folder(directory: String, layers: int = 64) -> int:
 	var directories: PackedStringArray = dir_access.get_directories();
 	
 	for dir in directories:
-		matches += self.check_folder(parent_path + dir, layers - 1);
+		matches += self.check_folder(parent_path + dir, layers - 1, new_ignores);
 	
 	return matches;
 
@@ -66,3 +74,29 @@ func check_file(file_path_string: String) -> int:
 		self.lint_warnings_generated.emit(file.get_path(), text, results);
 	file.close();
 	return results.size();
+
+## parses ignore file in path {rf}{file_name}, prepending {rf} to all
+## entries
+func get_ignores(rf: String, file_name: String) -> PackedStringArray:
+	var file_path_string: String = rf + file_name;
+	var file: FileAccess = FileAccess.open(file_path_string,FileAccess.READ);
+	
+	var ignores: PackedStringArray = [];
+	
+	var text: String = file.get_as_text();
+	for line in text.split("\n"):
+		line = line.strip_edges();
+		if line.begins_with("#") || line.length() == 0:
+			line = file.get_line();
+			continue;
+		ignores.append(rf+line);
+	
+	return ignores;
+
+## check if a file path matches any of the ignored file paths in ignored array
+## TRAILING CHARACTERS ARE ALL ALLOWED AS LONG AS STRING STARTS WITH PATTERN
+func is_ignored(file_path: String, ignored: PackedStringArray) -> bool:
+	for i: String in ignored:
+		if file_path.match(i+"*"):
+			return true;
+	return false;
