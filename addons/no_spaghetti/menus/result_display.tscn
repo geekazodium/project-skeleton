@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://jjg2k862dwu0"]
+
+[ext_resource type="Script" path="res://addons/no_spaghetti/menus/result_display.gd" id="1_hbvrx"]
+
+[node name="ResultDisplay" type="RichTextLabel"]
+custom_minimum_size = Vector2(0, 300)
+offset_right = 1000.0
+offset_bottom = 300.0
+bbcode_enabled = true
+shortcut_keys_enabled = false
+script = ExtResource("1_hbvrx")
