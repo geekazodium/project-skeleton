@@ -14,16 +14,16 @@ func _physics_process(delta: float) -> void:
 	if stun_timer > 0.:
 		self.stun_timer -= delta;
 
-func increase_move_speed(amount: float):
+func increase_move_speed(amount: float) -> void:
 	self.move_speed += amount;
 
-func move_in_direction(direction: Vector2, delta: float):
+func move_in_direction(direction: Vector2, delta: float) -> void:
 	if stun_timer > 0.:
 		return;
 	self.velocity += direction.normalized() * delta * move_speed;
 
-func apply_knockback(knockback: Vector2):
+func apply_knockback(knockback: Vector2) -> void:
 	self.velocity += knockback;
 
-func apply_stun(duration: float):
+func apply_stun(duration: float) -> void:
 	self.stun_timer = duration;

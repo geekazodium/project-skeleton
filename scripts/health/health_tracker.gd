@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	self.change_health(self.increase_per_second * delta);
 
 ## use this function to change the health of the entity.
-func change_health(amount: float):
+func change_health(amount: float) -> void:
 	self.health += amount;
 	if self.health > self.max_health:
 		self.health = self.max_health;
@@ -30,7 +30,7 @@ func change_health(amount: float):
 ## this function is called when the entity's health changes and drops to zero or less.
 ## checks if node is already queued for deletion to prevent multiple death events of one entity.
 ## use the EntityDeathEvent to interact with this
-func on_death():
+func on_death() -> void:
 	if self.get_parent().is_queued_for_deletion():
 		return;
 	var event = EntityDeathEvent.new_inst(self.get_parent());
@@ -43,7 +43,7 @@ func on_death():
 		self.get_parent().queue_free();
 	event.free();
 
-func add_max_health(amount: float):
+func add_max_health(amount: float) -> void:
 	self.health += amount;
 	self.max_health += amount;
 	self.max_health_changed.emit(self.max_health);

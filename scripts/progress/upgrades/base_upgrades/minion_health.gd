@@ -2,14 +2,14 @@ extends UpgradeStrategy
 
 @export var increase_per_level: float = 1;
 
-func _ready():
+func _ready() -> void:
 	EventBus.minion_spawn.connect(self.on_minion_spawn);
 
-func on_minion_spawn(event: EntitySpawnEvent):
+func on_minion_spawn(event: EntitySpawnEvent) -> void:
 	var health_tracker: HealthTracker = event.get_entity().get_node(HealthTracker.default_path);
 	health_tracker.add_max_health(self.increase_per_level * self.level);
 
-func _level_change(change: int):
+func _level_change(change: int) -> void:
 	var health_gain = self.increase_per_level * change;
 	for minion: EntityBody in EntityGroups.get_minions():
 		HealthTracker.get_health_tracker(minion).add_max_health(health_gain);

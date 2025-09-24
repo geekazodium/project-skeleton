@@ -5,7 +5,7 @@ class_name TargetTracker
 
 # use to set target that is being tracked.
 @warning_ignore("shadowed_variable")
-func set_target(target: Node2D):
+func set_target(target: Node2D) -> void:
 	if self.target != null:
 		self.target.disconnect("tree_exiting", self.target_reset);
 	self.target = target;
@@ -22,5 +22,5 @@ func has_target() -> bool:
 	return self.target != null;
 
 # use to reset target tracking
-func target_reset():
+func target_reset() -> void:
 	self.target = null;

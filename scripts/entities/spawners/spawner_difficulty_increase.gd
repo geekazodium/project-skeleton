@@ -10,10 +10,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	scale_spawner_timers(pow(scale_per_second,delta));
 
-func on_enemy_dead(_event: EntityDeathEvent):
+func on_enemy_dead(_event: EntityDeathEvent) -> void:
 	scale_spawner_timers(timer_scale_fac);
 	
-func scale_spawner_timers(factor: float):
+func scale_spawner_timers(factor: float) -> void:
 	for spawner in spawners:
 		spawner.spawn_interval_min *= factor;
 		spawner.spawn_interval_max *= factor;

@@ -10,7 +10,7 @@ func _ready() -> void:
 		upgrade.set_upgrade_key(key);
 		upgrade.level = 0;
 
-func generate_upgrades():
+func generate_upgrades() -> void:
 	var pool = upgrade_pool.values();
 	pool.shuffle();
 	var upgrades: Array[UpgradeStrategy] = [];

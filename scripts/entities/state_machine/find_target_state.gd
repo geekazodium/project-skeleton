@@ -24,7 +24,7 @@ func physics_process(_delta: float) -> void:
 	if nearest != null:
 		self.on_body_enter_detection(nearest);
 
-func on_body_enter_detection(body: Node2D):
+func on_body_enter_detection(body: Node2D) -> void:
 	if !StateMachine.is_active_state(self):
 		return;
 	target_tracker.set_target(body);

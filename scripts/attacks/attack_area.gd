@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 		self.visible = false;
 		self.process_hits();
 
-func process_hits():
+func process_hits() -> void:
 	if damage_cooldown_timer > 0:
 		return;
 	

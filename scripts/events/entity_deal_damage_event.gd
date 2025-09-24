@@ -15,10 +15,10 @@ static func new_inst(damage_source: Node2D, entity: PhysicsBody2D, damage: float
 	_self.damage = damage;
 	return _self;
 
-func set_canceled(canceled: bool):
+func set_canceled(canceled: bool) -> void:
 	self._canceled = canceled;
 
-func add_multiplier(amount: float):
+func add_multiplier(amount: float) -> void:
 	self._multiplier += amount;
 
 func get_entity() -> PhysicsBody2D:
@@ -33,7 +33,7 @@ func get_damage() -> float:
 func get_damage_source() -> Node2D:
 	return self.damage_source;
 
-func add_damage(amount: float):
+func add_damage(amount: float) -> void:
 	self.damage += amount;
 
 func get_final_damage() -> float:

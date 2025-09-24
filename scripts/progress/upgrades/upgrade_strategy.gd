@@ -6,7 +6,7 @@ var _upgrade_key: StringName = &"";
 var level: int = 0;
 var ready: bool = false;
 
-func set_upgrade_key(key: StringName):
+func set_upgrade_key(key: StringName) -> void:
 	if self._upgrade_key != &"" && self._upgrade_key != key:
 		push_error("attempted to add same upgrade into 2 pools");
 		return;
@@ -21,7 +21,7 @@ func instantiate_button(button: PackedScene) -> Button:
 	inst.pressed.connect(self.on_select);
 	return inst;
 
-func on_select():
+func on_select() -> void:
 	if !self.ready:
 		self._ready();
 		self.ready = true;
@@ -32,7 +32,7 @@ func on_select():
 	powerup_selected_event.free();
 	print("level up skill ",  upgrade_name, " to level ", self.level);
 
-func on_remove():
+func on_remove() -> void:
 	if self.level <= 0:
 		print("failed to remove upgrade ", upgrade_name);
 		return;
@@ -42,15 +42,15 @@ func on_remove():
 	EventBus.powerup_removed.emit(powerup_removed_event);
 	powerup_removed_event.free();
 
-func _add_to_level(amount: int):
+func _add_to_level(amount: int) -> void:
 	self.level += amount;
 	self._level_change(amount);
 	
 ## Called when this upgrade is selected for the first time
-func _ready():
+func _ready() -> void:
 	pass;
 
 ## Called when this upgrade level is modified, after _ready is called
 @warning_ignore("unused_parameter")
-func _level_change(amount: int):
+func _level_change(amount: int) -> void:
 	pass;

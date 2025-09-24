@@ -2,7 +2,7 @@ extends UpgradeStrategy
 
 var death_condition: StringName;
 
-func _ready():
+func _ready() -> void:
 	self.death_condition = DeathsDoor.new().get_effect_name();
 	EventBus.minion_dead.connect(self.on_minion_dead);
 

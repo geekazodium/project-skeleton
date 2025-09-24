@@ -6,8 +6,8 @@ func _ready() -> void:
 	self.update_label(0);
 	EventBus.connect("post_experience_gained",on_post_experience_gained);
 
-func on_post_experience_gained(event: PostExperienceGainEvent):
+func on_post_experience_gained(event: PostExperienceGainEvent) -> void:
 	self.update_label(event.get_experience_tracker().level);
 	
-func update_label(level: int):
+func update_label(level: int) -> void:
 	self.text = "level: " + String.num_int64(level);
