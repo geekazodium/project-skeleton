@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dex407t5sxlqa"]
+[gd_scene load_steps=4 format=3 uid="uid://dex407t5sxlqa"]
 
 [ext_resource type="Script" path="res://addons/no_spaghetti/menus/spaghetti_menu.gd" id="1_dikyf"]
 [ext_resource type="PackedScene" uid="uid://jjg2k862dwu0" path="res://addons/no_spaghetti/menus/result_display.tscn" id="2_kp3mw"]
+[ext_resource type="Script" path="res://addons/no_spaghetti/menus/all_clean_label.gd" id="3_xatxg"]
 
 [node name="Spaghetti" type="VBoxContainer" node_paths=PackedStringArray("check_button", "try_fix_button", "warning_display")]
 offset_top = 1.0
@@ -11,7 +12,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_dikyf")
 check_button = NodePath("Hotbar/CheckButton")
-try_fix_button = NodePath("Hotbar/TryFixButton")
+try_fix_button = NodePath("")
 warning_display = NodePath("WarningsDisplayScroll/WarningDisplay")
 out_text_label = ExtResource("2_kp3mw")
 
@@ -22,9 +23,14 @@ layout_mode = 2
 layout_mode = 2
 text = "Run Checks"
 
-[node name="TryFixButton" type="Button" parent="Hotbar"]
+[node name="AllCleanLabel" type="RichTextLabel" parent="." node_paths=PackedStringArray("maybe_empty_container")]
 layout_mode = 2
-text = "Try Fixing"
+bbcode_enabled = true
+text = "no results to display."
+fit_content = true
+scroll_active = false
+script = ExtResource("3_xatxg")
+maybe_empty_container = NodePath("../WarningsDisplayScroll/WarningDisplay")
 
 [node name="WarningsDisplayScroll" type="ScrollContainer" parent="."]
 layout_mode = 2
