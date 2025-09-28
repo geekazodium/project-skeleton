@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://vq5kr86416s4"]
+[gd_scene load_steps=33 format=4 uid="uid://vq5kr86416s4"]
 
 [ext_resource type="PackedScene" uid="uid://krh4wqhn34oi" path="res://scenes/entities/minion.tscn" id="1_4bfgp"]
 [ext_resource type="Script" path="res://scripts/entities/groups/players.gd" id="1_ingln"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c1ap6hg0m83r8" path="res://scenes/ui/ui_layer.tscn" id="8_x4mid"]
 [ext_resource type="Resource" uid="uid://dgnvqpjxfguj4" path="res://assets/waves/test_wave_4.tres" id="9_su1j4"]
 [ext_resource type="Resource" uid="uid://boe2xvnr3jwqb" path="res://assets/waves/wave_5.tres" id="10_2mr2n"]
+[ext_resource type="Resource" uid="uid://bboyq30275oad" path="res://assets/waves/wave_6.tres" id="11_gtcff"]
 [ext_resource type="Script" path="res://scripts/entities/groups/projectiles.gd" id="12_p21u8"]
 [ext_resource type="Script" path="res://scripts/entities/groups/enemies.gd" id="15_5mssa"]
 [ext_resource type="PackedScene" uid="uid://6qvndbockbj3" path="res://scenes/player_upgrade_pools.tscn" id="15_rq6xm"]
@@ -82,7 +83,7 @@ script = ExtResource("4_ko6km")
 [node name="EntityWaveSpawner" parent="Spawners/SpawnerRotation2" node_paths=PackedStringArray("spawn_to") instance=ExtResource("4_ko8hw")]
 position = Vector2(1200, 0)
 spawn_to = NodePath("../../../Enemies")
-enemy_waves = Array[ExtResource("5_876e0")]([ExtResource("6_g7w0m"), ExtResource("6_g7w0m"), ExtResource("6_g7w0m"), ExtResource("7_uh8hv"), ExtResource("7_uh8hv"), ExtResource("7_uh8hv"), ExtResource("8_fvcfq"), ExtResource("8_fvcfq"), ExtResource("8_fvcfq"), ExtResource("9_su1j4"), ExtResource("9_su1j4"), ExtResource("9_su1j4"), ExtResource("10_2mr2n")])
+enemy_waves = Array[ExtResource("5_876e0")]([ExtResource("6_g7w0m"), ExtResource("6_g7w0m"), ExtResource("6_g7w0m"), ExtResource("7_uh8hv"), ExtResource("7_uh8hv"), ExtResource("7_uh8hv"), ExtResource("8_fvcfq"), ExtResource("8_fvcfq"), ExtResource("8_fvcfq"), ExtResource("9_su1j4"), ExtResource("9_su1j4"), ExtResource("9_su1j4"), ExtResource("10_2mr2n"), ExtResource("10_2mr2n"), ExtResource("11_gtcff")])
 
 [node name="Players" type="Node2D" parent="."]
 script = ExtResource("1_ingln")

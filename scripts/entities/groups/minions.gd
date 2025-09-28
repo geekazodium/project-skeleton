@@ -8,7 +8,7 @@ func _ready() -> void:
 	EntityGroups.set_minions_ref(self);
 	EventBus.minion_spawn.connect(self.on_attempt_spawn);
 
-func on_attempt_spawn(event: EntitySpawnEvent):
+func on_attempt_spawn(event: EntitySpawnEvent) -> void:
 	if self.get_child_count() >= minion_limit:
 		event.set_canceled(true);
 		return;

@@ -7,7 +7,7 @@ class_name PlayerUpgradePools
 func _ready() -> void:
 	EventBus.trade_upgrades.connect(self.on_trade_upgrades);
 	
-func on_trade_upgrades(key: String):
+func on_trade_upgrades(key: String) -> void:
 	var node: Node = self.get_node(self.special_upgrade_pools.get(key));
 	var upgrade_pool: SpecialUpgradePool = node as SpecialUpgradePool;
 	if upgrade_pool == null:

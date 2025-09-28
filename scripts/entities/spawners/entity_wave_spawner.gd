@@ -46,5 +46,5 @@ func spawn_wave() -> void:
 	self.current_wave = min(self.current_wave, self.enemy_waves.size() - 1);
 	self.enemy_waves[self.current_wave].reset();
 
-func sqrt_distribution(min_val: float, max_val: float):
+func sqrt_distribution(min_val: float, max_val: float) -> float:
 	return max(randf_range(min_val,max_val),randf_range(min_val,max_val));

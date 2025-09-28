@@ -2,9 +2,10 @@ extends ShapeCast2D
 
 @export var damage: float = 0;
 @export var damage_event: StringName = "";
+@export var move_speed: float = 300;
 
 func get_move_speed() -> float:
-	return 300;
+	return move_speed;
 
 func _physics_process(delta: float) -> void:
 	self.position += Vector2.RIGHT.rotated(self.global_rotation) * delta * self.get_move_speed();

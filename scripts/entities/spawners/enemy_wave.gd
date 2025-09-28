@@ -30,5 +30,5 @@ func spawining_done() -> bool:
 			return false;
 	return true;
 
-func reset():
+func reset() -> void:
 	self.spawns_left = self.spawn_amounts.duplicate();

@@ -10,7 +10,7 @@ var experience: float = 0;
 func get_xp_until_level_up() -> float:
 	return base_xp_req_per_level + level * xp_req_increase_per_level;
 
-func gain_xp(amount: float):
+func gain_xp(amount: float) -> void:
 	var exp_gained_event = ExperienceGainEvent.new_inst(self, amount);
 	EventBus.experience_gained.emit(exp_gained_event);
 	self.experience += exp_gained_event.amount_gained;

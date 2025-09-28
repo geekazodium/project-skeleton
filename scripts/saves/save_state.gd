@@ -18,6 +18,6 @@ func get_flag(key: StringName, default: bool = false) -> bool:
 		return default;
 	return self._save_state_instance.flags[key];
 
-func set_flag(key: StringName, value: bool):
+func set_flag(key: StringName, value: bool) -> void:
 	self._save_state_instance.flags[key] = value;
 	ResourceSaver.save(self._save_state_instance, default_save_path);

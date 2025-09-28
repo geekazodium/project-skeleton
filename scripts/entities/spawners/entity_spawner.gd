@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	
 	self.attempt_spawn();
 
-func attempt_spawn():
+func attempt_spawn() -> void:
 	var new_inst = spawn_scene.instantiate();
 	self.force_shapecast_update();
 	var spawn_position: Vector2 = self.get_closest_collision_safe_fraction() * self.target_position;

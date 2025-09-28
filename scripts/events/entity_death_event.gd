@@ -14,7 +14,7 @@ static func new_inst(entity: Node2D) -> EntityDeathEvent:
 	return _self;
 
 @warning_ignore("shadowed_variable")
-func set_canceled(canceled: bool):
+func set_canceled(canceled: bool) -> void:
 	self.canceled = canceled;
 
 func get_entity() -> Node2D:

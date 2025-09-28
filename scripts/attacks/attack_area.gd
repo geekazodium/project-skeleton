@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 		self.visible = false;
 		self.process_hits();
 
-func process_hits():
+func process_hits() -> void:
 	if damage_cooldown_timer > 0:
 		return;
 	
@@ -50,7 +50,7 @@ func target_collide_damage(target: Node2D) -> bool:
 	event.free();
 	return !canceled;
 
-func target_collide_knockback(target: Node2D):
+func target_collide_knockback(target: Node2D) -> void:
 	var dir = target.global_position - self.global_position;
 	var hit_entity: EntityBody = target;
 	hit_entity.apply_knockback(dir.normalized() * knockback_amount);

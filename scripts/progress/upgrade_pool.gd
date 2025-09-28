@@ -13,7 +13,7 @@ func _ready() -> void:
 	EventBus.level_up.connect(self.on_level_up);
 	EventBus.powerup_selected.connect(self.on_powerup_selected);
 
-func on_level_up(event: LevelUpEvent):
+func on_level_up(event: LevelUpEvent) -> void:
 	var _level: int = event.get_level();
 	var pool = upgrade_pool.values();
 	pool.shuffle();
@@ -24,7 +24,7 @@ func on_level_up(event: LevelUpEvent):
 	EventBus.level_ups_generated.emit(pool_generated_event);
 	pool_generated_event.free();
 
-func on_powerup_selected(event: PowerUpSelectedEvent):
+func on_powerup_selected(event: PowerUpSelectedEvent) -> void:
 	var key: StringName = event.get_upgrade_strategy().get_upgrade_key();
 	if !self.upgrade_pool.has(key):
 		return;

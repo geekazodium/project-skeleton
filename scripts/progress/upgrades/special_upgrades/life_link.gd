@@ -5,7 +5,7 @@ extends UpgradeStrategy
 @export var health_per_second_per_level: float = 3;
 var health_left: float = 0;
 
-func _ready():
+func _ready() -> void:
 	EventBus.enemy_dealt_damage.connect(self.on_enemy_hit);
 	EventBus.physics_processed.connect(self.on_tick);
 

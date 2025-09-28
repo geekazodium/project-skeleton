@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyWave" load_steps=7 format=3 uid="uid://bboyq30275oad"]
+
+[ext_resource type="Script" path="res://scripts/entities/spawners/enemy_wave.gd" id="1_7x0rj"]
+[ext_resource type="PackedScene" uid="uid://dohvcjl6wodex" path="res://scenes/entities/enemies/assassin_enemy.tscn" id="2_dxhg7"]
+[ext_resource type="PackedScene" uid="uid://bnelj6xfuftv3" path="res://scenes/entities/enemies/enemy.tscn" id="3_iq1p2"]
+[ext_resource type="PackedScene" uid="uid://dea1jp3yhjlj6" path="res://scenes/entities/enemies/tank_enemy.tscn" id="4_5xlna"]
+[ext_resource type="PackedScene" uid="uid://c7es50ywh8pfr" path="res://scenes/entities/enemies/ranged_enemy.tscn" id="5_i404f"]
+[ext_resource type="PackedScene" uid="uid://63pd5tla2x1t" path="res://scenes/entities/enemies/sharpshooter.tscn" id="6_6ke3r"]
+
+[resource]
+script = ExtResource("1_7x0rj")
+spawns = Array[PackedScene]([ExtResource("2_dxhg7"), ExtResource("3_iq1p2"), ExtResource("4_5xlna"), ExtResource("5_i404f"), ExtResource("6_6ke3r")])
+spawn_amounts = Array[int]([10, 30, 20, 30, 20])
