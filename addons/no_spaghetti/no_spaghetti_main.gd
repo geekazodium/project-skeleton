@@ -4,6 +4,8 @@ class_name NoSpaghettiPlugin
 
 static var instance: NoSpaghettiPlugin;
 
+@export var path: String = "";
+
 var main_dock: SpaghettiMenu;
 var main_dock_scene: PackedScene = preload("res://addons/no_spaghetti/menus/spaghetti_menu.tscn");
 var spaghetti_checker: SpaghettiChecker;
@@ -11,7 +13,10 @@ var spaghetti_checker: SpaghettiChecker;
 ## initialize plugin
 func _enter_tree() -> void:
 	SpaghettiLogger.debug("NoSpaghetti has been enabled");
-	SpaghettiLogger.rich("thank you for using [color=Orange]NoSpaghetti [color=White]v0.1b");
+	SpaghettiLogger.rich("thank you for using [color=Orange]NoSpaghetti [color=White]0.3-unstable");
+	
+	SpaghettiLogger.debug("instantiating custom settings...");
+	SpaghettiSettings.register_properties();
 	
 	SpaghettiLogger.debug("instantiating and adding main dock...");
 	self.main_dock = self.main_dock_scene.instantiate() as SpaghettiMenu;
@@ -27,7 +32,7 @@ func _enter_tree() -> void:
 	self.main_dock.check_button.pressed.connect(self.spaghetti_checker.check_program);
 	self.spaghetti_checker.lint_warnings_generated.connect(self.main_dock.create_warning_display);
 	
-	self._load_rules();
+	self.spaghetti_checker.load_rules(ProjectSettings.get_setting(SpaghettiSettings.RULES_SRC));
 	
 	SpaghettiLogger.debug("setting instance...");
 	self.instance = self;
@@ -36,15 +41,10 @@ func _enter_tree() -> void:
 func _exit_tree() -> void:
 	SpaghettiLogger.debug("removing and freeing main dock...");
 	remove_control_from_docks(self.main_dock);
-	self.main_dock.free();
+	self.main_dock.queue_free();
 	
 	SpaghettiLogger.debug("freeing checker...");
 	self.main_dock.queue_free();
 	
 	SpaghettiLogger.debug("NoSpaghetti has been disabled");
 	self.instancce = null;
-
-func _load_rules() -> void:
-	SpaghettiLogger.debug("loading default rules");
-	self.spaghetti_checker.add_pasta(preload("res://addons/no_spaghetti/checker/pastas/explicit_return_type.tres"));
-	self.spaghetti_checker.add_pasta(preload("res://addons/no_spaghetti/checker/pastas/no_private_access.tres"));

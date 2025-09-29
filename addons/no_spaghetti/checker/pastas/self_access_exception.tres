@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="RuleException" load_steps=2 format=3 uid="uid://ct7pfvxe5f314"]
-
-[ext_resource type="Script" path="res://addons/no_spaghetti/checker/exception.gd" id="1_xy8a4"]
-
-[resource]
-script = ExtResource("1_xy8a4")
-group = 1
-rule = "^_?self$"

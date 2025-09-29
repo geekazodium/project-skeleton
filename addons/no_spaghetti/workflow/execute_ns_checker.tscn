@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d17i76fbhs4iu"]
+
+[ext_resource type="Script" path="res://addons/no_spaghetti/workflow/execute_ns_checker.gd" id="1_fsyex"]
+
+[node name="ExecuteNsChecker" type="Node2D"]
+script = ExtResource("1_fsyex")

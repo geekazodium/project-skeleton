@@ -4,33 +4,34 @@ class_name Pasta
 
 ## Pasta: a silly name I gave rulesets.
 ##
-## A pasta is a ruleset for a specific file type.
+## A pasta is a parent type for all rulesets
+## A ruleset has 3 basic commands: compile, is_covered and search_all
 ##
-## Pasta rules are RegEx(s) which will be checked
-## against all files in the project
+## search all allows you to append ruleset results to the inputted array.
 ##
-## You can define a custom pasta TODO: bother with this doc
+## use the below template to create an inheriting script:
 
-@export var file_type: String = "gd";
-@export var rule: String;
-var _compiled_rule: RegEx = null;
-@export var exceptions: Array[RuleException] = [];
+#@tool
+#extends Pasta
+#
+#func is_covered(file_name: String) -> bool:
+#	return false;
+#func only_filename() -> bool:
+#	return false;
+#
+#func compile_rules() -> void:
+#	pass
+#func search_all(text: String, array: Array[RegExMatch]) -> void:
+#	pass
+
+func only_filename() -> bool:
+	return false;
+
+func is_covered(file_name: String) -> bool:
+	return file_name.get_extension() == "gd";
 
 func compile_rules() -> void:
-	SpaghettiLogger.debug("compiled rule: {0}", [self.rule]);
-	if self._compiled_rule == null || self._compiled_rule.get_pattern() != rule:
-		self._compiled_rule = RegEx.create_from_string(self.rule);
-	for e: RuleException in self.exceptions:
-		e.compile_rules();
+	SpaghettiLogger.warning("no compile_rules method defined for {0}",[self.get_script().resource_path]);
 
-func search_all(text: String, array: Array[RegExMatch]) -> void:
-	for res: RegExMatch in self._compiled_rule.search_all(text):
-		if self._check_exempt(res):
-			continue;
-		array.append(res);
-
-func _check_exempt(res: RegExMatch) -> bool:
-	for e: RuleException in self.exceptions:
-		if e.is_exempt(res):
-			return true;
-	return false;
+func search_all(text: String, file_name: String, array: Array[RegExMatch]) -> void:
+	SpaghettiLogger.error("no search_all method defined for {0}",[self.get_script().resource_path]);
