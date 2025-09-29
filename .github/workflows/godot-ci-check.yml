@@ -1,0 +1,69 @@
+# MIT License
+
+# Copyright (c) 2025 Geekazodium
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+name: 'NS Check'
+on: 
+  - push
+
+permissions:
+  contents: read
+
+env:
+  GODOT_VERSION: 4.3-stable
+  PROJECT_PATH: ./
+  GODOT_DL_PATH: "./Godot.x86_64"
+
+jobs:
+  ns-checker-run:
+    name: Run NoSpaghetti Checker
+    runs-on: ubuntu-22.04 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Install Godot #wget godot 
+        run : |
+          wget -O godot.zip "https://github.com/godotengine/godot-builds/releases/download/$GODOT_VERSION/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          unzip godot.zip
+          cp "./Godot_v${GODOT_VERSION}_linux.x86_64" "$GODOT_DL_PATH"
+      - name: Reconfigure
+        run: |
+          cd $PROJECT_PATH
+          if [ -f "export_presets.cfg" ]; then rm export_presets.cfg; fi
+          wget -O "check.py" https://raw.githubusercontent.com/geekazodium/no-spaghetti-plugin/refs/heads/main/ci_dependencies/plugin_settings_copy.py
+          python ./check.py
+      - name: Linux Run
+        run: |
+          cd $PROJECT_PATH
+          eval "$GODOT_DL_PATH" --args "--import --headless"
+          eval "$GODOT_DL_PATH" --args "run --headless --quit"
+          mkdir ./results/
+          if [ -f "$PROJECT_PATH/warnings_compact.txt" ]; then cp "$PROJECT_PATH/warnings_compact.txt" "./results/warnings_compact.txt"; fi
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: results-min.txt
+          path: "./results/warnings_compact.txt"
+      - name: #invoke wget
+        run: |
+          if [ -f "./results/warnings_compact.txt" ]; then echo "rules violation found" && wget; fi
